@@ -1,0 +1,4189 @@
+{
+  "assessments": [
+    {
+      "name": "Mental Health Assessment",
+      "description": "lorem ipsum dolor sit",
+      "category": "psychological",
+      "isStandardized": false,
+      "isActive": true,
+      "versionNumber": 1,
+      "sections": [
+        {
+          "title": "Referral",
+          "description": "",
+          "accessLevel": "therapist_only",
+          "isScoring": false,
+          "reportMapping": "referral_reason",
+          "aiReportPrompt": "Write a formal paragraph summarizing the referral and assessment process for a mental health report. Use the following details:\n\nReferring professional’s name\n\nFull address of the referring clinic\n\nReferral date\n\nReason for referral\n\nDate of assessment\n\nFormat of the session (in person, video, phone)\n\nDuration of clinical interview\n\nTools used (e.g., BDI-II, BAI, PCL)\n\nTime allocated for scoring and report preparation\n\nWhether the client was informed about the purpose of the assessment\n\nWhether confidentiality and report content were explained\n\nWhether the client was encouraged to ask questions\n\nWhether any conflicts of interest were identified\nUse a professional clinical tone and refer to the client by last name only.\n\nExample Output:\nMr./Ms. [Client Last Name] was referred for psychotherapy by [Referring Professional’s Full Name] of [Clinic Name], located at [Clinic Full Address]. The referral, dated [Referral Date], was made to address symptoms related to [Reason for Referral]. A mental health assessment was conducted on [Assessment Date] via [Session Format]. The process included a [Duration of Clinical Interview] clinical interview and the use of standardized self-report tools, including [Selected Tools: e.g., Beck Depression Inventory–II (BDI-II), Beck Anxiety Inventory (BAI), PTSD Checklist (PCL)]. An additional [Time Used for Scoring and Report] was allocated for scoring and preparing the final report.\n\nPrior to the assessment, Mr./Ms. [Client Last Name] was informed about the purpose of the evaluation, the intended use of the findings to support psychotherapy services, and the limits of confidentiality. He/She/They confirmed understanding and was encouraged to ask questions throughout the process. [Conflict of Interest Identified or Not].",
+          "sortOrder": 1,
+          "questions": [
+            {
+              "questionText": "What is the name of the referring professional?\n",
+              "questionType": "short_text",
+              "isRequired": false,
+              "sortOrder": 0,
+              "ratingMin": null,
+              "ratingMax": null,
+              "ratingLabels": [],
+              "contributesToScore": false,
+              "options": []
+            },
+            {
+              "questionText": "What is the full address of the referring professional or clinic?\n",
+              "questionType": "short_text",
+              "isRequired": false,
+              "sortOrder": 1,
+              "ratingMin": null,
+              "ratingMax": null,
+              "ratingLabels": [],
+              "contributesToScore": false,
+              "options": []
+            },
+            {
+              "questionText": "What is the referral date?\n",
+              "questionType": "date",
+              "isRequired": false,
+              "sortOrder": 2,
+              "ratingMin": null,
+              "ratingMax": null,
+              "ratingLabels": [],
+              "contributesToScore": false,
+              "options": []
+            },
+            {
+              "questionText": "What is the stated reason for referral?\n",
+              "questionType": "long_text",
+              "isRequired": false,
+              "sortOrder": 3,
+              "ratingMin": null,
+              "ratingMax": null,
+              "ratingLabels": [],
+              "contributesToScore": false,
+              "options": []
+            }
+          ]
+        },
+        {
+          "title": "Inform Consent",
+          "description": "",
+          "accessLevel": "therapist_only",
+          "isScoring": false,
+          "reportMapping": "informed_consent",
+          "aiReportPrompt": "Prompt:\n\nWrite a formal paragraph summarizing the informed consent process during a mental health assessment. The paragraph should address the following elements:\n\nWhether the client was informed about the purpose of the assessment\n\nWhether the client was informed about the limits of confidentiality\n\nWhether the client was informed that the assessment report would include personal and clinical information, a treatment plan, and recommendations\n\nWhether the client was encouraged to ask questions prior to signing the consent form\n\nWhether the client was informed that the report would be submitted to their insurance provider, if applicable\n\nWhether the purpose of the submission (e.g., to support pre-approval for psychotherapy services) was clearly explained\n\nUse a clinical and professional tone. Refer to the client only by last name, using appropriate honorifics (Mr./Ms.) and pronouns.\n\nExample Output (with placeholders):\n\nDuring the assessment session, Mr./Ms. [Client Last Name] was informed of the purpose of the mental health assessment and the limits of confidentiality. He/She/They was advised that the resulting report would include personal and clinical information, the assessor’s clinical impressions, a recommended treatment plan, and relevant recommendations. Mr./Ms. [Client Last Name] was encouraged to ask questions regarding the assessment process and the release of information prior to signing the informed consent form. He/She/They was also informed that the completed report would be submitted to their insurance provider, where applicable, for the purpose of supporting pre-approval for psychotherapy services.",
+          "sortOrder": 2,
+          "questions": [
+            {
+              "questionText": "Was the client informed about the purpose of the mental health assessment?",
+              "questionType": "multiple_choice",
+              "isRequired": false,
+              "sortOrder": 0,
+              "ratingMin": null,
+              "ratingMax": null,
+              "ratingLabels": [],
+              "contributesToScore": false,
+              "options": [
+                {
+                  "optionKey": "yes",
+                  "optionText": "Yes",
+                  "optionValue": "0",
+                  "scoreValue": 0.0,
+                  "sortOrder": 0
+                },
+                {
+                  "optionKey": "no",
+                  "optionText": "No",
+                  "optionValue": "0",
+                  "scoreValue": 0.0,
+                  "sortOrder": 1
+                }
+              ]
+            },
+            {
+              "questionText": "Was the client informed about the limits of confidentiality, including legal and ethical exceptions?",
+              "questionType": "multiple_choice",
+              "isRequired": false,
+              "sortOrder": 1,
+              "ratingMin": null,
+              "ratingMax": null,
+              "ratingLabels": [],
+              "contributesToScore": false,
+              "options": [
+                {
+                  "optionKey": "yes",
+                  "optionText": "Yes",
+                  "optionValue": "0",
+                  "scoreValue": 0.0,
+                  "sortOrder": 0
+                },
+                {
+                  "optionKey": "no",
+                  "optionText": "No",
+                  "optionValue": "0",
+                  "scoreValue": 0.0,
+                  "sortOrder": 1
+                }
+              ]
+            },
+            {
+              "questionText": "Was the client informed that the assessment report would include personal and clinical information?",
+              "questionType": "multiple_choice",
+              "isRequired": false,
+              "sortOrder": 2,
+              "ratingMin": null,
+              "ratingMax": null,
+              "ratingLabels": [],
+              "contributesToScore": false,
+              "options": [
+                {
+                  "optionKey": "yes",
+                  "optionText": "Yes",
+                  "optionValue": "0",
+                  "scoreValue": 0.0,
+                  "sortOrder": 0
+                },
+                {
+                  "optionKey": "no",
+                  "optionText": "No",
+                  "optionValue": "0",
+                  "scoreValue": 0.0,
+                  "sortOrder": 1
+                }
+              ]
+            },
+            {
+              "questionText": "Was the client encouraged to ask questions about the assessment process and the release of information prior to signing the consent form?",
+              "questionType": "multiple_choice",
+              "isRequired": false,
+              "sortOrder": 3,
+              "ratingMin": null,
+              "ratingMax": null,
+              "ratingLabels": [],
+              "contributesToScore": false,
+              "options": [
+                {
+                  "optionKey": "yes",
+                  "optionText": "Yes",
+                  "optionValue": "0",
+                  "scoreValue": 0.0,
+                  "sortOrder": 0
+                },
+                {
+                  "optionKey": "no",
+                  "optionText": "No",
+                  "optionValue": "0",
+                  "scoreValue": 0.0,
+                  "sortOrder": 1
+                }
+              ]
+            },
+            {
+              "questionText": "Was the client informed that the completed report may be submitted to their insurance provider?",
+              "questionType": "multiple_choice",
+              "isRequired": false,
+              "sortOrder": 4,
+              "ratingMin": null,
+              "ratingMax": null,
+              "ratingLabels": [],
+              "contributesToScore": false,
+              "options": [
+                {
+                  "optionKey": "yes",
+                  "optionText": "Yes",
+                  "optionValue": "0",
+                  "scoreValue": 0.0,
+                  "sortOrder": 0
+                },
+                {
+                  "optionKey": "no",
+                  "optionText": "No",
+                  "optionValue": "0",
+                  "scoreValue": 0.0,
+                  "sortOrder": 1
+                }
+              ]
+            },
+            {
+              "questionText": "Was the purpose of submitting the report (e.g., to support pre-approval for psychotherapy services) explained to the client?",
+              "questionType": "multiple_choice",
+              "isRequired": false,
+              "sortOrder": 5,
+              "ratingMin": null,
+              "ratingMax": null,
+              "ratingLabels": [],
+              "contributesToScore": false,
+              "options": [
+                {
+                  "optionKey": "yes",
+                  "optionText": "Yes",
+                  "optionValue": "0",
+                  "scoreValue": 0.0,
+                  "sortOrder": 0
+                },
+                {
+                  "optionKey": "no",
+                  "optionText": "No",
+                  "optionValue": "0",
+                  "scoreValue": 0.0,
+                  "sortOrder": 1
+                }
+              ]
+            },
+            {
+              "questionText": "Did the client provide informed consent after receiving the above explanations?",
+              "questionType": "multiple_choice",
+              "isRequired": false,
+              "sortOrder": 6,
+              "ratingMin": null,
+              "ratingMax": null,
+              "ratingLabels": [],
+              "contributesToScore": false,
+              "options": [
+                {
+                  "optionKey": "yes",
+                  "optionText": "Yes",
+                  "optionValue": "0",
+                  "scoreValue": 0.0,
+                  "sortOrder": 0
+                },
+                {
+                  "optionKey": "no",
+                  "optionText": "No",
+                  "optionValue": "0",
+                  "scoreValue": 0.0,
+                  "sortOrder": 1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Sources of Information ",
+          "description": "",
+          "accessLevel": "therapist_only",
+          "isScoring": false,
+          "reportMapping": "sources_of_information",
+          "aiReportPrompt": "Prompt:\nWrite a formal paragraph summarizing the sources of information used in a mental health assessment. Include the following inputs:\n\nWhether a semi-structured clinical interview was conducted\n\nWhether the interview explored current and historical mental health functioning\n\nWhether the client's social background was reviewed\n\nWhether behavioral observations were made\n\nWhether psychological testing was administered\n\nThe specific tools used (e.g., BDI-II, BAI, PCL)\nUse a professional clinical tone and refer to the client only by last name.\n\n🔹 Example Output (with Placeholders)\nThe information included in this report was derived from multiple sources. A semi-structured clinical interview was conducted to explore Mr./Ms. [Client Last Name]’s current and historical mental health functioning, as well as relevant aspects of [his/her/their] social background. The interview process also allowed for pertinent behavioral observations to be made.\n\nPsychological testing was administered, and the assessment battery included [List of Tools Used, e.g., Beck Depression Inventory–II (BDI-II), Beck Anxiety Inventory (BAI), PTSD Checklist (PCL)].",
+          "sortOrder": 3,
+          "questions": [
+            {
+              "questionText": "Was a semi-structured clinical interview conducted as part of this assessment?",
+              "questionType": "multiple_choice",
+              "isRequired": false,
+              "sortOrder": 0,
+              "ratingMin": null,
+              "ratingMax": null,
+              "ratingLabels": [],
+              "contributesToScore": false,
+              "options": [
+                {
+                  "optionKey": "yes",
+                  "optionText": "Yes",
+                  "optionValue": "0",
+                  "scoreValue": 0.0,
+                  "sortOrder": 0
+                },
+                {
+                  "optionKey": "no",
+                  "optionText": "No",
+                  "optionValue": "0",
+                  "scoreValue": 0.0,
+                  "sortOrder": 1
+                }
+              ]
+            },
+            {
+              "questionText": "Did the clinical interview explore current and historical mental health functioning?\n",
+              "questionType": "multiple_choice",
+              "isRequired": false,
+              "sortOrder": 1,
+              "ratingMin": null,
+              "ratingMax": null,
+              "ratingLabels": [],
+              "contributesToScore": false,
+              "options": [
+                {
+                  "optionKey": "yes",
+                  "optionText": "Yes",
+                  "optionValue": "0",
+                  "scoreValue": 0.0,
+                  "sortOrder": 0
+                },
+                {
+                  "optionKey": "no",
+                  "optionText": "No",
+                  "optionValue": "0",
+                  "scoreValue": 0.0,
+                  "sortOrder": 1
+                }
+              ]
+            },
+            {
+              "questionText": "Were behavioral observations made during the assessment process?",
+              "questionType": "multiple_choice",
+              "isRequired": false,
+              "sortOrder": 2,
+              "ratingMin": null,
+              "ratingMax": null,
+              "ratingLabels": [],
+              "contributesToScore": false,
+              "options": [
+                {
+                  "optionKey": "yes",
+                  "optionText": "Yes",
+                  "optionValue": "0",
+                  "scoreValue": 0.0,
+                  "sortOrder": 0
+                },
+                {
+                  "optionKey": "no",
+                  "optionText": "No",
+                  "optionValue": "0",
+                  "scoreValue": 0.0,
+                  "sortOrder": 1
+                }
+              ]
+            },
+            {
+              "questionText": "Was self-reported assessment tools  administered as part of this assessment?",
+              "questionType": "multiple_choice",
+              "isRequired": false,
+              "sortOrder": 3,
+              "ratingMin": null,
+              "ratingMax": null,
+              "ratingLabels": [],
+              "contributesToScore": false,
+              "options": [
+                {
+                  "optionKey": "yes",
+                  "optionText": "Yes",
+                  "optionValue": "0",
+                  "scoreValue": 0.0,
+                  "sortOrder": 0
+                },
+                {
+                  "optionKey": "no",
+                  "optionText": "No",
+                  "optionValue": "0",
+                  "scoreValue": 0.0,
+                  "sortOrder": 1
+                }
+              ]
+            },
+            {
+              "questionText": "Which self-reported assessment tools tools were administered?\n",
+              "questionType": "checkbox",
+              "isRequired": false,
+              "sortOrder": 4,
+              "ratingMin": null,
+              "ratingMax": null,
+              "ratingLabels": [],
+              "contributesToScore": false,
+              "options": [
+                {
+                  "optionKey": "beck_depression_inventory_ii_bdi_ii",
+                  "optionText": "Beck Depression Inventory–II (BDI-II)",
+                  "optionValue": "0",
+                  "scoreValue": 0.0,
+                  "sortOrder": 0
+                },
+                {
+                  "optionKey": "beck_anxiety_inventory_bai",
+                  "optionText": "Beck Anxiety Inventory (BAI)",
+                  "optionValue": "0",
+                  "scoreValue": 0.0,
+                  "sortOrder": 1
+                },
+                {
+                  "optionKey": "ptsd_checklist_pcl",
+                  "optionText": "PTSD Checklist (PCL)",
+                  "optionValue": "0",
+                  "scoreValue": 0.0,
+                  "sortOrder": 2
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Behavioral Observations",
+          "description": "",
+          "accessLevel": "therapist_only",
+          "isScoring": false,
+          "reportMapping": "behavioral_observation",
+          "aiReportPrompt": "Prompt:\n\nWrite a formal clinical paragraph describing the client’s attendance, engagement, and behavioral presentation during a mental health assessment session.\n\nThe paragraph should include:\n\nWhether the session was conducted in person at the clinic\n\nThe client’s willingness to share personal history, experiences, and challenges\n\nThe client’s punctuality and level of engagement throughout the session\n\nObservations of the client’s attitude and level of cooperation\n\nThe quality of communication and rapport established with the clinician\n\nObservations related to tone of voice and speech rate\n\nThe client’s emotional presentation at the beginning of the session (e.g., signs of anxiety)\n\nThe client’s expressed motivation or willingness to work on identified issues and develop coping strategies\n\nUse a professional and objective clinical tone. Refer to the client only by last name. Do not include diagnostic conclusions or treatment recommendations.",
+          "sortOrder": 4,
+          "questions": [
+            {
+              "questionText": "What was the format of the assessment session?",
+              "questionType": "multiple_choice",
+              "isRequired": false,
+              "sortOrder": 0,
+              "ratingMin": null,
+              "ratingMax": null,
+              "ratingLabels": [],
+              "contributesToScore": false,
+              "options": [
+                {
+                  "optionKey": "in_person",
+                  "optionText": "In person",
+                  "optionValue": "1",
+                  "scoreValue": 1.0,
+                  "sortOrder": 0
+                },
+                {
+                  "optionKey": "virtual_video",
+                  "optionText": "Virtual (video)",
+                  "optionValue": "2",
+                  "scoreValue": 2.0,
+                  "sortOrder": 1
+                },
+                {
+                  "optionKey": "telephone",
+                  "optionText": "Telephone",
+                  "optionValue": "3",
+                  "scoreValue": 3.0,
+                  "sortOrder": 2
+                }
+              ]
+            },
+            {
+              "questionText": "How did the client attend and engage during the session?",
+              "questionType": "checkbox",
+              "isRequired": false,
+              "sortOrder": 1,
+              "ratingMin": null,
+              "ratingMax": null,
+              "ratingLabels": [],
+              "contributesToScore": false,
+              "options": [
+                {
+                  "optionKey": "arrived_on_time",
+                  "optionText": "Arrived on time",
+                  "optionValue": "1",
+                  "scoreValue": 1.0,
+                  "sortOrder": 0
+                },
+                {
+                  "optionKey": "remained_engaged_throughout_the_session",
+                  "optionText": "Remained engaged throughout the session",
+                  "optionValue": "2",
+                  "scoreValue": 2.0,
+                  "sortOrder": 1
+                },
+                {
+                  "optionKey": "demonstrated_willingness_to_share_personal_history_experiences_and_challenges",
+                  "optionText": "Demonstrated willingness to share personal history, experiences, and challenges",
+                  "optionValue": "3",
+                  "scoreValue": 3.0,
+                  "sortOrder": 2
+                }
+              ]
+            },
+            {
+              "questionText": "How would you describe the client’s communication and rapport with the clinician?",
+              "questionType": "multiple_choice",
+              "isRequired": false,
+              "sortOrder": 2,
+              "ratingMin": null,
+              "ratingMax": null,
+              "ratingLabels": [],
+              "contributesToScore": false,
+              "options": [
+                {
+                  "optionKey": "communicated_effectively_and_established_positive_rapport",
+                  "optionText": "Communicated effectively and established positive rapport",
+                  "optionValue": "1",
+                  "scoreValue": 1.0,
+                  "sortOrder": 0
+                },
+                {
+                  "optionKey": "communication_was_adequate_rapport_partially_established",
+                  "optionText": "Communication was adequate; rapport partially established",
+                  "optionValue": "2",
+                  "scoreValue": 2.0,
+                  "sortOrder": 1
+                },
+                {
+                  "optionKey": "communication_was_limited_rapport_not_established",
+                  "optionText": "Communication was limited; rapport not established",
+                  "optionValue": "3",
+                  "scoreValue": 3.0,
+                  "sortOrder": 2
+                }
+              ]
+            },
+            {
+              "questionText": "How would you describe the client’s attitude and level of cooperation during the session? (Copy)",
+              "questionType": "multiple_choice",
+              "isRequired": false,
+              "sortOrder": 3,
+              "ratingMin": null,
+              "ratingMax": null,
+              "ratingLabels": [],
+              "contributesToScore": false,
+              "options": [
+                {
+                  "optionKey": "cooperative",
+                  "optionText": "Cooperative",
+                  "optionValue": "1",
+                  "scoreValue": 1.0,
+                  "sortOrder": 0
+                },
+                {
+                  "optionKey": "neutral",
+                  "optionText": "Neutral",
+                  "optionValue": "2",
+                  "scoreValue": 2.0,
+                  "sortOrder": 1
+                },
+                {
+                  "optionKey": "guarded",
+                  "optionText": "Guarded",
+                  "optionValue": "3",
+                  "scoreValue": 3.0,
+                  "sortOrder": 2
+                },
+                {
+                  "optionKey": "resistant",
+                  "optionText": "Resistant",
+                  "optionValue": "4",
+                  "scoreValue": 4.0,
+                  "sortOrder": 3
+                }
+              ]
+            },
+            {
+              "questionText": "How would you describe the client’s speech during the session?",
+              "questionType": "multiple_choice",
+              "isRequired": false,
+              "sortOrder": 4,
+              "ratingMin": null,
+              "ratingMax": null,
+              "ratingLabels": [],
+              "contributesToScore": false,
+              "options": [
+                {
+                  "optionKey": "tone_of_voice_appropriate",
+                  "optionText": "Tone of voice appropriate",
+                  "optionValue": "1",
+                  "scoreValue": 1.0,
+                  "sortOrder": 0
+                },
+                {
+                  "optionKey": "speech_rate_within_normal_limits",
+                  "optionText": "Speech rate within normal limits",
+                  "optionValue": "2",
+                  "scoreValue": 2.0,
+                  "sortOrder": 1
+                },
+                {
+                  "optionKey": "speech_rate_slowed",
+                  "optionText": "Speech rate slowed",
+                  "optionValue": "3",
+                  "scoreValue": 3.0,
+                  "sortOrder": 2
+                },
+                {
+                  "optionKey": "speech_rate_rapid",
+                  "optionText": "Speech rate rapid",
+                  "optionValue": "4",
+                  "scoreValue": 4.0,
+                  "sortOrder": 3
+                }
+              ]
+            },
+            {
+              "questionText": "What was the client’s emotional presentation at the beginning of the session?",
+              "questionType": "multiple_choice",
+              "isRequired": false,
+              "sortOrder": 5,
+              "ratingMin": null,
+              "ratingMax": null,
+              "ratingLabels": [],
+              "contributesToScore": false,
+              "options": [
+                {
+                  "optionKey": "calm",
+                  "optionText": "Calm",
+                  "optionValue": "1",
+                  "scoreValue": 1.0,
+                  "sortOrder": 0
+                },
+                {
+                  "optionKey": "anxious",
+                  "optionText": "Anxious",
+                  "optionValue": "2",
+                  "scoreValue": 2.0,
+                  "sortOrder": 1
+                },
+                {
+                  "optionKey": "distressed",
+                  "optionText": "Distressed",
+                  "optionValue": "3",
+                  "scoreValue": 3.0,
+                  "sortOrder": 2
+                },
+                {
+                  "optionKey": "guarded",
+                  "optionText": "Guarded",
+                  "optionValue": "4",
+                  "scoreValue": 4.0,
+                  "sortOrder": 3
+                },
+                {
+                  "optionKey": "tearful",
+                  "optionText": "Tearful",
+                  "optionValue": "5",
+                  "scoreValue": 5.0,
+                  "sortOrder": 4
+                }
+              ]
+            },
+            {
+              "questionText": "Did the client express motivation or willingness to work on identified concerns",
+              "questionType": "multiple_choice",
+              "isRequired": false,
+              "sortOrder": 6,
+              "ratingMin": null,
+              "ratingMax": null,
+              "ratingLabels": [],
+              "contributesToScore": false,
+              "options": [
+                {
+                  "optionKey": "yes",
+                  "optionText": "Yes",
+                  "optionValue": "1",
+                  "scoreValue": 1.0,
+                  "sortOrder": 0
+                },
+                {
+                  "optionKey": "no",
+                  "optionText": "No",
+                  "optionValue": "2",
+                  "scoreValue": 2.0,
+                  "sortOrder": 1
+                }
+              ]
+            },
+            {
+              "questionText": "Additional observations to be noted.",
+              "questionType": "long_text",
+              "isRequired": false,
+              "sortOrder": 7,
+              "ratingMin": null,
+              "ratingMax": null,
+              "ratingLabels": [],
+              "contributesToScore": false,
+              "options": []
+            }
+          ]
+        },
+        {
+          "title": "Risk Factors",
+          "description": "",
+          "accessLevel": "therapist_only",
+          "isScoring": false,
+          "reportMapping": "risk_factors",
+          "aiReportPrompt": "Prompt:\n\nWrite a formal clinical paragraph summarizing the client’s risk assessment and safety planning discussed during the mental health assessment.\n\nThe paragraph should include:\n\nWhether the client denied current suicidal ideation\n\nWhether the client denied suicidal intent or a plan\n\nWhether the client denied current thoughts of self-harm\n\nWhether safety planning was discussed\n\nWhether the client agreed to seek support if suicidal thoughts emerge\n\nWhether the client agreed to present to emergency services if suicidal intent or a plan develops\n\nUse a professional and objective clinical tone. Refer to the client only by last name. Do not include diagnostic conclusions, speculation, or graphic detail.",
+          "sortOrder": 5,
+          "questions": [
+            {
+              "questionText": "Did the client report any current suicidal thoughts?",
+              "questionType": "multiple_choice",
+              "isRequired": false,
+              "sortOrder": 0,
+              "ratingMin": null,
+              "ratingMax": null,
+              "ratingLabels": [],
+              "contributesToScore": false,
+              "options": [
+                {
+                  "optionKey": "yes",
+                  "optionText": "Yes",
+                  "optionValue": "1",
+                  "scoreValue": 1.0,
+                  "sortOrder": 0
+                },
+                {
+                  "optionKey": "no",
+                  "optionText": "No",
+                  "optionValue": "2",
+                  "scoreValue": 2.0,
+                  "sortOrder": 1
+                }
+              ]
+            },
+            {
+              "questionText": "Did the client report any current suicidal intent?",
+              "questionType": "multiple_choice",
+              "isRequired": false,
+              "sortOrder": 1,
+              "ratingMin": null,
+              "ratingMax": null,
+              "ratingLabels": [],
+              "contributesToScore": false,
+              "options": [
+                {
+                  "optionKey": "yes",
+                  "optionText": "Yes",
+                  "optionValue": "1",
+                  "scoreValue": 1.0,
+                  "sortOrder": 0
+                },
+                {
+                  "optionKey": "no",
+                  "optionText": "No",
+                  "optionValue": "2",
+                  "scoreValue": 2.0,
+                  "sortOrder": 1
+                }
+              ]
+            },
+            {
+              "questionText": "Did the client report having a current suicidal plan?",
+              "questionType": "multiple_choice",
+              "isRequired": false,
+              "sortOrder": 2,
+              "ratingMin": null,
+              "ratingMax": null,
+              "ratingLabels": [],
+              "contributesToScore": false,
+              "options": [
+                {
+                  "optionKey": "yes",
+                  "optionText": "Yes",
+                  "optionValue": "1",
+                  "scoreValue": 1.0,
+                  "sortOrder": 0
+                },
+                {
+                  "optionKey": "no",
+                  "optionText": "No",
+                  "optionValue": "2",
+                  "scoreValue": 2.0,
+                  "sortOrder": 1
+                }
+              ]
+            },
+            {
+              "questionText": "Did the client report any current thoughts of self-harm?",
+              "questionType": "multiple_choice",
+              "isRequired": false,
+              "sortOrder": 3,
+              "ratingMin": null,
+              "ratingMax": null,
+              "ratingLabels": [],
+              "contributesToScore": false,
+              "options": [
+                {
+                  "optionKey": "yes",
+                  "optionText": "Yes",
+                  "optionValue": "1",
+                  "scoreValue": 1.0,
+                  "sortOrder": 0
+                },
+                {
+                  "optionKey": "no",
+                  "optionText": "No",
+                  "optionValue": "2",
+                  "scoreValue": 2.0,
+                  "sortOrder": 1
+                }
+              ]
+            },
+            {
+              "questionText": "Was safety planning discussed during the assessment?",
+              "questionType": "multiple_choice",
+              "isRequired": false,
+              "sortOrder": 4,
+              "ratingMin": null,
+              "ratingMax": null,
+              "ratingLabels": [],
+              "contributesToScore": false,
+              "options": [
+                {
+                  "optionKey": "yes",
+                  "optionText": "Yes",
+                  "optionValue": "1",
+                  "scoreValue": 1.0,
+                  "sortOrder": 0
+                },
+                {
+                  "optionKey": "no",
+                  "optionText": "No",
+                  "optionValue": "2",
+                  "scoreValue": 2.0,
+                  "sortOrder": 1
+                }
+              ]
+            },
+            {
+              "questionText": "Did the client agree to seek support (e.g., crisis hotline or other emergency support) if suicidal thoughts emerge?",
+              "questionType": "multiple_choice",
+              "isRequired": false,
+              "sortOrder": 5,
+              "ratingMin": null,
+              "ratingMax": null,
+              "ratingLabels": [],
+              "contributesToScore": false,
+              "options": [
+                {
+                  "optionKey": "yes",
+                  "optionText": "Yes",
+                  "optionValue": "1",
+                  "scoreValue": 1.0,
+                  "sortOrder": 0
+                },
+                {
+                  "optionKey": "no",
+                  "optionText": "No",
+                  "optionValue": "2",
+                  "scoreValue": 2.0,
+                  "sortOrder": 1
+                }
+              ]
+            },
+            {
+              "questionText": "Did the client agree to present to the nearest emergency department if suicidal intent or a plan develops?",
+              "questionType": "multiple_choice",
+              "isRequired": false,
+              "sortOrder": 6,
+              "ratingMin": null,
+              "ratingMax": null,
+              "ratingLabels": [],
+              "contributesToScore": false,
+              "options": [
+                {
+                  "optionKey": "yes",
+                  "optionText": "Yes",
+                  "optionValue": "1",
+                  "scoreValue": 1.0,
+                  "sortOrder": 0
+                },
+                {
+                  "optionKey": "no",
+                  "optionText": "No",
+                  "optionValue": "2",
+                  "scoreValue": 2.0,
+                  "sortOrder": 1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Relevant Background Information",
+          "description": "",
+          "accessLevel": "therapist_only",
+          "isScoring": false,
+          "reportMapping": "relevant_background_information",
+          "aiReportPrompt": "Prompt:\n\nWrite a formal, well-organized paragraph summarizing the client’s relevant background information based solely on the details provided during the assessment.\n\nWhen writing the paragraph:\n\nMaintain a client-focused and objective clinical tone\n\nRefer to the client only by last name\n\nUse attribution language such as “the client reported,” “the client stated,” or “the client expressed” to clearly indicate self-reported information\n\nPreserve all details exactly as provided, without adding, removing, or interpreting information\n\nDo not reduce, summarize, or generalize the content\n\nImprove clarity, organization, and flow while keeping the original meaning intact\n\nAvoid diagnostic language, assumptions, or clinical conclusions\n\nThe goal is to organize and present the information clearly and professionally, while accurately reflecting the client’s reported experiences.",
+          "sortOrder": 6,
+          "questions": [
+            {
+              "questionText": "Can you provide details about your medical history, including any current or past medical conditions, hospitalizations, medications you have taken or are currently taking, and any previous medical diagnoses?",
+              "questionType": "long_text",
+              "isRequired": false,
+              "sortOrder": 0,
+              "ratingMin": null,
+              "ratingMax": null,
+              "ratingLabels": [],
+              "contributesToScore": false,
+              "options": []
+            },
+            {
+              "questionText": "Can you provide information about your developmental history, including early childhood development, learning experiences, and any developmental concerns that were identified while growing up?",
+              "questionType": "long_text",
+              "isRequired": false,
+              "sortOrder": 1,
+              "ratingMin": null,
+              "ratingMax": null,
+              "ratingLabels": [],
+              "contributesToScore": false,
+              "options": []
+            },
+            {
+              "questionText": "Can you describe your emotional history, including past or current emotional difficulties, ongoing fears, mood changes, or significant life events that have impacted your emotional well-being?",
+              "questionType": "long_text",
+              "isRequired": false,
+              "sortOrder": 2,
+              "ratingMin": null,
+              "ratingMax": null,
+              "ratingLabels": [],
+              "contributesToScore": false,
+              "options": []
+            },
+            {
+              "questionText": "Are there any additional emotional aspects or experiences that you feel are important to mention?",
+              "questionType": "long_text",
+              "isRequired": false,
+              "sortOrder": 3,
+              "ratingMin": null,
+              "ratingMax": null,
+              "ratingLabels": [],
+              "contributesToScore": false,
+              "options": []
+            }
+          ]
+        },
+        {
+          "title": "Presenting Concerns",
+          "description": "",
+          "accessLevel": "therapist_only",
+          "isScoring": false,
+          "reportMapping": null,
+          "aiReportPrompt": "Prompt:\nWrite a formal, narrative-style paragraph for the Presenting Concerns section of a mental health assessment report. Use the following client-reported data:\n\nPhysical concerns selected (e.g., sleep disturbances, fatigue, pain, etc.)\n\nEmotional concerns selected (e.g., sadness, anxiety, panic attacks, irritability, etc.)\n\nSocial and relational concerns selected (e.g., social withdrawal, isolation, family conflict, etc.)\n\nCognitive or thinking-related concerns selected (e.g., trouble concentrating, intrusive thoughts, memory difficulties, etc.)\n\nOnly include the items actually reported. Do not assume or generalize. Use a clinical and objective tone, refer to the client by last name only, and write in third person. Clearly describe how the reported symptoms affect functioning or emotional well-being.\nMr./Ms. [Client Last Name] presented with a range of physical and psychological concerns reported over the past month. Physically, [he/she/they] endorsed experiencing [insert selected physical concerns, e.g., trouble sleeping, chronic fatigue, and muscle tension], which have contributed to difficulties maintaining daily routines and energy levels.\n\nEmotionally, [Client Last Name] reported experiencing [insert selected emotional concerns, e.g., persistent sadness, anxiety, and episodes of panic], often accompanied by feelings of helplessness or internal tension.\n\nSocially, [he/she/they] indicated [insert selected social/relational concerns, e.g., increased social withdrawal and a sense of isolation], particularly following migration-related losses. These changes have reportedly disrupted [his/her/their] ability to maintain supportive relationships.\n\nCognitively, [Client Last Name] described [insert selected cognitive concerns, e.g., trouble focusing and frequent intrusive thoughts], which interfere with concentration and emotional regulation. Together, these symptoms appear to reflect ongoing distress and challenges in adapting to current life circumstances.",
+          "sortOrder": 7,
+          "questions": [
+            {
+              "questionText": "Physical Concerns\nHave you experienced any of the following in the past month? (Check all that apply)\n",
+              "questionType": "checkbox",
+              "isRequired": false,
+              "sortOrder": 0,
+              "ratingMin": null,
+              "ratingMax": null,
+              "ratingLabels": [],
+              "contributesToScore": false,
+              "options": [
+                {
+                  "optionKey": "trouble_sleeping",
+                  "optionText": "Trouble sleeping",
+                  "optionValue": "0",
+                  "scoreValue": 0.0,
+                  "sortOrder": 0
+                },
+                {
+                  "optionKey": "headaches",
+                  "optionText": "Headaches",
+                  "optionValue": "0",
+                  "scoreValue": 0.0,
+                  "sortOrder": 1
+                },
+                {
+                  "optionKey": "chronic_fatigue",
+                  "optionText": "Chronic fatigue",
+                  "optionValue": "0",
+                  "scoreValue": 0.0,
+                  "sortOrder": 2
+                },
+                {
+                  "optionKey": "appetite_changes",
+                  "optionText": "Appetite changes",
+                  "optionValue": "0",
+                  "scoreValue": 0.0,
+                  "sortOrder": 3
+                },
+                {
+                  "optionKey": "digestive_problems",
+                  "optionText": "Digestive problems",
+                  "optionValue": "0",
+                  "scoreValue": 0.0,
+                  "sortOrder": 4
+                },
+                {
+                  "optionKey": "chest_pain_or_heart_racing",
+                  "optionText": "Chest pain or heart racing",
+                  "optionValue": "0",
+                  "scoreValue": 0.0,
+                  "sortOrder": 5
+                },
+                {
+                  "optionKey": "muscle_tension",
+                  "optionText": "Muscle tension",
+                  "optionValue": "0",
+                  "scoreValue": 0.0,
+                  "sortOrder": 6
+                },
+                {
+                  "optionKey": "breathing_difficulty_not_medical",
+                  "optionText": "Breathing difficulty (not medical)",
+                  "optionValue": "0",
+                  "scoreValue": 0.0,
+                  "sortOrder": 7
+                },
+                {
+                  "optionKey": "dizziness_or_fainting",
+                  "optionText": "Dizziness or fainting",
+                  "optionValue": "0",
+                  "scoreValue": 0.0,
+                  "sortOrder": 8
+                }
+              ]
+            },
+            {
+              "questionText": "Are there any other physical concerns?",
+              "questionType": "long_text",
+              "isRequired": false,
+              "sortOrder": 1,
+              "ratingMin": null,
+              "ratingMax": null,
+              "ratingLabels": [],
+              "contributesToScore": false,
+              "options": []
+            },
+            {
+              "questionText": "Emotional Concerns\nWhich of the following have you experienced recently?",
+              "questionType": "checkbox",
+              "isRequired": false,
+              "sortOrder": 1,
+              "ratingMin": null,
+              "ratingMax": null,
+              "ratingLabels": [],
+              "contributesToScore": false,
+              "options": [
+                {
+                  "optionKey": "sadness",
+                  "optionText": "Sadness",
+                  "optionValue": "0",
+                  "scoreValue": 0.0,
+                  "sortOrder": 0
+                },
+                {
+                  "optionKey": "anxiety_and_worry",
+                  "optionText": "Anxiety and worry",
+                  "optionValue": "0",
+                  "scoreValue": 0.0,
+                  "sortOrder": 1
+                },
+                {
+                  "optionKey": "panic_attacks",
+                  "optionText": "Panic attacks",
+                  "optionValue": "0",
+                  "scoreValue": 0.0,
+                  "sortOrder": 2
+                },
+                {
+                  "optionKey": "anger",
+                  "optionText": "Anger ",
+                  "optionValue": "0",
+                  "scoreValue": 0.0,
+                  "sortOrder": 3
+                },
+                {
+                  "optionKey": "irritability",
+                  "optionText": "irritability",
+                  "optionValue": "0",
+                  "scoreValue": 0.0,
+                  "sortOrder": 4
+                },
+                {
+                  "optionKey": "guilt",
+                  "optionText": "Guilt ",
+                  "optionValue": "0",
+                  "scoreValue": 0.0,
+                  "sortOrder": 5
+                },
+                {
+                  "optionKey": "emotional_numbness",
+                  "optionText": "Emotional numbness",
+                  "optionValue": "0",
+                  "scoreValue": 0.0,
+                  "sortOrder": 6
+                },
+                {
+                  "optionKey": "hopelessness",
+                  "optionText": "Hopelessness",
+                  "optionValue": "0",
+                  "scoreValue": 0.0,
+                  "sortOrder": 7
+                },
+                {
+                  "optionKey": "mood_swings",
+                  "optionText": "Mood swings",
+                  "optionValue": "0",
+                  "scoreValue": 0.0,
+                  "sortOrder": 8
+                }
+              ]
+            },
+            {
+              "questionText": "Are there any other Emotional Concerns? ",
+              "questionType": "long_text",
+              "isRequired": false,
+              "sortOrder": 2,
+              "ratingMin": null,
+              "ratingMax": null,
+              "ratingLabels": [],
+              "contributesToScore": false,
+              "options": []
+            },
+            {
+              "questionText": "Social and Relational Concerns",
+              "questionType": "checkbox",
+              "isRequired": false,
+              "sortOrder": 3,
+              "ratingMin": null,
+              "ratingMax": null,
+              "ratingLabels": [],
+              "contributesToScore": false,
+              "options": [
+                {
+                  "optionKey": "social_withdrawal",
+                  "optionText": "Social withdrawal",
+                  "optionValue": "0",
+                  "scoreValue": 0.0,
+                  "sortOrder": 0
+                },
+                {
+                  "optionKey": "conflict_with_family_or_others",
+                  "optionText": "Conflict with family or others",
+                  "optionValue": "0",
+                  "scoreValue": 0.0,
+                  "sortOrder": 1
+                },
+                {
+                  "optionKey": "panic_attacks",
+                  "optionText": "Panic attacks",
+                  "optionValue": "0",
+                  "scoreValue": 0.0,
+                  "sortOrder": 2
+                },
+                {
+                  "optionKey": "loss_of_community_or_status",
+                  "optionText": "Loss of community or status",
+                  "optionValue": "0",
+                  "scoreValue": 0.0,
+                  "sortOrder": 3
+                },
+                {
+                  "optionKey": "loneliness",
+                  "optionText": "Loneliness",
+                  "optionValue": "0",
+                  "scoreValue": 0.0,
+                  "sortOrder": 4
+                },
+                {
+                  "optionKey": "language_related_communication_problems",
+                  "optionText": "Language-related communication problems",
+                  "optionValue": "0",
+                  "scoreValue": 0.0,
+                  "sortOrder": 5
+                },
+                {
+                  "optionKey": "difficulty_trusting_others",
+                  "optionText": "Difficulty trusting others",
+                  "optionValue": "0",
+                  "scoreValue": 0.0,
+                  "sortOrder": 6
+                },
+                {
+                  "optionKey": "avoiding_places_or_people",
+                  "optionText": "Avoiding places or people",
+                  "optionValue": "0",
+                  "scoreValue": 0.0,
+                  "sortOrder": 7
+                }
+              ]
+            },
+            {
+              "questionText": "Are there any other social or relational concerns?",
+              "questionType": "short_text",
+              "isRequired": false,
+              "sortOrder": 5,
+              "ratingMin": null,
+              "ratingMax": null,
+              "ratingLabels": [],
+              "contributesToScore": false,
+              "options": []
+            },
+            {
+              "questionText": "Cognitive and Thinking Concerns",
+              "questionType": "checkbox",
+              "isRequired": false,
+              "sortOrder": 6,
+              "ratingMin": null,
+              "ratingMax": null,
+              "ratingLabels": [],
+              "contributesToScore": false,
+              "options": [
+                {
+                  "optionKey": "memory_difficulties",
+                  "optionText": "Memory difficulties",
+                  "optionValue": "0",
+                  "scoreValue": 0.0,
+                  "sortOrder": 0
+                },
+                {
+                  "optionKey": "trouble_focusing",
+                  "optionText": "Trouble focusing",
+                  "optionValue": "0",
+                  "scoreValue": 0.0,
+                  "sortOrder": 1
+                },
+                {
+                  "optionKey": "intrusive_or_repetitive_thoughts",
+                  "optionText": "Intrusive or repetitive thoughts",
+                  "optionValue": "0",
+                  "scoreValue": 0.0,
+                  "sortOrder": 2
+                },
+                {
+                  "optionKey": "difficulty_making_decisions",
+                  "optionText": "Difficulty making decisions",
+                  "optionValue": "0",
+                  "scoreValue": 0.0,
+                  "sortOrder": 3
+                },
+                {
+                  "optionKey": "confusion",
+                  "optionText": "Confusion",
+                  "optionValue": "0",
+                  "scoreValue": 0.0,
+                  "sortOrder": 4
+                },
+                {
+                  "optionKey": "flashback",
+                  "optionText": "Flashback",
+                  "optionValue": "0",
+                  "scoreValue": 0.0,
+                  "sortOrder": 5
+                },
+                {
+                  "optionKey": "nightmares",
+                  "optionText": "Nightmares",
+                  "optionValue": "0",
+                  "scoreValue": 0.0,
+                  "sortOrder": 6
+                },
+                {
+                  "optionKey": "hypervigilance",
+                  "optionText": "Hypervigilance",
+                  "optionValue": "0",
+                  "scoreValue": 0.0,
+                  "sortOrder": 7
+                }
+              ]
+            },
+            {
+              "questionText": "Are there any other cognitive and thinking concerns",
+              "questionType": "short_text",
+              "isRequired": false,
+              "sortOrder": 7,
+              "ratingMin": null,
+              "ratingMax": null,
+              "ratingLabels": [],
+              "contributesToScore": false,
+              "options": []
+            }
+          ]
+        },
+        {
+          "title": "Beck Depression Inventory",
+          "description": "Instructions: This questionnaire consists of 21 groups of statements. Please read each group carefully and select the one statement that best describes how you have been feeling during the past two weeks, including today. Circle the number beside the selected statement. If more than one statement in a group seems to apply, choose the one with the highest number. Make sure to select only one statement per group, including for item 16 (Changes in Sleeping Pattern) and item 18 (Changes in Appetite).",
+          "accessLevel": "therapist_only",
+          "isScoring": true,
+          "reportMapping": "objective_findings",
+          "aiReportPrompt": "Prompt:\nWrite the results section for the Beck Depression Inventory–II (BDI-II) as part of a mental health assessment report. Use a formal and objective clinical tone consistent with professional mental health documentation. Refer to the client only by last name.\n\nInclude the following details:\n\nClient’s last name\n\nTotal BDI-II score\n\nSeverity classification, based on total score:\n\n0–13 = Minimal\n\n14–19 = Mild\n\n20–28 = Moderate\n\n29–63 = Severe\n\nSymptoms endorsed at each severity level:\n\nScore of 3 = Severe\n\nScore of 2 = Moderate\n\nScore of 1 = Mild\n\nScore of 0 = Not endorsed\n\nWhether suicidal thoughts were endorsed and their severity\n\nWhether suicidal ideation, intent, or plan is currently present\n\nWhether the client demonstrated insight and willingness to seek support\n\nExample Output (with Placeholders)\nMr./Ms. [Client Last Name] was administered the Beck Depression Inventory–II (BDI-II), a 21-item standardized self-report measure designed to assess the severity of depressive symptoms over the two weeks preceding the assessment. [He/She/They] obtained a total score of [Total Score], which falls within the [Severity Category] range of depressive symptomatology.\n\nSevere symptoms (score of 3) were endorsed in the areas of [list]. Moderate symptoms (score of 2) were reported in relation to [list]. Mild symptoms (score of 1) were reported in [list], while no symptoms (score of 0) were noted in [list].\n\nMr./Ms. [Client Last Name] [did/did not] endorse suicidal thoughts, rated at a severity of [score]. [He/She/They] denied any current suicidal ideation, intent, or plan. [He/She/They] demonstrated insight into their mental health and expressed a willingness to seek support if symptoms were to worsen or safety concerns were to arise.",
+          "sortOrder": 8,
+          "questions": [
+            {
+              "questionText": "Sadness ",
+              "questionType": "multiple_choice",
+              "isRequired": false,
+              "sortOrder": 0,
+              "ratingMin": null,
+              "ratingMax": null,
+              "ratingLabels": [],
+              "contributesToScore": false,
+              "options": [
+                {
+                  "optionKey": "i_do_not_feel_sad",
+                  "optionText": "I do not feel sad.",
+                  "optionValue": "0",
+                  "scoreValue": 0.0,
+                  "sortOrder": 0
+                },
+                {
+                  "optionKey": "i_feel_sad_much_of_the_time",
+                  "optionText": "I feel sad much of the time.",
+                  "optionValue": "1",
+                  "scoreValue": 1.0,
+                  "sortOrder": 1
+                },
+                {
+                  "optionKey": "i_am_sad_all_the_time",
+                  "optionText": "I am sad all the time.",
+                  "optionValue": "2",
+                  "scoreValue": 2.0,
+                  "sortOrder": 2
+                },
+                {
+                  "optionKey": "i_am_so_sad_or_unhappy_that_i_can_t_stand_it",
+                  "optionText": "I am so sad or unhappy that I can’t stand it.",
+                  "optionValue": "3",
+                  "scoreValue": 3.0,
+                  "sortOrder": 3
+                }
+              ]
+            },
+            {
+              "questionText": "Pessimism ",
+              "questionType": "multiple_choice",
+              "isRequired": false,
+              "sortOrder": 1,
+              "ratingMin": null,
+              "ratingMax": null,
+              "ratingLabels": [],
+              "contributesToScore": false,
+              "options": [
+                {
+                  "optionKey": "i_am_not_discouraged_about_my_future",
+                  "optionText": "I am not discouraged about my future. ",
+                  "optionValue": "0",
+                  "scoreValue": 0.0,
+                  "sortOrder": 0
+                },
+                {
+                  "optionKey": "i_feel_more_discouraged_about_my_future_than_i_used_to_be",
+                  "optionText": "I feel more discouraged about my future than I used to be. ",
+                  "optionValue": "1",
+                  "scoreValue": 1.0,
+                  "sortOrder": 1
+                },
+                {
+                  "optionKey": "i_do_not_expect_things_to_work_out_for_me",
+                  "optionText": "I do not expect things to work out for me. ",
+                  "optionValue": "2",
+                  "scoreValue": 2.0,
+                  "sortOrder": 2
+                },
+                {
+                  "optionKey": "i_feel_my_future_is_hopeless_and_will_only_get_worse",
+                  "optionText": "I feel my future is hopeless and will only get worse.  ",
+                  "optionValue": "3",
+                  "scoreValue": 3.0,
+                  "sortOrder": 3
+                }
+              ]
+            },
+            {
+              "questionText": "Past Failure",
+              "questionType": "multiple_choice",
+              "isRequired": false,
+              "sortOrder": 2,
+              "ratingMin": null,
+              "ratingMax": null,
+              "ratingLabels": [],
+              "contributesToScore": false,
+              "options": [
+                {
+                  "optionKey": "i_do_not_feel_like_a_failure",
+                  "optionText": "I do not feel like a failure.",
+                  "optionValue": "0",
+                  "scoreValue": 0.0,
+                  "sortOrder": 0
+                },
+                {
+                  "optionKey": "i_have_failed_more_than_i_should_have",
+                  "optionText": "I have failed more than I should have.",
+                  "optionValue": "1",
+                  "scoreValue": 1.0,
+                  "sortOrder": 1
+                },
+                {
+                  "optionKey": "as_i_look_back_i_see_a_lot_of_failures",
+                  "optionText": "As I look back, I see a lot of failures.",
+                  "optionValue": "2",
+                  "scoreValue": 2.0,
+                  "sortOrder": 2
+                },
+                {
+                  "optionKey": "i_feel_i_am_a_total_failure_as_a_person",
+                  "optionText": "I feel I am a total failure as a person.",
+                  "optionValue": "3",
+                  "scoreValue": 3.0,
+                  "sortOrder": 3
+                }
+              ]
+            },
+            {
+              "questionText": "Loss of Pleasure  ",
+              "questionType": "multiple_choice",
+              "isRequired": false,
+              "sortOrder": 3,
+              "ratingMin": null,
+              "ratingMax": null,
+              "ratingLabels": [],
+              "contributesToScore": false,
+              "options": [
+                {
+                  "optionKey": "i_get_as_much_pleasure_as_i_ever_did_from_the_things_i_enjoy",
+                  "optionText": "I get as much pleasure as I ever did from the things I  enjoy.  ",
+                  "optionValue": "0",
+                  "scoreValue": 0.0,
+                  "sortOrder": 0
+                },
+                {
+                  "optionKey": "i_don_t_enjoy_things_as_much_as_i_used_to",
+                  "optionText": "I don't enjoy things as much as I used to. ",
+                  "optionValue": "1",
+                  "scoreValue": 1.0,
+                  "sortOrder": 1
+                },
+                {
+                  "optionKey": "i_get_very_little_pleasure_from_the_things_i_used_to_enjoy",
+                  "optionText": "I get very little pleasure from the things I used to enjoy.",
+                  "optionValue": "2",
+                  "scoreValue": 2.0,
+                  "sortOrder": 2
+                },
+                {
+                  "optionKey": "i_can_t_get_any_pleasure_from_the_things_i_used_to_enjoy",
+                  "optionText": "I can't get any pleasure from the things I used to enjoy.  ",
+                  "optionValue": "3",
+                  "scoreValue": 3.0,
+                  "sortOrder": 3
+                }
+              ]
+            },
+            {
+              "questionText": "Guilty Feelings  ",
+              "questionType": "multiple_choice",
+              "isRequired": false,
+              "sortOrder": 4,
+              "ratingMin": null,
+              "ratingMax": null,
+              "ratingLabels": [],
+              "contributesToScore": false,
+              "options": [
+                {
+                  "optionKey": "i_don_t_feel_particularly_guilty",
+                  "optionText": "I don't feel particularly guilty.",
+                  "optionValue": "0",
+                  "scoreValue": 0.0,
+                  "sortOrder": 0
+                },
+                {
+                  "optionKey": "i_feel_guilty_over_many_things_i_have_done_or_should_have_done",
+                  "optionText": "I feel guilty over many things I have done or should  have done.",
+                  "optionValue": "1",
+                  "scoreValue": 1.0,
+                  "sortOrder": 1
+                },
+                {
+                  "optionKey": "i_feel_quite_guilty_most_of_the_time",
+                  "optionText": "I feel quite guilty most of the time.",
+                  "optionValue": "2",
+                  "scoreValue": 2.0,
+                  "sortOrder": 2
+                },
+                {
+                  "optionKey": "i_feel_guilty_all_of_the_time",
+                  "optionText": "I feel guilty all of the time.",
+                  "optionValue": "3",
+                  "scoreValue": 3.0,
+                  "sortOrder": 3
+                }
+              ]
+            },
+            {
+              "questionText": "Punishment Feelings  ",
+              "questionType": "multiple_choice",
+              "isRequired": false,
+              "sortOrder": 5,
+              "ratingMin": null,
+              "ratingMax": null,
+              "ratingLabels": [],
+              "contributesToScore": false,
+              "options": [
+                {
+                  "optionKey": "i_don_t_feel_i_am_being_punished",
+                  "optionText": "I don't feel I am being punished",
+                  "optionValue": "0",
+                  "scoreValue": 0.0,
+                  "sortOrder": 0
+                },
+                {
+                  "optionKey": "i_feel_i_may_be_punished",
+                  "optionText": "I feel I may be punished.  ",
+                  "optionValue": "1",
+                  "scoreValue": 1.0,
+                  "sortOrder": 1
+                },
+                {
+                  "optionKey": "i_expect_to_be_punished",
+                  "optionText": "I expect to be punished.  ",
+                  "optionValue": "2",
+                  "scoreValue": 2.0,
+                  "sortOrder": 2
+                },
+                {
+                  "optionKey": "i_feel_i_am_being_punished",
+                  "optionText": "I feel I am being punished.",
+                  "optionValue": "3",
+                  "scoreValue": 3.0,
+                  "sortOrder": 3
+                }
+              ]
+            },
+            {
+              "questionText": "Self-Dislike ",
+              "questionType": "multiple_choice",
+              "isRequired": false,
+              "sortOrder": 6,
+              "ratingMin": null,
+              "ratingMax": null,
+              "ratingLabels": [],
+              "contributesToScore": false,
+              "options": [
+                {
+                  "optionKey": "i_feel_the_same_about_myself_as_ever",
+                  "optionText": "I feel the same about myself as ever.",
+                  "optionValue": "0",
+                  "scoreValue": 0.0,
+                  "sortOrder": 0
+                },
+                {
+                  "optionKey": "i_have_lost_confidence_in_myself",
+                  "optionText": "I have lost confidence in myself",
+                  "optionValue": "1",
+                  "scoreValue": 1.0,
+                  "sortOrder": 1
+                },
+                {
+                  "optionKey": "i_am_disappointed_in_myself",
+                  "optionText": "I am disappointed in myself.",
+                  "optionValue": "2",
+                  "scoreValue": 2.0,
+                  "sortOrder": 2
+                },
+                {
+                  "optionKey": "i_dislike_myself",
+                  "optionText": "I dislike myself.",
+                  "optionValue": "3",
+                  "scoreValue": 3.0,
+                  "sortOrder": 3
+                }
+              ]
+            },
+            {
+              "questionText": "Self-Criticalness  ",
+              "questionType": "multiple_choice",
+              "isRequired": false,
+              "sortOrder": 7,
+              "ratingMin": null,
+              "ratingMax": null,
+              "ratingLabels": [],
+              "contributesToScore": false,
+              "options": [
+                {
+                  "optionKey": "i_don_t_criticize_or_blame_myself_more_than_usual",
+                  "optionText": "I don't criticize or blame myself more than usual.",
+                  "optionValue": "0",
+                  "scoreValue": 0.0,
+                  "sortOrder": 0
+                },
+                {
+                  "optionKey": "i_am_more_critical_of_myself_than_i_used_to_be",
+                  "optionText": "I am more critical of myself than I used to be.",
+                  "optionValue": "1",
+                  "scoreValue": 1.0,
+                  "sortOrder": 1
+                },
+                {
+                  "optionKey": "i_criticize_myself_for_all_of_my_faults",
+                  "optionText": "I criticize myself for all of my faults.",
+                  "optionValue": "2",
+                  "scoreValue": 2.0,
+                  "sortOrder": 2
+                },
+                {
+                  "optionKey": "i_blame_myself_for_everything_bad_that_happens",
+                  "optionText": "I blame myself for everything bad that happens.",
+                  "optionValue": "3",
+                  "scoreValue": 3.0,
+                  "sortOrder": 3
+                }
+              ]
+            },
+            {
+              "questionText": " Suicidal Thoughts or Wishes  ",
+              "questionType": "multiple_choice",
+              "isRequired": false,
+              "sortOrder": 8,
+              "ratingMin": null,
+              "ratingMax": null,
+              "ratingLabels": [],
+              "contributesToScore": false,
+              "options": [
+                {
+                  "optionKey": "i_don_t_have_any_thoughts_of_killing_myself",
+                  "optionText": "I don't have any thoughts of killing myself.",
+                  "optionValue": "0",
+                  "scoreValue": 0.0,
+                  "sortOrder": 0
+                },
+                {
+                  "optionKey": "i_have_thoughts_of_killing_myself_but_i_would_not_carry_them_out",
+                  "optionText": "I have thoughts of killing myself, but I would not  carry them out.",
+                  "optionValue": "1",
+                  "scoreValue": 1.0,
+                  "sortOrder": 1
+                },
+                {
+                  "optionKey": "i_would_like_to_kill_myself",
+                  "optionText": "I would like to kill myself.",
+                  "optionValue": "2",
+                  "scoreValue": 2.0,
+                  "sortOrder": 2
+                },
+                {
+                  "optionKey": "i_would_kill_myself_if_i_had_the_chance",
+                  "optionText": "I would kill myself if I had the chance.",
+                  "optionValue": "3",
+                  "scoreValue": 3.0,
+                  "sortOrder": 3
+                }
+              ]
+            },
+            {
+              "questionText": " Crying ",
+              "questionType": "multiple_choice",
+              "isRequired": false,
+              "sortOrder": 9,
+              "ratingMin": null,
+              "ratingMax": null,
+              "ratingLabels": [],
+              "contributesToScore": false,
+              "options": [
+                {
+                  "optionKey": "i_don_t_cry_anymore_than_i_used_to",
+                  "optionText": "I don't cry anymore than I used to",
+                  "optionValue": "0",
+                  "scoreValue": 0.0,
+                  "sortOrder": 0
+                },
+                {
+                  "optionKey": "i_cry_more_than_i_used_to",
+                  "optionText": "I cry more than I used to.",
+                  "optionValue": "1",
+                  "scoreValue": 1.0,
+                  "sortOrder": 1
+                },
+                {
+                  "optionKey": "i_cry_over_every_little_thing",
+                  "optionText": "I cry over every little thing.",
+                  "optionValue": "2",
+                  "scoreValue": 2.0,
+                  "sortOrder": 2
+                },
+                {
+                  "optionKey": "i_feel_like_crying_but_i_can_t",
+                  "optionText": "I feel like crying, but I can't.",
+                  "optionValue": "3",
+                  "scoreValue": 3.0,
+                  "sortOrder": 3
+                }
+              ]
+            },
+            {
+              "questionText": "Agitation ",
+              "questionType": "multiple_choice",
+              "isRequired": false,
+              "sortOrder": 10,
+              "ratingMin": null,
+              "ratingMax": null,
+              "ratingLabels": [],
+              "contributesToScore": false,
+              "options": [
+                {
+                  "optionKey": "i_am_no_more_restless_or_wound_up_than_usual",
+                  "optionText": " I am no more restless or wound up than usual.  ",
+                  "optionValue": "0",
+                  "scoreValue": 0.0,
+                  "sortOrder": 0
+                },
+                {
+                  "optionKey": "i_feel_more_restless_or_wound_up_than_usual",
+                  "optionText": " I feel more restless or wound up than usual. ",
+                  "optionValue": "1",
+                  "scoreValue": 1.0,
+                  "sortOrder": 1
+                },
+                {
+                  "optionKey": "i_am_so_restless_or_agitated_it_s_hard_to_stay_still",
+                  "optionText": "I am so restless or agitated, it's hard to stay still. ",
+                  "optionValue": "2",
+                  "scoreValue": 2.0,
+                  "sortOrder": 2
+                },
+                {
+                  "optionKey": "i_am_so_restless_or_agitated_that_i_have_to_keep_moving_or_doing_something",
+                  "optionText": " I am so restless or agitated that I have to keep   moving or doing something.  ",
+                  "optionValue": "3",
+                  "scoreValue": 3.0,
+                  "sortOrder": 3
+                }
+              ]
+            },
+            {
+              "questionText": "Loss of Interest ",
+              "questionType": "multiple_choice",
+              "isRequired": false,
+              "sortOrder": 11,
+              "ratingMin": null,
+              "ratingMax": null,
+              "ratingLabels": [],
+              "contributesToScore": false,
+              "options": [
+                {
+                  "optionKey": "i_have_not_lost_interest_in_other_people_or_activities",
+                  "optionText": " I have not lost interest in other people or  activities.  ",
+                  "optionValue": "0",
+                  "scoreValue": 0.0,
+                  "sortOrder": 0
+                },
+                {
+                  "optionKey": "i_am_less_interested_in_other_people_or_things_than_before",
+                  "optionText": "I am less interested in other people or things  than before.  ",
+                  "optionValue": "1",
+                  "scoreValue": 1.0,
+                  "sortOrder": 1
+                },
+                {
+                  "optionKey": "i_have_lost_most_of_my_interest_in_other_people_or_things",
+                  "optionText": "I have lost most of my interest in other people or  things.  ",
+                  "optionValue": "2",
+                  "scoreValue": 2.0,
+                  "sortOrder": 2
+                },
+                {
+                  "optionKey": "it_s_hard_to_get_interested_in_anything",
+                  "optionText": " It's hard to get interested in anything.  ",
+                  "optionValue": "3",
+                  "scoreValue": 3.0,
+                  "sortOrder": 3
+                }
+              ]
+            },
+            {
+              "questionText": " Indecisiveness  ",
+              "questionType": "multiple_choice",
+              "isRequired": false,
+              "sortOrder": 12,
+              "ratingMin": null,
+              "ratingMax": null,
+              "ratingLabels": [],
+              "contributesToScore": false,
+              "options": [
+                {
+                  "optionKey": "i_make_decisions_about_as_well_as_ever",
+                  "optionText": " I make decisions about as well as ever.  ",
+                  "optionValue": "0",
+                  "scoreValue": 0.0,
+                  "sortOrder": 0
+                },
+                {
+                  "optionKey": "i_find_it_more_difficult_to_make_decisions_than_usual",
+                  "optionText": "I find it more difficult to make decisions than  usual. ",
+                  "optionValue": "1",
+                  "scoreValue": 1.0,
+                  "sortOrder": 1
+                },
+                {
+                  "optionKey": "i_have_much_greater_difficulty_in_making_decisions_than_i_used_to",
+                  "optionText": " I have much greater difficulty in making  decisions than I used to.",
+                  "optionValue": "2",
+                  "scoreValue": 2.0,
+                  "sortOrder": 2
+                },
+                {
+                  "optionKey": "i_have_trouble_making_any_decisions",
+                  "optionText": "I have trouble making any decisions.  ",
+                  "optionValue": "3",
+                  "scoreValue": 3.0,
+                  "sortOrder": 3
+                }
+              ]
+            },
+            {
+              "questionText": "Worthlessness  ",
+              "questionType": "multiple_choice",
+              "isRequired": false,
+              "sortOrder": 13,
+              "ratingMin": null,
+              "ratingMax": null,
+              "ratingLabels": [],
+              "contributesToScore": false,
+              "options": [
+                {
+                  "optionKey": "i_do_not_feel_i_am_worthless",
+                  "optionText": "I do not feel I am worthless. ",
+                  "optionValue": "0",
+                  "scoreValue": 0.0,
+                  "sortOrder": 0
+                },
+                {
+                  "optionKey": "i_don_t_consider_myself_as_worthwhile_and_useful_as_i_used_to",
+                  "optionText": "I don't consider myself as worthwhile and useful  as I used to.  ",
+                  "optionValue": "1",
+                  "scoreValue": 1.0,
+                  "sortOrder": 1
+                },
+                {
+                  "optionKey": "i_feel_more_worthless_as_compared_to_others",
+                  "optionText": "I feel more worthless as compared to others. ",
+                  "optionValue": "2",
+                  "scoreValue": 2.0,
+                  "sortOrder": 2
+                },
+                {
+                  "optionKey": "i_feel_utterly_worthless",
+                  "optionText": "I feel utterly worthless. ",
+                  "optionValue": "3",
+                  "scoreValue": 3.0,
+                  "sortOrder": 3
+                }
+              ]
+            },
+            {
+              "questionText": "Loss of Energy  ",
+              "questionType": "multiple_choice",
+              "isRequired": false,
+              "sortOrder": 14,
+              "ratingMin": null,
+              "ratingMax": null,
+              "ratingLabels": [],
+              "contributesToScore": false,
+              "options": [
+                {
+                  "optionKey": "i_have_as_much_energy_as_ever",
+                  "optionText": "I have as much energy as ever.  ",
+                  "optionValue": "0",
+                  "scoreValue": 0.0,
+                  "sortOrder": 0
+                },
+                {
+                  "optionKey": "i_have_less_energy_than_i_used_to_have",
+                  "optionText": "I have less energy than I used to have.  ",
+                  "optionValue": "1",
+                  "scoreValue": 1.0,
+                  "sortOrder": 1
+                },
+                {
+                  "optionKey": "i_don_t_have_enough_energy_to_do_very_much",
+                  "optionText": "I don't have enough energy to do very much.",
+                  "optionValue": "2",
+                  "scoreValue": 2.0,
+                  "sortOrder": 2
+                },
+                {
+                  "optionKey": "i_don_t_have_enough_energy_to_do_anything",
+                  "optionText": "I don't have enough energy to do anything.  ",
+                  "optionValue": "3",
+                  "scoreValue": 3.0,
+                  "sortOrder": 3
+                }
+              ]
+            },
+            {
+              "questionText": "Changes in Sleeping Pattern  ",
+              "questionType": "multiple_choice",
+              "isRequired": false,
+              "sortOrder": 15,
+              "ratingMin": null,
+              "ratingMax": null,
+              "ratingLabels": [],
+              "contributesToScore": false,
+              "options": [
+                {
+                  "optionKey": "i_have_not_experienced_any_change_in_my_sleeping",
+                  "optionText": "I have not experienced any change in my sleeping.",
+                  "optionValue": "0",
+                  "scoreValue": 0.0,
+                  "sortOrder": 0
+                },
+                {
+                  "optionKey": "i_sleep_somewhat_more_than_usual",
+                  "optionText": "I sleep somewhat more than usual. ",
+                  "optionValue": "1",
+                  "scoreValue": 1.0,
+                  "sortOrder": 1
+                },
+                {
+                  "optionKey": "i_sleep_somewhat_less_than_usual",
+                  "optionText": "I sleep somewhat less than usual. ",
+                  "optionValue": "1",
+                  "scoreValue": 1.0,
+                  "sortOrder": 2
+                },
+                {
+                  "optionKey": "i_sleep_a_lot_more_than_usual",
+                  "optionText": " I sleep a lot more than usual.  ",
+                  "optionValue": "2",
+                  "scoreValue": 2.0,
+                  "sortOrder": 3
+                },
+                {
+                  "optionKey": "i_sleep_a_lot_less_than_usual",
+                  "optionText": "I sleep a lot less than usual.",
+                  "optionValue": "2",
+                  "scoreValue": 2.0,
+                  "sortOrder": 4
+                },
+                {
+                  "optionKey": "i_sleep_most_of_the_day",
+                  "optionText": "I sleep most of the day.",
+                  "optionValue": "3",
+                  "scoreValue": 3.0,
+                  "sortOrder": 5
+                },
+                {
+                  "optionKey": "i_wake_up_1_2_hours_early_and_can_t_get_back_to_sleep",
+                  "optionText": "I wake up 1-2 hours early and can't get back to  sleep.",
+                  "optionValue": "3",
+                  "scoreValue": 3.0,
+                  "sortOrder": 6
+                }
+              ]
+            },
+            {
+              "questionText": "Irritability  ",
+              "questionType": "multiple_choice",
+              "isRequired": false,
+              "sortOrder": 16,
+              "ratingMin": null,
+              "ratingMax": null,
+              "ratingLabels": [],
+              "contributesToScore": false,
+              "options": [
+                {
+                  "optionKey": "i_am_not_more_irritable_than_usual",
+                  "optionText": "I am not more irritable than usual.",
+                  "optionValue": "0",
+                  "scoreValue": 0.0,
+                  "sortOrder": 0
+                },
+                {
+                  "optionKey": "i_am_more_irritable_than_usual",
+                  "optionText": "I am more irritable than usual.",
+                  "optionValue": "1",
+                  "scoreValue": 1.0,
+                  "sortOrder": 1
+                },
+                {
+                  "optionKey": "i_am_much_more_irritable_than_usual",
+                  "optionText": "I am much more irritable than usual.",
+                  "optionValue": "2",
+                  "scoreValue": 2.0,
+                  "sortOrder": 2
+                },
+                {
+                  "optionKey": "i_am_irritable_all_the_time",
+                  "optionText": "I am irritable all the time.",
+                  "optionValue": "3",
+                  "scoreValue": 3.0,
+                  "sortOrder": 3
+                }
+              ]
+            },
+            {
+              "questionText": "Changes in Appetite ",
+              "questionType": "multiple_choice",
+              "isRequired": false,
+              "sortOrder": 17,
+              "ratingMin": null,
+              "ratingMax": null,
+              "ratingLabels": [],
+              "contributesToScore": false,
+              "options": [
+                {
+                  "optionKey": "i_have_not_experienced_any_change_in_my_appetite",
+                  "optionText": "I have not experienced any change in my  appetite.",
+                  "optionValue": "0",
+                  "scoreValue": 0.0,
+                  "sortOrder": 0
+                },
+                {
+                  "optionKey": "my_appetite_is_somewhat_less_than_usual",
+                  "optionText": "My appetite is somewhat less than usual.",
+                  "optionValue": "1",
+                  "scoreValue": 1.0,
+                  "sortOrder": 1
+                },
+                {
+                  "optionKey": "my_appetite_is_somewhat_greater_than_usual",
+                  "optionText": "My appetite is somewhat greater than usual.",
+                  "optionValue": "1",
+                  "scoreValue": 1.0,
+                  "sortOrder": 2
+                },
+                {
+                  "optionKey": "my_appetite_is_much_less_than_before",
+                  "optionText": "My appetite is much less than before.",
+                  "optionValue": "2",
+                  "scoreValue": 2.0,
+                  "sortOrder": 3
+                },
+                {
+                  "optionKey": "my_appetite_is_much_greater_than_usual",
+                  "optionText": "My appetite is much greater than usual.",
+                  "optionValue": "2",
+                  "scoreValue": 2.0,
+                  "sortOrder": 4
+                },
+                {
+                  "optionKey": "i_have_no_appetite_at_all",
+                  "optionText": "I have no appetite at all.",
+                  "optionValue": "3",
+                  "scoreValue": 3.0,
+                  "sortOrder": 5
+                },
+                {
+                  "optionKey": "i_crave_food_all_the_time",
+                  "optionText": "I crave food all the time.",
+                  "optionValue": "3",
+                  "scoreValue": 3.0,
+                  "sortOrder": 6
+                }
+              ]
+            },
+            {
+              "questionText": "Concentration Difficulty",
+              "questionType": "multiple_choice",
+              "isRequired": false,
+              "sortOrder": 18,
+              "ratingMin": null,
+              "ratingMax": null,
+              "ratingLabels": [],
+              "contributesToScore": false,
+              "options": [
+                {
+                  "optionKey": "i_can_concentrate_as_well_as_ever",
+                  "optionText": "I can concentrate as well as ever.",
+                  "optionValue": "0",
+                  "scoreValue": 0.0,
+                  "sortOrder": 0
+                },
+                {
+                  "optionKey": "i_can_t_concentrate_as_well_as_usual",
+                  "optionText": "I can't concentrate as well as usual.",
+                  "optionValue": "1",
+                  "scoreValue": 1.0,
+                  "sortOrder": 1
+                },
+                {
+                  "optionKey": "it_s_hard_to_keep_my_mind_on_anything_for_very_long",
+                  "optionText": "It's hard to keep my mind on anything for  very long.",
+                  "optionValue": "2",
+                  "scoreValue": 2.0,
+                  "sortOrder": 2
+                },
+                {
+                  "optionKey": "i_find_i_can_t_concentrate_on_anything",
+                  "optionText": "I find I can't concentrate on anything.",
+                  "optionValue": "3",
+                  "scoreValue": 3.0,
+                  "sortOrder": 3
+                }
+              ]
+            },
+            {
+              "questionText": "Tiredness or Fatigue  ",
+              "questionType": "multiple_choice",
+              "isRequired": false,
+              "sortOrder": 19,
+              "ratingMin": null,
+              "ratingMax": null,
+              "ratingLabels": [],
+              "contributesToScore": false,
+              "options": [
+                {
+                  "optionKey": "i_am_no_more_tired_or_fatigued_than_usual",
+                  "optionText": "I am no more tired or fatigued than usual.",
+                  "optionValue": "0",
+                  "scoreValue": 0.0,
+                  "sortOrder": 0
+                },
+                {
+                  "optionKey": "i_get_more_tired_or_fatigued_more_easily_than_usual",
+                  "optionText": "I get more tired or fatigued more easily than usual.",
+                  "optionValue": "1",
+                  "scoreValue": 1.0,
+                  "sortOrder": 1
+                },
+                {
+                  "optionKey": "i_am_too_tired_or_fatigued_to_do_a_lot_of_the_things_i_used_to_do",
+                  "optionText": "I am too tired or fatigued to do a lot of the things I used to do.",
+                  "optionValue": "2",
+                  "scoreValue": 2.0,
+                  "sortOrder": 2
+                },
+                {
+                  "optionKey": "i_am_too_tired_or_fatigued_to_do_most_of_the_things_i_used_to_do",
+                  "optionText": "I am too tired or fatigued to do most of the   things I used to do.",
+                  "optionValue": "3",
+                  "scoreValue": 3.0,
+                  "sortOrder": 3
+                }
+              ]
+            },
+            {
+              "questionText": " Loss of Interest in Sex ",
+              "questionType": "multiple_choice",
+              "isRequired": false,
+              "sortOrder": 20,
+              "ratingMin": null,
+              "ratingMax": null,
+              "ratingLabels": [],
+              "contributesToScore": false,
+              "options": [
+                {
+                  "optionKey": "i_have_not_noticed_any_recent_change_in_my_interest_in_sex",
+                  "optionText": "I have not noticed any recent change in my     interest  in sex.",
+                  "optionValue": "0",
+                  "scoreValue": 0.0,
+                  "sortOrder": 0
+                },
+                {
+                  "optionKey": "i_am_less_interested_in_sex_than_i_used_to_be",
+                  "optionText": "I am less interested in sex than I used to be.",
+                  "optionValue": "1",
+                  "scoreValue": 1.0,
+                  "sortOrder": 1
+                },
+                {
+                  "optionKey": "i_am_much_less_interested_in_sex_now",
+                  "optionText": "I am much less interested in sex now.",
+                  "optionValue": "2",
+                  "scoreValue": 2.0,
+                  "sortOrder": 2
+                },
+                {
+                  "optionKey": "i_have_lost_interest_in_sex_completely",
+                  "optionText": "I have lost interest in sex completely.",
+                  "optionValue": "3",
+                  "scoreValue": 3.0,
+                  "sortOrder": 3
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Beck Anxiety Inventory",
+          "description": "Please read each of the following statements carefully. The list describes common symptoms of anxiety. For each item, select the number that best reflects how much you have been bothered by that symptom during the past month, including today.\n\nUse the following scale to rate each symptom:\n\n0 – Not at all\n\n1 – Mildly (it didn’t bother me much)\n\n2 – Moderately (it wasn’t pleasant at times)\n\n3 – Severely (it bothered me a lot)\n\nSimply click or select the number that matches your experience for each item.",
+          "accessLevel": "therapist_only",
+          "isScoring": true,
+          "reportMapping": "objective_findings",
+          "aiReportPrompt": "Prompt:\nWrite the results section for the Beck Anxiety Inventory (BAI) as part of a mental health assessment report. Use a professional, objective tone consistent with mental health documentation. Refer to the client only by last name.\n\nInclude the following elements:\n\nClient’s last name\n\nTotal BAI score\n\nSeverity classification based on score:\n\n0–7 = Minimal\n\n8–15 = Mild\n\n16–25 = Moderate\n\n26–63 = Severe\n\nSymptoms rated as:\n\nScore of 3 = Severe\n\nScore of 2 = Moderate\n\nScore of 1 = Mild\n\nScore of 0 = Not endorsed\n\nWhether symptoms are primarily physiological (somatic), cognitive, or a mix of both\n\nWhether panic attacks were reported\n\nWhether the client demonstrated emotional insight and willingness to engage in treatment\n Example Output (with Placeholders)\nMr./Ms. [Client Last Name] was administered the Beck Anxiety Inventory (BAI), a 21-item standardized self-report instrument used to assess the severity of anxiety symptoms experienced during the week preceding the assessment. [He/She/They] obtained a total score of [Total Score], which falls within the [Severity Category] range of anxiety symptomatology.\n\nSevere symptoms (score of 3) were reported across the following areas: [list]. A moderate symptom (score of 2) was reported in [list], while mild symptoms (score of 1) were endorsed in [list]. Items rated with a score of 0 (not endorsed) included [list].\n\nThe overall symptom pattern reflects [a primarily physiological profile / primarily cognitive symptoms / a combination of cognitive and somatic symptoms], marked by [brief summary, e.g., intense physiological arousal, persistent fear-based cognition, etc.]. Although panic attacks were [reported / not reported], the breadth and severity of symptoms suggest a substantial impact on daily functioning. Mr./Ms. [Client Last Name] demonstrated awareness of [his/her/their] mental health challenges and expressed openness to pursuing therapeutic support.",
+          "sortOrder": 9,
+          "questions": [
+            {
+              "questionText": "Numbness or tingling",
+              "questionType": "multiple_choice",
+              "isRequired": false,
+              "sortOrder": 0,
+              "ratingMin": null,
+              "ratingMax": null,
+              "ratingLabels": [],
+              "contributesToScore": false,
+              "options": [
+                {
+                  "optionKey": "not_at_all",
+                  "optionText": "Not at all",
+                  "optionValue": "0",
+                  "scoreValue": 0.0,
+                  "sortOrder": 0
+                },
+                {
+                  "optionKey": "mildly_but_it_didn_t_bother_me_much",
+                  "optionText": "Mildly, but it  didn’t bother  me much",
+                  "optionValue": "1",
+                  "scoreValue": 1.0,
+                  "sortOrder": 1
+                },
+                {
+                  "optionKey": "moderately_it_wasn_t_pleasant_at_times",
+                  "optionText": "Moderately – it  wasn’t pleasant  at times",
+                  "optionValue": "2",
+                  "scoreValue": 2.0,
+                  "sortOrder": 2
+                },
+                {
+                  "optionKey": "severely_it_bothered_me_a_lot",
+                  "optionText": "Severely – it  bothered me  a lot",
+                  "optionValue": "3",
+                  "scoreValue": 3.0,
+                  "sortOrder": 3
+                }
+              ]
+            },
+            {
+              "questionText": "Feeling hot",
+              "questionType": "multiple_choice",
+              "isRequired": false,
+              "sortOrder": 1,
+              "ratingMin": null,
+              "ratingMax": null,
+              "ratingLabels": [],
+              "contributesToScore": false,
+              "options": [
+                {
+                  "optionKey": "not_at_all",
+                  "optionText": "Not at all",
+                  "optionValue": "0",
+                  "scoreValue": 0.0,
+                  "sortOrder": 0
+                },
+                {
+                  "optionKey": "mildly_but_it_didn_t_bother_me_much",
+                  "optionText": "Mildly, but it  didn’t bother  me much",
+                  "optionValue": "1",
+                  "scoreValue": 1.0,
+                  "sortOrder": 1
+                },
+                {
+                  "optionKey": "moderately_it_wasn_t_pleasant_at_times",
+                  "optionText": "Moderately – it  wasn’t pleasant  at times",
+                  "optionValue": "2",
+                  "scoreValue": 2.0,
+                  "sortOrder": 2
+                },
+                {
+                  "optionKey": "severely_it_bothered_me_a_lot",
+                  "optionText": "Severely – it  bothered me  a lot",
+                  "optionValue": "3",
+                  "scoreValue": 3.0,
+                  "sortOrder": 3
+                }
+              ]
+            },
+            {
+              "questionText": "Wobbliness in legs",
+              "questionType": "multiple_choice",
+              "isRequired": false,
+              "sortOrder": 2,
+              "ratingMin": null,
+              "ratingMax": null,
+              "ratingLabels": [],
+              "contributesToScore": false,
+              "options": [
+                {
+                  "optionKey": "not_at_all",
+                  "optionText": "Not at all",
+                  "optionValue": "0",
+                  "scoreValue": 0.0,
+                  "sortOrder": 0
+                },
+                {
+                  "optionKey": "mildly_but_it_didn_t_bother_me_much",
+                  "optionText": "Mildly, but it  didn’t bother  me much",
+                  "optionValue": "1",
+                  "scoreValue": 1.0,
+                  "sortOrder": 1
+                },
+                {
+                  "optionKey": "moderately_it_wasn_t_pleasant_at_times",
+                  "optionText": "Moderately – it  wasn’t pleasant  at times",
+                  "optionValue": "2",
+                  "scoreValue": 2.0,
+                  "sortOrder": 2
+                },
+                {
+                  "optionKey": "severely_it_bothered_me_a_lot",
+                  "optionText": "Severely – it  bothered me  a lot",
+                  "optionValue": "3",
+                  "scoreValue": 3.0,
+                  "sortOrder": 3
+                }
+              ]
+            },
+            {
+              "questionText": "Unable to relax",
+              "questionType": "multiple_choice",
+              "isRequired": false,
+              "sortOrder": 3,
+              "ratingMin": null,
+              "ratingMax": null,
+              "ratingLabels": [],
+              "contributesToScore": false,
+              "options": [
+                {
+                  "optionKey": "not_at_all",
+                  "optionText": "Not at all",
+                  "optionValue": "0",
+                  "scoreValue": 0.0,
+                  "sortOrder": 0
+                },
+                {
+                  "optionKey": "mildly_but_it_didn_t_bother_me_much",
+                  "optionText": "Mildly, but it  didn’t bother  me much",
+                  "optionValue": "1",
+                  "scoreValue": 1.0,
+                  "sortOrder": 1
+                },
+                {
+                  "optionKey": "moderately_it_wasn_t_pleasant_at_times",
+                  "optionText": "Moderately – it  wasn’t pleasant  at times",
+                  "optionValue": "2",
+                  "scoreValue": 2.0,
+                  "sortOrder": 2
+                },
+                {
+                  "optionKey": "severely_it_bothered_me_a_lot",
+                  "optionText": "Severely – it  bothered me  a lot",
+                  "optionValue": "3",
+                  "scoreValue": 3.0,
+                  "sortOrder": 3
+                }
+              ]
+            },
+            {
+              "questionText": "Fear of worst happening",
+              "questionType": "multiple_choice",
+              "isRequired": false,
+              "sortOrder": 4,
+              "ratingMin": null,
+              "ratingMax": null,
+              "ratingLabels": [],
+              "contributesToScore": false,
+              "options": [
+                {
+                  "optionKey": "not_at_all",
+                  "optionText": "Not at all",
+                  "optionValue": "0",
+                  "scoreValue": 0.0,
+                  "sortOrder": 0
+                },
+                {
+                  "optionKey": "mildly_but_it_didn_t_bother_me_much",
+                  "optionText": "Mildly, but it  didn’t bother  me much",
+                  "optionValue": "1",
+                  "scoreValue": 1.0,
+                  "sortOrder": 1
+                },
+                {
+                  "optionKey": "moderately_it_wasn_t_pleasant_at_times",
+                  "optionText": "Moderately – it  wasn’t pleasant  at times",
+                  "optionValue": "2",
+                  "scoreValue": 2.0,
+                  "sortOrder": 2
+                },
+                {
+                  "optionKey": "severely_it_bothered_me_a_lot",
+                  "optionText": "Severely – it  bothered me  a lot",
+                  "optionValue": "3",
+                  "scoreValue": 3.0,
+                  "sortOrder": 3
+                }
+              ]
+            },
+            {
+              "questionText": "Dizzy or lightheaded",
+              "questionType": "multiple_choice",
+              "isRequired": false,
+              "sortOrder": 5,
+              "ratingMin": null,
+              "ratingMax": null,
+              "ratingLabels": [],
+              "contributesToScore": false,
+              "options": [
+                {
+                  "optionKey": "not_at_all",
+                  "optionText": "Not at all",
+                  "optionValue": "0",
+                  "scoreValue": 0.0,
+                  "sortOrder": 0
+                },
+                {
+                  "optionKey": "mildly_but_it_didn_t_bother_me_much",
+                  "optionText": "Mildly, but it  didn’t bother  me much",
+                  "optionValue": "1",
+                  "scoreValue": 1.0,
+                  "sortOrder": 1
+                },
+                {
+                  "optionKey": "moderately_it_wasn_t_pleasant_at_times",
+                  "optionText": "Moderately – it  wasn’t pleasant  at times",
+                  "optionValue": "2",
+                  "scoreValue": 2.0,
+                  "sortOrder": 2
+                },
+                {
+                  "optionKey": "severely_it_bothered_me_a_lot",
+                  "optionText": "Severely – it  bothered me  a lot",
+                  "optionValue": "3",
+                  "scoreValue": 3.0,
+                  "sortOrder": 3
+                }
+              ]
+            },
+            {
+              "questionText": "Heart pounding / racing",
+              "questionType": "multiple_choice",
+              "isRequired": false,
+              "sortOrder": 6,
+              "ratingMin": null,
+              "ratingMax": null,
+              "ratingLabels": [],
+              "contributesToScore": false,
+              "options": [
+                {
+                  "optionKey": "not_at_all",
+                  "optionText": "Not at all",
+                  "optionValue": "0",
+                  "scoreValue": 0.0,
+                  "sortOrder": 0
+                },
+                {
+                  "optionKey": "mildly_but_it_didn_t_bother_me_much",
+                  "optionText": "Mildly, but it  didn’t bother  me much",
+                  "optionValue": "1",
+                  "scoreValue": 1.0,
+                  "sortOrder": 1
+                },
+                {
+                  "optionKey": "moderately_it_wasn_t_pleasant_at_times",
+                  "optionText": "Moderately – it  wasn’t pleasant  at times",
+                  "optionValue": "2",
+                  "scoreValue": 2.0,
+                  "sortOrder": 2
+                },
+                {
+                  "optionKey": "severely_it_bothered_me_a_lot",
+                  "optionText": "Severely – it  bothered me  a lot",
+                  "optionValue": "3",
+                  "scoreValue": 3.0,
+                  "sortOrder": 3
+                }
+              ]
+            },
+            {
+              "questionText": "Unsteady",
+              "questionType": "multiple_choice",
+              "isRequired": false,
+              "sortOrder": 7,
+              "ratingMin": null,
+              "ratingMax": null,
+              "ratingLabels": [],
+              "contributesToScore": false,
+              "options": [
+                {
+                  "optionKey": "not_at_all",
+                  "optionText": "Not at all",
+                  "optionValue": "0",
+                  "scoreValue": 0.0,
+                  "sortOrder": 0
+                },
+                {
+                  "optionKey": "mildly_but_it_didn_t_bother_me_much",
+                  "optionText": "Mildly, but it  didn’t bother  me much",
+                  "optionValue": "1",
+                  "scoreValue": 1.0,
+                  "sortOrder": 1
+                },
+                {
+                  "optionKey": "moderately_it_wasn_t_pleasant_at_times",
+                  "optionText": "Moderately – it  wasn’t pleasant  at times",
+                  "optionValue": "2",
+                  "scoreValue": 2.0,
+                  "sortOrder": 2
+                },
+                {
+                  "optionKey": "severely_it_bothered_me_a_lot",
+                  "optionText": "Severely – it  bothered me  a lot",
+                  "optionValue": "3",
+                  "scoreValue": 3.0,
+                  "sortOrder": 3
+                }
+              ]
+            },
+            {
+              "questionText": "Terrified or afraid",
+              "questionType": "multiple_choice",
+              "isRequired": false,
+              "sortOrder": 8,
+              "ratingMin": null,
+              "ratingMax": null,
+              "ratingLabels": [],
+              "contributesToScore": false,
+              "options": [
+                {
+                  "optionKey": "not_at_all",
+                  "optionText": "Not at all",
+                  "optionValue": "0",
+                  "scoreValue": 0.0,
+                  "sortOrder": 0
+                },
+                {
+                  "optionKey": "mildly_but_it_didn_t_bother_me_much",
+                  "optionText": "Mildly, but it  didn’t bother  me much",
+                  "optionValue": "1",
+                  "scoreValue": 1.0,
+                  "sortOrder": 1
+                },
+                {
+                  "optionKey": "moderately_it_wasn_t_pleasant_at_times",
+                  "optionText": "Moderately – it  wasn’t pleasant  at times",
+                  "optionValue": "2",
+                  "scoreValue": 2.0,
+                  "sortOrder": 2
+                },
+                {
+                  "optionKey": "severely_it_bothered_me_a_lot",
+                  "optionText": "Severely – it  bothered me  a lot",
+                  "optionValue": "3",
+                  "scoreValue": 3.0,
+                  "sortOrder": 3
+                }
+              ]
+            },
+            {
+              "questionText": "Nervous",
+              "questionType": "multiple_choice",
+              "isRequired": false,
+              "sortOrder": 9,
+              "ratingMin": null,
+              "ratingMax": null,
+              "ratingLabels": [],
+              "contributesToScore": false,
+              "options": [
+                {
+                  "optionKey": "not_at_all",
+                  "optionText": "Not at all",
+                  "optionValue": "0",
+                  "scoreValue": 0.0,
+                  "sortOrder": 0
+                },
+                {
+                  "optionKey": "mildly_but_it_didn_t_bother_me_much",
+                  "optionText": "Mildly, but it  didn’t bother  me much",
+                  "optionValue": "1",
+                  "scoreValue": 1.0,
+                  "sortOrder": 1
+                },
+                {
+                  "optionKey": "moderately_it_wasn_t_pleasant_at_times",
+                  "optionText": "Moderately – it  wasn’t pleasant  at times",
+                  "optionValue": "2",
+                  "scoreValue": 2.0,
+                  "sortOrder": 2
+                },
+                {
+                  "optionKey": "severely_it_bothered_me_a_lot",
+                  "optionText": "Severely – it  bothered me  a lot",
+                  "optionValue": "3",
+                  "scoreValue": 3.0,
+                  "sortOrder": 3
+                }
+              ]
+            },
+            {
+              "questionText": "Feeling of choking",
+              "questionType": "multiple_choice",
+              "isRequired": false,
+              "sortOrder": 10,
+              "ratingMin": null,
+              "ratingMax": null,
+              "ratingLabels": [],
+              "contributesToScore": false,
+              "options": [
+                {
+                  "optionKey": "not_at_all",
+                  "optionText": "Not at all",
+                  "optionValue": "0",
+                  "scoreValue": 0.0,
+                  "sortOrder": 0
+                },
+                {
+                  "optionKey": "mildly_but_it_didn_t_bother_me_much",
+                  "optionText": "Mildly, but it  didn’t bother  me much",
+                  "optionValue": "1",
+                  "scoreValue": 1.0,
+                  "sortOrder": 1
+                },
+                {
+                  "optionKey": "moderately_it_wasn_t_pleasant_at_times",
+                  "optionText": "Moderately – it  wasn’t pleasant  at times",
+                  "optionValue": "2",
+                  "scoreValue": 2.0,
+                  "sortOrder": 2
+                },
+                {
+                  "optionKey": "severely_it_bothered_me_a_lot",
+                  "optionText": "Severely – it  bothered me  a lot",
+                  "optionValue": "3",
+                  "scoreValue": 3.0,
+                  "sortOrder": 3
+                }
+              ]
+            },
+            {
+              "questionText": "Hands trembling",
+              "questionType": "multiple_choice",
+              "isRequired": false,
+              "sortOrder": 11,
+              "ratingMin": null,
+              "ratingMax": null,
+              "ratingLabels": [],
+              "contributesToScore": false,
+              "options": [
+                {
+                  "optionKey": "not_at_all",
+                  "optionText": "Not at all",
+                  "optionValue": "0",
+                  "scoreValue": 0.0,
+                  "sortOrder": 0
+                },
+                {
+                  "optionKey": "mildly_but_it_didn_t_bother_me_much",
+                  "optionText": "Mildly, but it  didn’t bother  me much",
+                  "optionValue": "1",
+                  "scoreValue": 1.0,
+                  "sortOrder": 1
+                },
+                {
+                  "optionKey": "moderately_it_wasn_t_pleasant_at_times",
+                  "optionText": "Moderately – it  wasn’t pleasant  at times",
+                  "optionValue": "2",
+                  "scoreValue": 2.0,
+                  "sortOrder": 2
+                },
+                {
+                  "optionKey": "severely_it_bothered_me_a_lot",
+                  "optionText": "Severely – it  bothered me  a lot",
+                  "optionValue": "3",
+                  "scoreValue": 3.0,
+                  "sortOrder": 3
+                }
+              ]
+            },
+            {
+              "questionText": "Shaky / unsteady",
+              "questionType": "multiple_choice",
+              "isRequired": false,
+              "sortOrder": 12,
+              "ratingMin": null,
+              "ratingMax": null,
+              "ratingLabels": [],
+              "contributesToScore": false,
+              "options": [
+                {
+                  "optionKey": "not_at_all",
+                  "optionText": "Not at all",
+                  "optionValue": "0",
+                  "scoreValue": 0.0,
+                  "sortOrder": 0
+                },
+                {
+                  "optionKey": "mildly_but_it_didn_t_bother_me_much",
+                  "optionText": "Mildly, but it  didn’t bother  me much",
+                  "optionValue": "1",
+                  "scoreValue": 1.0,
+                  "sortOrder": 1
+                },
+                {
+                  "optionKey": "moderately_it_wasn_t_pleasant_at_times",
+                  "optionText": "Moderately – it  wasn’t pleasant  at times",
+                  "optionValue": "2",
+                  "scoreValue": 2.0,
+                  "sortOrder": 2
+                },
+                {
+                  "optionKey": "severely_it_bothered_me_a_lot",
+                  "optionText": "Severely – it  bothered me  a lot",
+                  "optionValue": "3",
+                  "scoreValue": 3.0,
+                  "sortOrder": 3
+                }
+              ]
+            },
+            {
+              "questionText": "Fear of losing control",
+              "questionType": "multiple_choice",
+              "isRequired": false,
+              "sortOrder": 13,
+              "ratingMin": null,
+              "ratingMax": null,
+              "ratingLabels": [],
+              "contributesToScore": false,
+              "options": [
+                {
+                  "optionKey": "not_at_all",
+                  "optionText": "Not at all",
+                  "optionValue": "0",
+                  "scoreValue": 0.0,
+                  "sortOrder": 0
+                },
+                {
+                  "optionKey": "mildly_but_it_didn_t_bother_me_much",
+                  "optionText": "Mildly, but it  didn’t bother  me much",
+                  "optionValue": "1",
+                  "scoreValue": 1.0,
+                  "sortOrder": 1
+                },
+                {
+                  "optionKey": "moderately_it_wasn_t_pleasant_at_times",
+                  "optionText": "Moderately – it  wasn’t pleasant  at times",
+                  "optionValue": "2",
+                  "scoreValue": 2.0,
+                  "sortOrder": 2
+                },
+                {
+                  "optionKey": "severely_it_bothered_me_a_lot",
+                  "optionText": "Severely – it  bothered me  a lot",
+                  "optionValue": "3",
+                  "scoreValue": 3.0,
+                  "sortOrder": 3
+                }
+              ]
+            },
+            {
+              "questionText": "Difficulty in breathing",
+              "questionType": "multiple_choice",
+              "isRequired": false,
+              "sortOrder": 14,
+              "ratingMin": null,
+              "ratingMax": null,
+              "ratingLabels": [],
+              "contributesToScore": false,
+              "options": [
+                {
+                  "optionKey": "not_at_all",
+                  "optionText": "Not at all",
+                  "optionValue": "0",
+                  "scoreValue": 0.0,
+                  "sortOrder": 0
+                },
+                {
+                  "optionKey": "mildly_but_it_didn_t_bother_me_much",
+                  "optionText": "Mildly, but it  didn’t bother  me much",
+                  "optionValue": "1",
+                  "scoreValue": 1.0,
+                  "sortOrder": 1
+                },
+                {
+                  "optionKey": "moderately_it_wasn_t_pleasant_at_times",
+                  "optionText": "Moderately – it  wasn’t pleasant  at times",
+                  "optionValue": "2",
+                  "scoreValue": 2.0,
+                  "sortOrder": 2
+                },
+                {
+                  "optionKey": "severely_it_bothered_me_a_lot",
+                  "optionText": "Severely – it  bothered me  a lot",
+                  "optionValue": "3",
+                  "scoreValue": 3.0,
+                  "sortOrder": 3
+                }
+              ]
+            },
+            {
+              "questionText": "Fear of dying",
+              "questionType": "multiple_choice",
+              "isRequired": false,
+              "sortOrder": 15,
+              "ratingMin": null,
+              "ratingMax": null,
+              "ratingLabels": [],
+              "contributesToScore": false,
+              "options": [
+                {
+                  "optionKey": "not_at_all",
+                  "optionText": "Not at all",
+                  "optionValue": "0",
+                  "scoreValue": 0.0,
+                  "sortOrder": 0
+                },
+                {
+                  "optionKey": "mildly_but_it_didn_t_bother_me_much",
+                  "optionText": "Mildly, but it  didn’t bother  me much",
+                  "optionValue": "1",
+                  "scoreValue": 1.0,
+                  "sortOrder": 1
+                },
+                {
+                  "optionKey": "moderately_it_wasn_t_pleasant_at_times",
+                  "optionText": "Moderately – it  wasn’t pleasant  at times",
+                  "optionValue": "2",
+                  "scoreValue": 2.0,
+                  "sortOrder": 2
+                },
+                {
+                  "optionKey": "severely_it_bothered_me_a_lot",
+                  "optionText": "Severely – it  bothered me  a lot",
+                  "optionValue": "3",
+                  "scoreValue": 3.0,
+                  "sortOrder": 3
+                }
+              ]
+            },
+            {
+              "questionText": "Scared",
+              "questionType": "multiple_choice",
+              "isRequired": false,
+              "sortOrder": 16,
+              "ratingMin": null,
+              "ratingMax": null,
+              "ratingLabels": [],
+              "contributesToScore": false,
+              "options": [
+                {
+                  "optionKey": "not_at_all",
+                  "optionText": "Not at all",
+                  "optionValue": "0",
+                  "scoreValue": 0.0,
+                  "sortOrder": 0
+                },
+                {
+                  "optionKey": "mildly_but_it_didn_t_bother_me_much",
+                  "optionText": "Mildly, but it  didn’t bother  me much",
+                  "optionValue": "1",
+                  "scoreValue": 1.0,
+                  "sortOrder": 1
+                },
+                {
+                  "optionKey": "moderately_it_wasn_t_pleasant_at_times",
+                  "optionText": "Moderately – it  wasn’t pleasant  at times",
+                  "optionValue": "2",
+                  "scoreValue": 2.0,
+                  "sortOrder": 2
+                },
+                {
+                  "optionKey": "severely_it_bothered_me_a_lot",
+                  "optionText": "Severely – it  bothered me  a lot",
+                  "optionValue": "3",
+                  "scoreValue": 3.0,
+                  "sortOrder": 3
+                }
+              ]
+            },
+            {
+              "questionText": "Indigestion",
+              "questionType": "multiple_choice",
+              "isRequired": false,
+              "sortOrder": 17,
+              "ratingMin": null,
+              "ratingMax": null,
+              "ratingLabels": [],
+              "contributesToScore": false,
+              "options": [
+                {
+                  "optionKey": "not_at_all",
+                  "optionText": "Not at all",
+                  "optionValue": "0",
+                  "scoreValue": 0.0,
+                  "sortOrder": 0
+                },
+                {
+                  "optionKey": "mildly_but_it_didn_t_bother_me_much",
+                  "optionText": "Mildly, but it  didn’t bother  me much",
+                  "optionValue": "1",
+                  "scoreValue": 1.0,
+                  "sortOrder": 1
+                },
+                {
+                  "optionKey": "moderately_it_wasn_t_pleasant_at_times",
+                  "optionText": "Moderately – it  wasn’t pleasant  at times",
+                  "optionValue": "2",
+                  "scoreValue": 2.0,
+                  "sortOrder": 2
+                },
+                {
+                  "optionKey": "severely_it_bothered_me_a_lot",
+                  "optionText": "Severely – it  bothered me  a lot",
+                  "optionValue": "3",
+                  "scoreValue": 3.0,
+                  "sortOrder": 3
+                }
+              ]
+            },
+            {
+              "questionText": "Faint / lightheaded",
+              "questionType": "multiple_choice",
+              "isRequired": false,
+              "sortOrder": 18,
+              "ratingMin": null,
+              "ratingMax": null,
+              "ratingLabels": [],
+              "contributesToScore": false,
+              "options": [
+                {
+                  "optionKey": "not_at_all",
+                  "optionText": "Not at all",
+                  "optionValue": "0",
+                  "scoreValue": 0.0,
+                  "sortOrder": 0
+                },
+                {
+                  "optionKey": "mildly_but_it_didn_t_bother_me_much",
+                  "optionText": "Mildly, but it  didn’t bother  me much",
+                  "optionValue": "1",
+                  "scoreValue": 1.0,
+                  "sortOrder": 1
+                },
+                {
+                  "optionKey": "moderately_it_wasn_t_pleasant_at_times",
+                  "optionText": "Moderately – it  wasn’t pleasant  at times",
+                  "optionValue": "2",
+                  "scoreValue": 2.0,
+                  "sortOrder": 2
+                },
+                {
+                  "optionKey": "severely_it_bothered_me_a_lot",
+                  "optionText": "Severely – it  bothered me  a lot",
+                  "optionValue": "3",
+                  "scoreValue": 3.0,
+                  "sortOrder": 3
+                }
+              ]
+            },
+            {
+              "questionText": "Face flushed",
+              "questionType": "multiple_choice",
+              "isRequired": false,
+              "sortOrder": 19,
+              "ratingMin": null,
+              "ratingMax": null,
+              "ratingLabels": [],
+              "contributesToScore": false,
+              "options": [
+                {
+                  "optionKey": "not_at_all",
+                  "optionText": "Not at all",
+                  "optionValue": "0",
+                  "scoreValue": 0.0,
+                  "sortOrder": 0
+                },
+                {
+                  "optionKey": "mildly_but_it_didn_t_bother_me_much",
+                  "optionText": "Mildly, but it  didn’t bother  me much",
+                  "optionValue": "1",
+                  "scoreValue": 1.0,
+                  "sortOrder": 1
+                },
+                {
+                  "optionKey": "moderately_it_wasn_t_pleasant_at_times",
+                  "optionText": "Moderately – it  wasn’t pleasant  at times",
+                  "optionValue": "2",
+                  "scoreValue": 2.0,
+                  "sortOrder": 2
+                },
+                {
+                  "optionKey": "severely_it_bothered_me_a_lot",
+                  "optionText": "Severely – it  bothered me  a lot",
+                  "optionValue": "3",
+                  "scoreValue": 3.0,
+                  "sortOrder": 3
+                }
+              ]
+            },
+            {
+              "questionText": "Hot / cold sweats",
+              "questionType": "multiple_choice",
+              "isRequired": false,
+              "sortOrder": 20,
+              "ratingMin": null,
+              "ratingMax": null,
+              "ratingLabels": [],
+              "contributesToScore": false,
+              "options": [
+                {
+                  "optionKey": "not_at_all",
+                  "optionText": "Not at all",
+                  "optionValue": "0",
+                  "scoreValue": 0.0,
+                  "sortOrder": 0
+                },
+                {
+                  "optionKey": "mildly_but_it_didn_t_bother_me_much",
+                  "optionText": "Mildly, but it  didn’t bother  me much",
+                  "optionValue": "1",
+                  "scoreValue": 1.0,
+                  "sortOrder": 1
+                },
+                {
+                  "optionKey": "moderately_it_wasn_t_pleasant_at_times",
+                  "optionText": "Moderately – it  wasn’t pleasant  at times",
+                  "optionValue": "2",
+                  "scoreValue": 2.0,
+                  "sortOrder": 2
+                },
+                {
+                  "optionKey": "severely_it_bothered_me_a_lot",
+                  "optionText": "Severely – it  bothered me  a lot",
+                  "optionValue": "3",
+                  "scoreValue": 3.0,
+                  "sortOrder": 3
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": " PTSD Checklist (PCL)",
+          "description": "The following is a list of problems and concerns that individuals may experience in response to stressful life events. Please read each statement carefully and select the option that best describes how much you have been bothered by that problem during the past month, including today.\n\nUse the following scale to indicate your response:\n\nNot at all (1)\n\nA little bit (2)\n\nModerately (3)\n\nQuite a bit (4)\n\nExtremely (5)\n\nPlease answer every item by selecting one response per question.",
+          "accessLevel": "therapist_only",
+          "isScoring": true,
+          "reportMapping": "objective_findings",
+          "aiReportPrompt": "Prompt:\nWrite the results section for the PTSD Checklist (PCL) as part of a mental health assessment report. Use a clinical, objective tone consistent with formal mental health documentation. Refer to the client only by last name.\n\nInclude the following elements:\n\nClient’s last name\n\nTotal PCL score\n\nWhether the score exceeds the clinical threshold for PTSD\n\nItems rated:\n\nScore of 5 = Severe\n\nScore of 4 = Moderate\n\nScore of 3 or below = Mild or not clinically significant\n\nSpecific symptoms endorsed (e.g., intrusive memories, flashbacks, avoidance, emotional numbing, hypervigilance, sleep disturbance, concentration difficulties)\n\nWhether the symptom pattern includes re-experiencing, avoidance, emotional detachment, and/or arousal\n\nBrief conclusion about the impact on functioning and the need for trauma-informed care\nExample Output (with Placeholders)\nMr./Ms. [Client Last Name] completed the PTSD Checklist (PCL), a 17-item standardized self-report measure designed to assess symptoms of post-traumatic stress over the past month, based on DSM-IV criteria. [He/She/They] obtained a total score of [Total Score], which [does/does not] exceed the clinical threshold and is indicative of [significant/minimal] post-traumatic stress symptomatology.\n\nMr./Ms. [Client Last Name] endorsed the highest level of severity (score of 5) across the following domains: [list of symptoms]. A moderate symptom (score of 4) was reported for [list], while a mild symptom (score of 1–3) was noted in [list].\n\nThe overall pattern reflects a trauma response characterized by [re-experiencing/intrusions], [avoidance of trauma-related cues], [emotional numbing or detachment], and [hyperarousal or vigilance]. This profile suggests persistent psychological distress with a substantial impact on daily functioning. These findings support the need for focused, trauma-informed intervention to address the underlying emotional and cognitive consequences of past trauma.",
+          "sortOrder": 10,
+          "questions": [
+            {
+              "questionText": "Repeated, disturbing memories, thoughts, or images of a stressful experience from the past?",
+              "questionType": "multiple_choice",
+              "isRequired": false,
+              "sortOrder": 0,
+              "ratingMin": null,
+              "ratingMax": null,
+              "ratingLabels": [],
+              "contributesToScore": false,
+              "options": [
+                {
+                  "optionKey": "not_at_all",
+                  "optionText": "Not at all",
+                  "optionValue": "1",
+                  "scoreValue": 1.0,
+                  "sortOrder": 0
+                },
+                {
+                  "optionKey": "a_little_bit",
+                  "optionText": "A little bit",
+                  "optionValue": "2",
+                  "scoreValue": 2.0,
+                  "sortOrder": 1
+                },
+                {
+                  "optionKey": "moderately",
+                  "optionText": "Moderately",
+                  "optionValue": "3",
+                  "scoreValue": 3.0,
+                  "sortOrder": 2
+                },
+                {
+                  "optionKey": "quite_a_bit",
+                  "optionText": "Quite a bit",
+                  "optionValue": "4",
+                  "scoreValue": 4.0,
+                  "sortOrder": 3
+                },
+                {
+                  "optionKey": "extremely",
+                  "optionText": "Extremely",
+                  "optionValue": "5",
+                  "scoreValue": 5.0,
+                  "sortOrder": 4
+                }
+              ]
+            },
+            {
+              "questionText": "Repeated, disturbing dreams of a stressful experience from the past?",
+              "questionType": "multiple_choice",
+              "isRequired": false,
+              "sortOrder": 1,
+              "ratingMin": null,
+              "ratingMax": null,
+              "ratingLabels": [],
+              "contributesToScore": false,
+              "options": [
+                {
+                  "optionKey": "not_at_all",
+                  "optionText": "Not at all",
+                  "optionValue": "1",
+                  "scoreValue": 1.0,
+                  "sortOrder": 0
+                },
+                {
+                  "optionKey": "a_little_bit",
+                  "optionText": "A little bit",
+                  "optionValue": "2",
+                  "scoreValue": 2.0,
+                  "sortOrder": 1
+                },
+                {
+                  "optionKey": "moderately",
+                  "optionText": "Moderately",
+                  "optionValue": "3",
+                  "scoreValue": 3.0,
+                  "sortOrder": 2
+                },
+                {
+                  "optionKey": "quite_a_bit",
+                  "optionText": "Quite a bit",
+                  "optionValue": "4",
+                  "scoreValue": 4.0,
+                  "sortOrder": 3
+                },
+                {
+                  "optionKey": "extremely",
+                  "optionText": "Extremely",
+                  "optionValue": "5",
+                  "scoreValue": 5.0,
+                  "sortOrder": 4
+                }
+              ]
+            },
+            {
+              "questionText": "Suddenly acting or feeling as if a stressful experience were happening again (as if you were reliving it)?",
+              "questionType": "multiple_choice",
+              "isRequired": false,
+              "sortOrder": 2,
+              "ratingMin": null,
+              "ratingMax": null,
+              "ratingLabels": [],
+              "contributesToScore": false,
+              "options": [
+                {
+                  "optionKey": "not_at_all",
+                  "optionText": "Not at all",
+                  "optionValue": "1",
+                  "scoreValue": 1.0,
+                  "sortOrder": 0
+                },
+                {
+                  "optionKey": "a_little_bit",
+                  "optionText": "A little bit",
+                  "optionValue": "2",
+                  "scoreValue": 2.0,
+                  "sortOrder": 1
+                },
+                {
+                  "optionKey": "moderately",
+                  "optionText": "Moderately",
+                  "optionValue": "3",
+                  "scoreValue": 3.0,
+                  "sortOrder": 2
+                },
+                {
+                  "optionKey": "quite_a_bit",
+                  "optionText": "Quite a bit",
+                  "optionValue": "4",
+                  "scoreValue": 4.0,
+                  "sortOrder": 3
+                },
+                {
+                  "optionKey": "extremely",
+                  "optionText": "Extremely",
+                  "optionValue": "5",
+                  "scoreValue": 5.0,
+                  "sortOrder": 4
+                }
+              ]
+            },
+            {
+              "questionText": "Feeling very upset when something reminded you of a stressful experience from the past?",
+              "questionType": "multiple_choice",
+              "isRequired": false,
+              "sortOrder": 3,
+              "ratingMin": null,
+              "ratingMax": null,
+              "ratingLabels": [],
+              "contributesToScore": false,
+              "options": [
+                {
+                  "optionKey": "not_at_all",
+                  "optionText": "Not at all",
+                  "optionValue": "1",
+                  "scoreValue": 1.0,
+                  "sortOrder": 0
+                },
+                {
+                  "optionKey": "a_little_bit",
+                  "optionText": "A little bit",
+                  "optionValue": "2",
+                  "scoreValue": 2.0,
+                  "sortOrder": 1
+                },
+                {
+                  "optionKey": "moderately",
+                  "optionText": "Moderately",
+                  "optionValue": "3",
+                  "scoreValue": 3.0,
+                  "sortOrder": 2
+                },
+                {
+                  "optionKey": "quite_a_bit",
+                  "optionText": "Quite a bit",
+                  "optionValue": "4",
+                  "scoreValue": 4.0,
+                  "sortOrder": 3
+                },
+                {
+                  "optionKey": "extremely",
+                  "optionText": "Extremely",
+                  "optionValue": "5",
+                  "scoreValue": 5.0,
+                  "sortOrder": 4
+                }
+              ]
+            },
+            {
+              "questionText": "Having physical reactions (e.g., heart pounding, trouble breathing, or sweating) when something reminded you of a stressful experience from the past?",
+              "questionType": "multiple_choice",
+              "isRequired": false,
+              "sortOrder": 4,
+              "ratingMin": null,
+              "ratingMax": null,
+              "ratingLabels": [],
+              "contributesToScore": false,
+              "options": [
+                {
+                  "optionKey": "not_at_all",
+                  "optionText": "Not at all",
+                  "optionValue": "1",
+                  "scoreValue": 1.0,
+                  "sortOrder": 0
+                },
+                {
+                  "optionKey": "a_little_bit",
+                  "optionText": "A little bit",
+                  "optionValue": "2",
+                  "scoreValue": 2.0,
+                  "sortOrder": 1
+                },
+                {
+                  "optionKey": "moderately",
+                  "optionText": "Moderately",
+                  "optionValue": "3",
+                  "scoreValue": 3.0,
+                  "sortOrder": 2
+                },
+                {
+                  "optionKey": "quite_a_bit",
+                  "optionText": "Quite a bit",
+                  "optionValue": "4",
+                  "scoreValue": 4.0,
+                  "sortOrder": 3
+                },
+                {
+                  "optionKey": "extremely",
+                  "optionText": "Extremely",
+                  "optionValue": "5",
+                  "scoreValue": 5.0,
+                  "sortOrder": 4
+                }
+              ]
+            },
+            {
+              "questionText": "Avoid thinking about or talking about a stressful experience from the past or avoid having feelings related to it?",
+              "questionType": "multiple_choice",
+              "isRequired": false,
+              "sortOrder": 5,
+              "ratingMin": null,
+              "ratingMax": null,
+              "ratingLabels": [],
+              "contributesToScore": false,
+              "options": [
+                {
+                  "optionKey": "not_at_all",
+                  "optionText": "Not at all",
+                  "optionValue": "1",
+                  "scoreValue": 1.0,
+                  "sortOrder": 0
+                },
+                {
+                  "optionKey": "a_little_bit",
+                  "optionText": "A little bit",
+                  "optionValue": "2",
+                  "scoreValue": 2.0,
+                  "sortOrder": 1
+                },
+                {
+                  "optionKey": "moderately",
+                  "optionText": "Moderately",
+                  "optionValue": "3",
+                  "scoreValue": 3.0,
+                  "sortOrder": 2
+                },
+                {
+                  "optionKey": "quite_a_bit",
+                  "optionText": "Quite a bit",
+                  "optionValue": "4",
+                  "scoreValue": 4.0,
+                  "sortOrder": 3
+                },
+                {
+                  "optionKey": "extremely",
+                  "optionText": "Extremely",
+                  "optionValue": "5",
+                  "scoreValue": 5.0,
+                  "sortOrder": 4
+                }
+              ]
+            },
+            {
+              "questionText": "Avoid activities or situations because they remind you of a stressful experience from the past?",
+              "questionType": "multiple_choice",
+              "isRequired": false,
+              "sortOrder": 6,
+              "ratingMin": null,
+              "ratingMax": null,
+              "ratingLabels": [],
+              "contributesToScore": false,
+              "options": [
+                {
+                  "optionKey": "not_at_all",
+                  "optionText": "Not at all",
+                  "optionValue": "1",
+                  "scoreValue": 1.0,
+                  "sortOrder": 0
+                },
+                {
+                  "optionKey": "a_little_bit",
+                  "optionText": "A little bit",
+                  "optionValue": "2",
+                  "scoreValue": 2.0,
+                  "sortOrder": 1
+                },
+                {
+                  "optionKey": "moderately",
+                  "optionText": "Moderately",
+                  "optionValue": "3",
+                  "scoreValue": 3.0,
+                  "sortOrder": 2
+                },
+                {
+                  "optionKey": "quite_a_bit",
+                  "optionText": "Quite a bit",
+                  "optionValue": "4",
+                  "scoreValue": 4.0,
+                  "sortOrder": 3
+                },
+                {
+                  "optionKey": "extremely",
+                  "optionText": "Extremely",
+                  "optionValue": "5",
+                  "scoreValue": 5.0,
+                  "sortOrder": 4
+                }
+              ]
+            },
+            {
+              "questionText": "Trouble remembering important parts of a stressful experience from the past?",
+              "questionType": "multiple_choice",
+              "isRequired": false,
+              "sortOrder": 7,
+              "ratingMin": null,
+              "ratingMax": null,
+              "ratingLabels": [],
+              "contributesToScore": false,
+              "options": [
+                {
+                  "optionKey": "not_at_all",
+                  "optionText": "Not at all",
+                  "optionValue": "1",
+                  "scoreValue": 1.0,
+                  "sortOrder": 0
+                },
+                {
+                  "optionKey": "a_little_bit",
+                  "optionText": "A little bit",
+                  "optionValue": "2",
+                  "scoreValue": 2.0,
+                  "sortOrder": 1
+                },
+                {
+                  "optionKey": "moderately",
+                  "optionText": "Moderately",
+                  "optionValue": "3",
+                  "scoreValue": 3.0,
+                  "sortOrder": 2
+                },
+                {
+                  "optionKey": "quite_a_bit",
+                  "optionText": "Quite a bit",
+                  "optionValue": "4",
+                  "scoreValue": 4.0,
+                  "sortOrder": 3
+                },
+                {
+                  "optionKey": "extremely",
+                  "optionText": "Extremely",
+                  "optionValue": "5",
+                  "scoreValue": 5.0,
+                  "sortOrder": 4
+                }
+              ]
+            },
+            {
+              "questionText": "Loss of interest in things that you used to enjoy?",
+              "questionType": "multiple_choice",
+              "isRequired": false,
+              "sortOrder": 8,
+              "ratingMin": null,
+              "ratingMax": null,
+              "ratingLabels": [],
+              "contributesToScore": false,
+              "options": [
+                {
+                  "optionKey": "not_at_all",
+                  "optionText": "Not at all",
+                  "optionValue": "1",
+                  "scoreValue": 1.0,
+                  "sortOrder": 0
+                },
+                {
+                  "optionKey": "a_little_bit",
+                  "optionText": "A little bit",
+                  "optionValue": "2",
+                  "scoreValue": 2.0,
+                  "sortOrder": 1
+                },
+                {
+                  "optionKey": "moderately",
+                  "optionText": "Moderately",
+                  "optionValue": "3",
+                  "scoreValue": 3.0,
+                  "sortOrder": 2
+                },
+                {
+                  "optionKey": "quite_a_bit",
+                  "optionText": "Quite a bit",
+                  "optionValue": "4",
+                  "scoreValue": 4.0,
+                  "sortOrder": 3
+                },
+                {
+                  "optionKey": "extremely",
+                  "optionText": "Extremely",
+                  "optionValue": "5",
+                  "scoreValue": 5.0,
+                  "sortOrder": 4
+                }
+              ]
+            },
+            {
+              "questionText": "Feeling distant or cut off from other people?",
+              "questionType": "multiple_choice",
+              "isRequired": false,
+              "sortOrder": 9,
+              "ratingMin": null,
+              "ratingMax": null,
+              "ratingLabels": [],
+              "contributesToScore": false,
+              "options": [
+                {
+                  "optionKey": "not_at_all",
+                  "optionText": "Not at all",
+                  "optionValue": "1",
+                  "scoreValue": 1.0,
+                  "sortOrder": 0
+                },
+                {
+                  "optionKey": "a_little_bit",
+                  "optionText": "A little bit",
+                  "optionValue": "2",
+                  "scoreValue": 2.0,
+                  "sortOrder": 1
+                },
+                {
+                  "optionKey": "moderately",
+                  "optionText": "Moderately",
+                  "optionValue": "3",
+                  "scoreValue": 3.0,
+                  "sortOrder": 2
+                },
+                {
+                  "optionKey": "quite_a_bit",
+                  "optionText": "Quite a bit",
+                  "optionValue": "4",
+                  "scoreValue": 4.0,
+                  "sortOrder": 3
+                },
+                {
+                  "optionKey": "extremely",
+                  "optionText": "Extremely",
+                  "optionValue": "5",
+                  "scoreValue": 5.0,
+                  "sortOrder": 4
+                }
+              ]
+            },
+            {
+              "questionText": "Feeling emotionally numb or being unable to have loving feelings for those close to you?",
+              "questionType": "multiple_choice",
+              "isRequired": false,
+              "sortOrder": 10,
+              "ratingMin": null,
+              "ratingMax": null,
+              "ratingLabels": [],
+              "contributesToScore": false,
+              "options": [
+                {
+                  "optionKey": "not_at_all",
+                  "optionText": "Not at all",
+                  "optionValue": "1",
+                  "scoreValue": 1.0,
+                  "sortOrder": 0
+                },
+                {
+                  "optionKey": "a_little_bit",
+                  "optionText": "A little bit",
+                  "optionValue": "2",
+                  "scoreValue": 2.0,
+                  "sortOrder": 1
+                },
+                {
+                  "optionKey": "moderately",
+                  "optionText": "Moderately",
+                  "optionValue": "3",
+                  "scoreValue": 3.0,
+                  "sortOrder": 2
+                },
+                {
+                  "optionKey": "quite_a_bit",
+                  "optionText": "Quite a bit",
+                  "optionValue": "4",
+                  "scoreValue": 4.0,
+                  "sortOrder": 3
+                },
+                {
+                  "optionKey": "extremely",
+                  "optionText": "Extremely",
+                  "optionValue": "5",
+                  "scoreValue": 5.0,
+                  "sortOrder": 4
+                }
+              ]
+            },
+            {
+              "questionText": "Feeling as if your future will somehow be cut short?",
+              "questionType": "multiple_choice",
+              "isRequired": false,
+              "sortOrder": 11,
+              "ratingMin": null,
+              "ratingMax": null,
+              "ratingLabels": [],
+              "contributesToScore": false,
+              "options": [
+                {
+                  "optionKey": "not_at_all",
+                  "optionText": "Not at all",
+                  "optionValue": "1",
+                  "scoreValue": 1.0,
+                  "sortOrder": 0
+                },
+                {
+                  "optionKey": "a_little_bit",
+                  "optionText": "A little bit",
+                  "optionValue": "2",
+                  "scoreValue": 2.0,
+                  "sortOrder": 1
+                },
+                {
+                  "optionKey": "moderately",
+                  "optionText": "Moderately",
+                  "optionValue": "3",
+                  "scoreValue": 3.0,
+                  "sortOrder": 2
+                },
+                {
+                  "optionKey": "quite_a_bit",
+                  "optionText": "Quite a bit",
+                  "optionValue": "4",
+                  "scoreValue": 4.0,
+                  "sortOrder": 3
+                },
+                {
+                  "optionKey": "extremely",
+                  "optionText": "Extremely",
+                  "optionValue": "5",
+                  "scoreValue": 5.0,
+                  "sortOrder": 4
+                }
+              ]
+            },
+            {
+              "questionText": "Trouble falling or staying asleep?",
+              "questionType": "multiple_choice",
+              "isRequired": false,
+              "sortOrder": 12,
+              "ratingMin": null,
+              "ratingMax": null,
+              "ratingLabels": [],
+              "contributesToScore": false,
+              "options": [
+                {
+                  "optionKey": "not_at_all",
+                  "optionText": "Not at all",
+                  "optionValue": "1",
+                  "scoreValue": 1.0,
+                  "sortOrder": 0
+                },
+                {
+                  "optionKey": "a_little_bit",
+                  "optionText": "A little bit",
+                  "optionValue": "2",
+                  "scoreValue": 2.0,
+                  "sortOrder": 1
+                },
+                {
+                  "optionKey": "moderately",
+                  "optionText": "Moderately",
+                  "optionValue": "3",
+                  "scoreValue": 3.0,
+                  "sortOrder": 2
+                },
+                {
+                  "optionKey": "quite_a_bit",
+                  "optionText": "Quite a bit",
+                  "optionValue": "4",
+                  "scoreValue": 4.0,
+                  "sortOrder": 3
+                },
+                {
+                  "optionKey": "extremely",
+                  "optionText": "Extremely",
+                  "optionValue": "5",
+                  "scoreValue": 5.0,
+                  "sortOrder": 4
+                }
+              ]
+            },
+            {
+              "questionText": "Feeling irritable or having angry outbursts?",
+              "questionType": "multiple_choice",
+              "isRequired": false,
+              "sortOrder": 13,
+              "ratingMin": null,
+              "ratingMax": null,
+              "ratingLabels": [],
+              "contributesToScore": false,
+              "options": [
+                {
+                  "optionKey": "not_at_all",
+                  "optionText": "Not at all",
+                  "optionValue": "1",
+                  "scoreValue": 1.0,
+                  "sortOrder": 0
+                },
+                {
+                  "optionKey": "a_little_bit",
+                  "optionText": "A little bit",
+                  "optionValue": "2",
+                  "scoreValue": 2.0,
+                  "sortOrder": 1
+                },
+                {
+                  "optionKey": "moderately",
+                  "optionText": "Moderately",
+                  "optionValue": "3",
+                  "scoreValue": 3.0,
+                  "sortOrder": 2
+                },
+                {
+                  "optionKey": "quite_a_bit",
+                  "optionText": "Quite a bit",
+                  "optionValue": "4",
+                  "scoreValue": 4.0,
+                  "sortOrder": 3
+                },
+                {
+                  "optionKey": "extremely",
+                  "optionText": "Extremely",
+                  "optionValue": "5",
+                  "scoreValue": 5.0,
+                  "sortOrder": 4
+                }
+              ]
+            },
+            {
+              "questionText": "Having difficulty concentrating?",
+              "questionType": "multiple_choice",
+              "isRequired": false,
+              "sortOrder": 14,
+              "ratingMin": null,
+              "ratingMax": null,
+              "ratingLabels": [],
+              "contributesToScore": false,
+              "options": [
+                {
+                  "optionKey": "not_at_all",
+                  "optionText": "Not at all",
+                  "optionValue": "1",
+                  "scoreValue": 1.0,
+                  "sortOrder": 0
+                },
+                {
+                  "optionKey": "a_little_bit",
+                  "optionText": "A little bit",
+                  "optionValue": "2",
+                  "scoreValue": 2.0,
+                  "sortOrder": 1
+                },
+                {
+                  "optionKey": "moderately",
+                  "optionText": "Moderately",
+                  "optionValue": "3",
+                  "scoreValue": 3.0,
+                  "sortOrder": 2
+                },
+                {
+                  "optionKey": "quite_a_bit",
+                  "optionText": "Quite a bit",
+                  "optionValue": "4",
+                  "scoreValue": 4.0,
+                  "sortOrder": 3
+                },
+                {
+                  "optionKey": "extremely",
+                  "optionText": "Extremely",
+                  "optionValue": "5",
+                  "scoreValue": 5.0,
+                  "sortOrder": 4
+                }
+              ]
+            },
+            {
+              "questionText": "Being “super alert” or watchful on guard?",
+              "questionType": "multiple_choice",
+              "isRequired": false,
+              "sortOrder": 15,
+              "ratingMin": null,
+              "ratingMax": null,
+              "ratingLabels": [],
+              "contributesToScore": false,
+              "options": [
+                {
+                  "optionKey": "not_at_all",
+                  "optionText": "Not at all",
+                  "optionValue": "1",
+                  "scoreValue": 1.0,
+                  "sortOrder": 0
+                },
+                {
+                  "optionKey": "a_little_bit",
+                  "optionText": "A little bit",
+                  "optionValue": "2",
+                  "scoreValue": 2.0,
+                  "sortOrder": 1
+                },
+                {
+                  "optionKey": "moderately",
+                  "optionText": "Moderately",
+                  "optionValue": "3",
+                  "scoreValue": 3.0,
+                  "sortOrder": 2
+                },
+                {
+                  "optionKey": "quite_a_bit",
+                  "optionText": "Quite a bit",
+                  "optionValue": "4",
+                  "scoreValue": 4.0,
+                  "sortOrder": 3
+                },
+                {
+                  "optionKey": "extremely",
+                  "optionText": "Extremely",
+                  "optionValue": "5",
+                  "scoreValue": 5.0,
+                  "sortOrder": 4
+                }
+              ]
+            },
+            {
+              "questionText": "Feeling jumpy or easily startled?",
+              "questionType": "multiple_choice",
+              "isRequired": false,
+              "sortOrder": 16,
+              "ratingMin": null,
+              "ratingMax": null,
+              "ratingLabels": [],
+              "contributesToScore": false,
+              "options": [
+                {
+                  "optionKey": "not_at_all",
+                  "optionText": "Not at all",
+                  "optionValue": "1",
+                  "scoreValue": 1.0,
+                  "sortOrder": 0
+                },
+                {
+                  "optionKey": "a_little_bit",
+                  "optionText": "A little bit",
+                  "optionValue": "2",
+                  "scoreValue": 2.0,
+                  "sortOrder": 1
+                },
+                {
+                  "optionKey": "moderately",
+                  "optionText": "Moderately",
+                  "optionValue": "3",
+                  "scoreValue": 3.0,
+                  "sortOrder": 2
+                },
+                {
+                  "optionKey": "quite_a_bit",
+                  "optionText": "Quite a bit",
+                  "optionValue": "4",
+                  "scoreValue": 4.0,
+                  "sortOrder": 3
+                },
+                {
+                  "optionKey": "extremely",
+                  "optionText": "Extremely",
+                  "optionValue": "5",
+                  "scoreValue": 5.0,
+                  "sortOrder": 4
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Assessment Summary",
+          "description": "",
+          "accessLevel": "therapist_only",
+          "isScoring": false,
+          "reportMapping": "summary_impressions",
+          "aiReportPrompt": "Generate a concise Assessment Summary written in a client-centered, professional tone for inclusion in a psychological or mental health assessment report.\n\nThe summary must not exceed two paragraphs and must be written in a clear narrative (paragraph) style, not in bullet points or headings.\n\nThe content of the summary must be based exclusively on information already documented in the Presenting Concerns section.\nDo not introduce new symptoms, background details, interpretations, assumptions, or examples that are not explicitly stated in that section.\n\nThe first paragraph must begin by identifying who referred the client and the reason for referral, using only wording and details already present in the Presenting Concerns section.\n\nThe second paragraph must summarize the client’s reported experiences and difficulties, using language that closely reflects how the client expressed their concerns in the Presenting Concerns section. Symptoms should be integrated naturally within the paragraph and may reflect emotional, cognitive, behavioral, physical, or functional experiences only if these are already described.\n\nUse neutral, respectful, and non-diagnostic language, with phrasing such as “the client reports,” “the client describes,” or “the client indicates experiencing.”\n\nEmphasize the impact of the reported concerns on daily functioning and overall well-being, only as described by the client.\n\nDo not add clinical interpretation, diagnostic conclusions, severity ratings, timelines, or treatment recommendations.\n\nThe final output should read as a polished, professional narrative suitable for formal documentation.",
+          "sortOrder": 11,
+          "questions": [
+            {
+              "questionText": "Would you like to include the Assessment Summary?\n",
+              "questionType": "multiple_choice",
+              "isRequired": false,
+              "sortOrder": 0,
+              "ratingMin": null,
+              "ratingMax": null,
+              "ratingLabels": [],
+              "contributesToScore": false,
+              "options": [
+                {
+                  "optionKey": "yes",
+                  "optionText": "Yes",
+                  "optionValue": "0",
+                  "scoreValue": 0.0,
+                  "sortOrder": 0
+                },
+                {
+                  "optionKey": "no",
+                  "optionText": "No",
+                  "optionValue": "0",
+                  "scoreValue": 0.0,
+                  "sortOrder": 1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Treatment Plan ",
+          "description": "",
+          "accessLevel": "therapist_only",
+          "isScoring": false,
+          "reportMapping": "treatment_recommendations",
+          "aiReportPrompt": "Generate 4–5 treatment goals based exclusively on the Presenting Symptoms section of the report.\n\nEach treatment goal must be directly aligned with symptoms explicitly reported by the client.\nDo not introduce new concerns, symptoms, needs, or assumptions beyond what is documented in the Presenting Symptoms section.\n\nWrite the goals in a client-centered, professional tone, focusing on improving the client’s functioning, coping, emotional regulation, or overall well-being as described by the client.\n\nFor each goal, include a brief statement (one short phrase or sentence) describing the method(s) of achieving the goal (e.g., psychoeducation, skill development, supportive exploration, coping strategies), without naming specific therapeutic models unless already referenced elsewhere in the report.\n\nGoals should be:\n\nClear and measurable in intent\n\nSymptom-focused rather than diagnosis-focused\n\nRealistic and supportive of the client’s expressed needs\n\nAvoid clinical interpretation, diagnostic language, or long explanations.\n\nPresent the goals as a numbered list, with each goal followed by its brief method of achievement.",
+          "sortOrder": 12,
+          "questions": [
+            {
+              "questionText": "Would you like to include the treatment plan?",
+              "questionType": "multiple_choice",
+              "isRequired": false,
+              "sortOrder": 0,
+              "ratingMin": null,
+              "ratingMax": null,
+              "ratingLabels": [],
+              "contributesToScore": false,
+              "options": [
+                {
+                  "optionKey": "yes",
+                  "optionText": "Yes",
+                  "optionValue": "1",
+                  "scoreValue": 1.0,
+                  "sortOrder": 0
+                },
+                {
+                  "optionKey": "no",
+                  "optionText": "No",
+                  "optionValue": "0",
+                  "scoreValue": 0.0,
+                  "sortOrder": 1
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "forms": [
+    {
+      "name": "Informed Consent",
+      "description": "",
+      "category": "CONSENT",
+      "instructions": null,
+      "requiresSignature": true,
+      "isActive": true,
+      "isSystemTemplate": true,
+      "sortOrder": 0,
+      "defaultSectionName": "Main",
+      "fields": [
+        {
+          "fieldName": "agreement_to_participate",
+          "fieldLabel": "Agreement to Participate",
+          "fieldType": "TEXT",
+          "isRequired": false,
+          "defaultValue": null,
+          "validationRules": null,
+          "helpText": "I, {{CLIENT_FULL_NAME}}, hereby request and agree to participate in individual psychotherapy at Resilience Psychotherapy, Counselling, Consultation, and Research Corp.\n\nI understand that psychotherapy involves discussing my problems and difficulties with a psychotherapist who will provide a supportive, empathic environment. The therapist may help me explore my feelings, thought patterns, and ways of interacting to gain greater self-awareness.\n\nThe psychotherapist will not provide direct advice or solutions but will help me identify my own decisions and strategies to address my concerns effectively.",
+          "placeholder": "",
+          "autoPopulate": null,
+          "conditionalDisplay": null,
+          "sortOrder": 0
+        },
+        {
+          "fieldName": "key_understandings",
+          "fieldLabel": "Key Understandings",
+          "fieldType": "INFO_TEXT",
+          "isRequired": false,
+          "defaultValue": null,
+          "validationRules": null,
+          "helpText": "<p>I acknowledge that I have been informed of the nature and purpose of psychotherapy and that I understand what participation involves. I recognize that therapy is a collaborative process that requires open communication and mutual respect between myself and <strong>{{THERAPIST_FULL_NAME}}</strong>. The following statements summarize my understanding of the conditions, expectations, and boundaries of this therapeutic process:</p><ul><li>I am free to ask questions about treatment at any time.</li><li>I understand that psychotherapy can be beneficial but that outcomes cannot be guaranteed.</li><li>I understand that discussing my issues may be emotionally difficult at times.</li><li>I can withdraw from treatment at any time, and referrals will be offered if I wish to continue therapy elsewhere.</li><li>Treatment will be provided by <strong>{{THERAPIST_FULL_NAME}}</strong>.</li><li>By attending and participating in sessions, I give my consent for psychotherapy services.</li></ul>",
+          "placeholder": "",
+          "autoPopulate": null,
+          "conditionalDisplay": null,
+          "sortOrder": 1
+        },
+        {
+          "fieldName": "confidentiality",
+          "fieldLabel": "Confidentiality",
+          "fieldType": "INFO_TEXT",
+          "isRequired": false,
+          "defaultValue": null,
+          "validationRules": null,
+          "helpText": "<p>All information related to my treatment (verbal or written) will be kept confidential except under the following circumstances:</p><ul><li>If I indicate that I may be a danger to myself or others.</li><li>In the case of suspected abuse of a child under 16.</li><li>If a known sexual perpetrator is in contact with a child under 16.</li><li>If I report sexual abuse by a healthcare professional.</li><li>If my records are subpoenaed by a court of law.</li><li>If my therapist’s records are randomly audited by the College of Registered Psychotherapists of Ontario (CRPO).</li></ul><p>To uphold confidentiality, the therapist will not initiate contact with the client outside of scheduled therapy sessions. The client may initiate contact at their discretion; however, it is recommended that such contact not occur in the presence of others.</p><p> No information regarding the client’s treatment will be shared with any third party, including healthcare professionals, without the client’s explicit consent. Whenever possible, this consent will be obtained in writing.</p>",
+          "placeholder": "",
+          "autoPopulate": null,
+          "conditionalDisplay": null,
+          "sortOrder": 2
+        },
+        {
+          "fieldName": "fees_for_service",
+          "fieldLabel": "Fees for Service",
+          "fieldType": "INFO_TEXT",
+          "isRequired": false,
+          "defaultValue": null,
+          "validationRules": null,
+          "helpText": "<p>The fee is <strong>CA$205 plus GST per 50-minute session</strong> and is covered by IFHP. Payment will be claimed directly from the insurer. By signing this consent, I authorize <strong>Resilience Psychotherapy</strong> to contact the insurance provider on my behalf and process necessary documentation for service claims.</p>",
+          "placeholder": "",
+          "autoPopulate": null,
+          "conditionalDisplay": null,
+          "sortOrder": 3
+        },
+        {
+          "fieldName": "cancellations_and_missed_appointments",
+          "fieldLabel": "Cancellations and Missed Appointments",
+          "fieldType": "INFO_TEXT",
+          "isRequired": false,
+          "defaultValue": null,
+          "validationRules": null,
+          "helpText": "<p>I understand that I must provide at least <strong>48 hours’ notice</strong> to cancel or change an appointment so that the time can be offered to another client.</p><p> If I cancel within 48 hours or miss a scheduled appointment without notice, I will be billed for the session.</p>",
+          "placeholder": "",
+          "autoPopulate": null,
+          "conditionalDisplay": null,
+          "sortOrder": 4
+        },
+        {
+          "fieldName": "therapist_information",
+          "fieldLabel": "Therapist Information",
+          "fieldType": "INFO_TEXT",
+          "isRequired": false,
+          "defaultValue": null,
+          "validationRules": null,
+          "helpText": "<p>The psychotherapy services outlined in this consent form will be provided by <strong>{{THERAPIST_FULL_NAME}}</strong>, who is a registered psychotherapist with the College of Registered Psychotherapists of Ontario (CRPO). You may contact your therapist for professional matters or follow-up communication related to your treatment.</p><p>Your therapist can be reached by email at <strong>{{THERAPIST_EMAIL}}</strong> or by phone at <strong>{{THERAPIST_PHONE}}</strong> during regular business hours. Messages will be returned as soon as possible within standard working times.</p>",
+          "placeholder": "",
+          "autoPopulate": null,
+          "conditionalDisplay": null,
+          "sortOrder": 5
+        },
+        {
+          "fieldName": "signatures",
+          "fieldLabel": "Signatures",
+          "fieldType": "INFO_TEXT",
+          "isRequired": false,
+          "defaultValue": null,
+          "validationRules": null,
+          "helpText": "<p>By signing below, I, <strong>{{CLIENT_FULL_NAME}}</strong>, confirm that I have read and understood the contents of this consent form. I acknowledge that I have had the opportunity to ask questions about the information provided, and that those questions have been answered to my satisfaction. I voluntarily agree to participate in individual psychotherapy services with <strong>{{THERAPIST_FULL_NAME}}</strong> under the terms outlined above.</p>",
+          "placeholder": "",
+          "autoPopulate": null,
+          "conditionalDisplay": null,
+          "sortOrder": 6
+        },
+        {
+          "fieldName": "client_full_name",
+          "fieldLabel": "Client Full Name",
+          "fieldType": "TEXT",
+          "isRequired": true,
+          "defaultValue": null,
+          "validationRules": null,
+          "helpText": "",
+          "placeholder": "",
+          "autoPopulate": null,
+          "conditionalDisplay": null,
+          "sortOrder": 7
+        },
+        {
+          "fieldName": "date",
+          "fieldLabel": "Date",
+          "fieldType": "DATE",
+          "isRequired": true,
+          "defaultValue": null,
+          "validationRules": null,
+          "helpText": "",
+          "placeholder": "",
+          "autoPopulate": null,
+          "conditionalDisplay": null,
+          "sortOrder": 8
+        },
+        {
+          "fieldName": "signature",
+          "fieldLabel": "Signature",
+          "fieldType": "SIGNATURE",
+          "isRequired": true,
+          "defaultValue": null,
+          "validationRules": null,
+          "helpText": "",
+          "placeholder": "",
+          "autoPopulate": null,
+          "conditionalDisplay": null,
+          "sortOrder": 9
+        }
+      ]
+    }
+  ],
+  "checklists": [
+    {
+      "name": "Refugee clients",
+      "description": "This checklist will help manage client administration and track what is required to obtain their approval, as well as provide them with the support they need.",
+      "clientType": null,
+      "category": "intake",
+      "isActive": true,
+      "isSystem": true,
+      "sortOrder": 1,
+      "items": [
+        {
+          "itemText": "Client Contacted",
+          "title": "Client Contacted",
+          "description": "",
+          "category": "INTAKE",
+          "sortOrder": 1,
+          "itemOrder": 1,
+          "daysFromStart": 1,
+          "isRequired": true
+        },
+        {
+          "itemText": "Support Letter Provided",
+          "title": "Support Letter Provided",
+          "description": "",
+          "category": "INTAKE",
+          "sortOrder": 1,
+          "itemOrder": 1,
+          "daysFromStart": 2,
+          "isRequired": true
+        },
+        {
+          "itemText": "Waiting for Referral",
+          "title": "Waiting for Referral",
+          "description": "",
+          "category": "INTAKE",
+          "sortOrder": 1,
+          "itemOrder": 1,
+          "daysFromStart": 3,
+          "isRequired": true
+        },
+        {
+          "itemText": "Referred by Doctor",
+          "title": "Referred by Doctor",
+          "description": "",
+          "category": "INTAKE",
+          "sortOrder": 1,
+          "itemOrder": 1,
+          "daysFromStart": 4,
+          "isRequired": true
+        },
+        {
+          "itemText": "Assessment Ongoing",
+          "title": "Assessment Ongoing",
+          "description": "",
+          "category": "ASSESSMENT",
+          "sortOrder": 1,
+          "itemOrder": 1,
+          "daysFromStart": 5,
+          "isRequired": true
+        },
+        {
+          "itemText": "Report Completed",
+          "title": "Report Completed",
+          "description": "",
+          "category": "ASSESSMENT",
+          "sortOrder": 1,
+          "itemOrder": 1,
+          "daysFromStart": 6,
+          "isRequired": true
+        },
+        {
+          "itemText": "Psychotherapy Extended",
+          "title": "Psychotherapy Extended",
+          "description": "",
+          "category": "ONGOING",
+          "sortOrder": 1,
+          "itemOrder": 1,
+          "daysFromStart": 7,
+          "isRequired": true
+        },
+        {
+          "itemText": "Psychotherapy Submitted for Approval",
+          "title": "Psychotherapy Submitted for Approval",
+          "description": "",
+          "category": "ONGOING",
+          "sortOrder": 1,
+          "itemOrder": 1,
+          "daysFromStart": 8,
+          "isRequired": true
+        },
+        {
+          "itemText": "Psychotherapy Ongoing",
+          "title": "Psychotherapy Ongoing",
+          "description": "",
+          "category": "ONGOING",
+          "sortOrder": 1,
+          "itemOrder": 1,
+          "daysFromStart": 9,
+          "isRequired": true
+        },
+        {
+          "itemText": "Psychotherapy Completed",
+          "title": "Psychotherapy Completed",
+          "description": "",
+          "category": "ONGOING",
+          "sortOrder": 1,
+          "itemOrder": 1,
+          "daysFromStart": 10,
+          "isRequired": true
+        },
+        {
+          "itemText": "File Closed",
+          "title": "File Closed",
+          "description": "",
+          "category": "DISCHARGE",
+          "sortOrder": 1,
+          "itemOrder": 1,
+          "daysFromStart": 11,
+          "isRequired": true
+        }
+      ]
+    }
+  ],
+  "reportTemplates": [
+    {
+      "name": "Progress Report",
+      "description": null,
+      "aiInstructions": "Review all available client information, including:\n\n• Assessment records and uploaded files labeled Assessment or Initial Assessment.\n• Treatment planning information contained within assessment documents.\n• Session Notes, Progress Notes, Psychotherapy Records, and uploaded files labeled Session or Session Note.\n• Psychometric assessments and outcome measures included in the assessment report.\n• Supporting clinical documents, if available.\n\nSession Count Instructions\n\nDetermine the total number of completed psychotherapy sessions using the following rules:\n\n• Count only completed sessions whose title includes the word \"Psychotherapy.\"\n• If the assessment, intake, or initial assessment documentation explicitly states that a psychotherapy session was conducted during the assessment process, count this as one psychotherapy session.\n• Do not count the same session twice. Any psychotherapy session conducted as part of the assessment process should be counted only once.\n• Exclude assessment sessions that did not include psychotherapy intervention.\n• Exclude intake sessions, consultation sessions, administrative contacts, cancelled appointments, no-show appointments, rescheduled appointments, and incomplete sessions.\n• Exclude future scheduled sessions that have not yet occurred.\n• Report the total number of completed psychotherapy sessions.\n• Report the psychotherapy treatment period using the date of the first completed psychotherapy session and the date of the most recent completed psychotherapy session. Do not list individual session dates unless specifically requested.\n\nProgress Evaluation\n\nUse assessment findings, treatment goals, baseline symptom presentation, psychometric results, and planned interventions as the foundation for evaluating treatment progress.\n\nReview all psychotherapy session notes and summarize the client's progress throughout treatment based solely on documented clinical information. Evaluate:\n\n• Changes in symptom severity and frequency.\n• Progress toward treatment goals.\n• Development and application of coping strategies.\n• Improvements in functioning, emotional regulation, insight, and resilience.\n• Remaining challenges, barriers, or ongoing clinical concerns.\n\nReport Generation\n\nGenerate a comprehensive psychotherapy progress report using the provided report template. Maintain an objective, professional, evidence-based, and clinically focused tone throughout.\n\n• Use complete narrative paragraphs.\n• Avoid unsupported assumptions, interpretations, or speculation.\n• Base all findings, conclusions, and recommendations on documented clinical evidence.\n• Integrate relevant psychometric findings when available.\n• Ensure recommendations logically follow treatment outcomes and current clinical needs.\n\nWhen reporting treatment participation, include a statement similar to:\n\n\"The client participated in [X] completed psychotherapy sessions between [first psychotherapy session date] and [most recent psychotherapy session date]. This total excludes assessment-only appointments, administrative contacts, consultations, cancelled appointments, no-show appointments, and future scheduled sessions.\"\n\nIf additional psychotherapy is clinically indicated, provide a clear rationale and recommend an appropriate number of additional sessions based on the client's documented needs, treatment response, remaining therapeutic goals, symptom persistence, and overall level of functioning.",
+      "structureText": "Psychotherapy Progress Report Template and AI Prompt Guide\n\nPurposeThis template is designed to guide AI-generated psychotherapy progress reports while ensuring consistency, clinical accuracy, and sufficient detail for treatment renewal and progress evaluation.\n\nClient Information\n\nClient Name, Date of Birth, Age, Gender, Report Date, Clinician Name and Credentials.\n\nReferral Information\n\nReferral source, referral date, and reason for referral.\n\nBrief Background Summary\n\nConcise summary of relevant psychosocial, medical, mental health, family, settlement, occupational, educational, and social history.\n\nClinical Presentation\n\nSummary of presenting symptoms, functional impairments, emotional, cognitive, behavioural, and social concerns at the start of treatment.\n\nAssessment Findings and Initial Treatment Goals\n\nSummarize assessment findings, psychometric results, clinical formulation, treatment goals, and planned interventions established during the assessment.\n\nTreatment Summary and Interventions\n\nState the total number of completed psychotherapy sessions, treatment period, major treatment themes, and interventions utilized.\n\nOverall Clinical Progress \n\nReview session note and write areas of progress reported during the session and ongoing challenges, linking progress directly to treatment goals.\n\nRecommendations and Future Treatment Focus\n\nClinical rationale for continued treatment, recommended focus areas, number of additional sessions, and monitoring recommendations.",
+      "defaultIncludeProfile": true,
+      "defaultIncludeNotes": true,
+      "defaultIncludeAssessments": true,
+      "supportingFilesGuidance": null,
+      "supportingFilesExpected": false,
+      "supportingFileTypes": [
+        "Assessment"
+      ],
+      "isActive": true,
+      "fileResource": "clinical-templates/files/Psychotherapy_Progress_Report_Template_and_AI_Guide.docx",
+      "originalName": "Psychotherapy_Progress_Report_Template_and_AI_Guide.docx",
+      "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+ClinicalDocumentAccessApiTest
+SessionNoteServiceTest
+ClientPortalDocumentAccessTest
+DocumentServiceTest
+ClientReportServiceAuditTest
+ReportSupportingFileServiceAuditTest

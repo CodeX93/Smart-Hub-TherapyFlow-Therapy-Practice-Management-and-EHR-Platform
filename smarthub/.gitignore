@@ -1,0 +1,251 @@
+HELP.md
+target/
+.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+build/
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+### VS Code ###
+.vscode/
+
+### macOS ###
+.DS_Store
+**/.DS_Store
+
+# Reusable QA harness: disposable data and reports stay local.
+qa-results/
+
+### Environment Variables ###
+.env
+.env.local
+.env.*.local
+
+### Documentation Files (keep README.md) ###
+*.md
+!README.md
+
+### PowerShell Scripts ###
+*.ps1
+
+### Python Scripts ###
+*.py
+
+### Temporary JSON Files ###
+*-task-def*.json
+*-task-definition*.json
+task-def*.json
+ecs-task-definition*.json
+current-task-def*.json
+updated-task-def*.json
+network-config.json
+test*.json
+ip-*.json
+rds-*.json
+redis-*.json
+
+### SQL Scripts ###
+*.sql
+!**/src/main/resources/db/migration/*.sql
+!**/src/main/resources/db/tenant_migration/*.sql
+*.bat
+*.sh
+# Project tooling the pipeline runs: deploy-azure.sh and notify-sparkpost.sh were
+# caught by the blanket rule, so every build-docker and deploy job failed at chmod
+# with "No such file or directory" - the scripts were never in the repository.
+!scripts/*.sh
+
+### Text Files ###
+*.txt
+!LICENSE.txt
+
+### Other Temporary Files ###
+file
+
+HELP.md
+target/
+.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+build/
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+### VS Code ###
+.vscode/
+
+### Environment Variables ###
+.env
+.env.local
+.env.*.local
+
+### GitLab Documentation ###
+# Generated documentation builds
+docs/_build/
+docs/build/
+site/
+_site/
+.jekyll-cache/
+.jekyll-metadata/
+
+# Documentation tool outputs
+docs/.doctrees/
+docs/.sphinx/
+.mkdocs/
+mkdocs.yml.bak
+
+# GitLab Pages build artifacts
+public/
+.gitlab-ci.yml.bak
+
+# Documentation cache
+.cache/
+*.cache
+
+# Temporary documentation files
+*.tmp.md
+*_temp.md
+*_draft.md
+
+# Documentation report files
+*_SUMMARY.md
+*_REPORT.md
+*_STATUS.md
+*_PLAN.md
+*_ANALYSIS.md
+*_COMPLETE.md
+*_PROGRESS.md
+*_VERIFICATION.md
+*_COMPARISON.md
+*_IMPLEMENTATION.md
+*_DOCUMENTATION.md
+*_POST.md
+*_POST_OPTIMIZED.md
+*_ARTICLE.md
+*_REVIEW.md
+*_MIGRATION.md
+*_SOLUTION.md
+*_ISSUE.md
+*_RESULTS.md
+*_FINAL.md
+*_COMPREHENSIVE.md
+*_DEEP.md
+*_GAP.md
+*_FIELD.md
+*_ENDPOINTS.md
+*_SERVICES.md
+*_FLOW.md
+*_DETECTION.md
+*_COMPLIANT.md
+*_FIXES.md
+*_LOGIC.md
+*_BACKEND.md
+
+# Version the reusable test entrypoint and hand-written testing specifications.
+!/scripts/test-app.sh
+!/scripts/test-tenant-fixtures.py
+!/qa/backend-tenant-regression-suites.txt
+!/qa/backend-context-regression-suites.txt
+!/docs/comprehensive-testing-plan.md
+!/docs/testing/detailed-workflow-test-spec.md
+!/docs/testing/source-inventory.md
+*_ENTITY.md
+*_NOTIFICATION.md
+*_SCHEMA.md
+*_TIMEZONE.md
+*_UI_UX.md
+*_IMPROVEMENTS.md
+
+# Temporary files
+file
+
+### Uploads Directory ###
+uploads/
+
+### Test/Error Files ###
+Error sheet.csv
+Sheet1.html
+*.csv
+!**/src/test/**/*.csv
+*.html
+!**/src/main/resources/**/*.html
+
+src/main/resources/application-local.yml
+mvnw
+
+### Local video generation ###
+.venv-video/
+node_modules/
+
+!qa/backend-business-regression-suites.txt
+
+!/qa/backend-payment-edge-suites.txt
+
+!/qa/backend-clinical-access-suites.txt
+
+!/docs/testing/e2e-coverage-audit-2026-09-11.md
+
+!/qa/backend-form-lifecycle-suites.txt
+!/docs/testing/form-lifecycle-regression-2026-09-11.md
+
+!/qa/backend-client-search-suites.txt
+!/docs/testing/client-search-regression.md
+!/qa/backend-client-search-field-suites.txt
+
+!/docs/testing/billing-client-reference.md
+
+!/qa/backend-billing-filter-suites.txt
+
+!/docs/testing/billing-filters-audit.md
+.local-db/
+
+# Live end-to-end suite: credentials and per-run state stay local.
+qa/e2e/.env.e2e
+qa/e2e/.env.e2e.*
+!qa/e2e/.env.e2e.example
+qa/e2e/.state/

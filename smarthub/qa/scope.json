@@ -1,0 +1,908 @@
+[
+  {
+    "id": "ROLE-01",
+    "title": "Resolve host/tenant and identity, activate accounts, login, MFA, password recovery, refresh, logout, idle timeout, known devices and session revocation.",
+    "evidencePatterns": [
+      "[ROLE-01]"
+    ],
+    "coverage": "partial-or-unverified",
+    "relatedTestClasses": [
+      "JwtTokenProviderTest",
+      "AuthenticationServiceTest",
+      "MfaServiceTest",
+      "AuthSessionServiceTest"
+    ]
+  },
+  {
+    "id": "ROLE-02",
+    "title": "Verify navigation, nested tabs, direct deep links, API permission enforcement, read-only permissions, caseload restrictions and role changes during a session.",
+    "evidencePatterns": [
+      "[ROLE-02]"
+    ],
+    "coverage": "partial-or-unverified",
+    "relatedTestClasses": [
+      "JwtTokenProviderTest",
+      "AuthenticationServiceTest",
+      "MfaServiceTest",
+      "AuthSessionServiceTest"
+    ]
+  },
+  {
+    "id": "ROLE-03",
+    "title": "Test plan/feature enablement and usage limits independently from user permissions; hide/disable the UI appropriately and enforce the same rules in the backend.",
+    "evidencePatterns": [
+      "[ROLE-03]"
+    ],
+    "coverage": "partial-or-unverified",
+    "relatedTestClasses": [
+      "JwtTokenProviderTest",
+      "AuthenticationServiceTest",
+      "MfaServiceTest",
+      "AuthSessionServiceTest"
+    ]
+  },
+  {
+    "id": "ROLE-04",
+    "title": "Verify therapist dashboard, upcoming/previous/overdue sessions, assigned clients, billing visibility, tasks, profile, availability and security.",
+    "evidencePatterns": [
+      "[ROLE-04]"
+    ],
+    "coverage": "partial-or-unverified",
+    "relatedTestClasses": [
+      "JwtTokenProviderTest",
+      "AuthenticationServiceTest",
+      "MfaServiceTest",
+      "AuthSessionServiceTest"
+    ]
+  },
+  {
+    "id": "ROLE-05",
+    "title": "Verify staff route guards, index redirect, no-access page, custom roles, and permitted client/content/scheduling actions.",
+    "evidencePatterns": [
+      "[ROLE-05]"
+    ],
+    "coverage": "partial-or-unverified",
+    "relatedTestClasses": [
+      "JwtTokenProviderTest",
+      "AuthenticationServiceTest",
+      "MfaServiceTest",
+      "AuthSessionServiceTest"
+    ]
+  },
+  {
+    "id": "ROLE-06",
+    "title": "Verify client activation, profile/avatar, timezone, appointment browsing/booking/detail/cancel/reschedule, session history/rating, invoices/payments/receipts, documents, forms, assessments, consents and notifications. Assess API-only versus UI-supported operations explicitly.",
+    "evidencePatterns": [
+      "[ROLE-06]"
+    ],
+    "coverage": "partial-or-unverified",
+    "relatedTestClasses": [
+      "JwtTokenProviderTest",
+      "AuthenticationServiceTest",
+      "MfaServiceTest",
+      "AuthSessionServiceTest"
+    ]
+  },
+  {
+    "id": "ROLE-07",
+    "title": "Verify organization administration and platform administration independently, including impersonation entry/exit, audit attribution, time limits and isolation.",
+    "evidencePatterns": [
+      "[ROLE-07]"
+    ],
+    "coverage": "partial-or-unverified",
+    "relatedTestClasses": [
+      "JwtTokenProviderTest",
+      "AuthenticationServiceTest",
+      "MfaServiceTest",
+      "AuthSessionServiceTest"
+    ]
+  },
+  {
+    "id": "ZOOM-01",
+    "title": "Own therapist credential configuration, status, test and removal; admin visibility/test permissions; missing/incomplete/invalid credentials; secrets absent from responses and logs.",
+    "evidencePatterns": [
+      "[ZOOM-01]",
+      "ZoomServiceTest#"
+    ],
+    "coverage": "partial-or-unverified",
+    "relatedTestClasses": [
+      "ZoomServiceTest",
+      "ZoomApiServiceTest",
+      "ZoomOauthUrlsTest"
+    ]
+  },
+  {
+    "id": "ZOOM-02",
+    "title": "Meeting creation from staff scheduling and separately from client portal booking; correct therapist account, date, timezone, duration, service and session association.",
+    "evidencePatterns": [
+      "[ZOOM-02]"
+    ],
+    "coverage": "partial-or-unverified",
+    "relatedTestClasses": [
+      "ZoomServiceTest",
+      "ZoomApiServiceTest",
+      "ZoomOauthUrlsTest"
+    ]
+  },
+  {
+    "id": "ZOOM-03",
+    "title": "Expired access token refresh, provider denial/timeouts/rate limiting, and failure during session creation. Define and verify whether the local session persists or rolls back.",
+    "evidencePatterns": [
+      "[ZOOM-03]"
+    ],
+    "coverage": "partial-or-unverified",
+    "relatedTestClasses": [
+      "ZoomServiceTest",
+      "ZoomApiServiceTest",
+      "ZoomOauthUrlsTest"
+    ]
+  },
+  {
+    "id": "ZOOM-04",
+    "title": "Repeated submit/retry does not unintentionally create extra meetings or sessions; verify persisted meeting ID, join URL and password.",
+    "evidencePatterns": [
+      "[ZOOM-04]"
+    ],
+    "coverage": "partial-or-unverified",
+    "relatedTestClasses": [
+      "ZoomServiceTest",
+      "ZoomApiServiceTest",
+      "ZoomOauthUrlsTest"
+    ]
+  },
+  {
+    "id": "ZOOM-05",
+    "title": "Client and therapist see their permitted meeting information. Start/join labels and actions match actual provider URLs; a join link alone is not proof of host capabilities.",
+    "evidencePatterns": [
+      "[ZOOM-05]"
+    ],
+    "coverage": "partial-or-unverified",
+    "relatedTestClasses": [
+      "ZoomServiceTest",
+      "ZoomApiServiceTest",
+      "ZoomOauthUrlsTest"
+    ]
+  },
+  {
+    "id": "ZOOM-06",
+    "title": "Missing URL, Zoom disabled, in-person session, cancelled/no-show and other supported statuses produce the intended join visibility and direct endpoint behavior.",
+    "evidencePatterns": [
+      "[ZOOM-06]"
+    ],
+    "coverage": "partial-or-unverified",
+    "relatedTestClasses": [
+      "ZoomServiceTest",
+      "ZoomApiServiceTest",
+      "ZoomOauthUrlsTest"
+    ]
+  },
+  {
+    "id": "ZOOM-07",
+    "title": "Reschedule, recurring edits, therapist reassignment, cancellation and Zoom disablement reconcile local and provider state according to documented behavior. Inspect and flag missing synchronization rather than assuming it exists.",
+    "evidencePatterns": [
+      "[ZOOM-07]"
+    ],
+    "coverage": "partial-or-unverified",
+    "relatedTestClasses": [
+      "ZoomServiceTest",
+      "ZoomApiServiceTest",
+      "ZoomOauthUrlsTest"
+    ]
+  },
+  {
+    "id": "ZOOM-08",
+    "title": "Integration health, therapist availability, service eligibility and provider-test options return correctly scoped results and do not expose credentials.",
+    "evidencePatterns": [
+      "[ZOOM-08]"
+    ],
+    "coverage": "partial-or-unverified",
+    "relatedTestClasses": [
+      "ZoomServiceTest",
+      "ZoomApiServiceTest",
+      "ZoomOauthUrlsTest"
+    ]
+  },
+  {
+    "id": "ZOOM-09",
+    "title": "Isolated two-account provider smoke: intended therapist and client can enter the same meeting, while unauthorized users cannot retrieve its protected application details. Use provider sandbox/test accounts.",
+    "evidencePatterns": [
+      "[ZOOM-09]"
+    ],
+    "coverage": "partial-or-unverified",
+    "relatedTestClasses": [
+      "ZoomServiceTest",
+      "ZoomApiServiceTest",
+      "ZoomOauthUrlsTest"
+    ]
+  },
+  {
+    "id": "ZOOM-10",
+    "title": "Independently verify whether both speakers in a remote meeting are captured by the application's recording setup. Test headphones versus speakers and echo cancellation; record unsupported capture configurations as gaps.",
+    "evidencePatterns": [
+      "[ZOOM-10]"
+    ],
+    "coverage": "partial-or-unverified",
+    "relatedTestClasses": [
+      "ZoomServiceTest",
+      "ZoomApiServiceTest",
+      "ZoomOauthUrlsTest"
+    ]
+  },
+  {
+    "id": "AUDIO-01",
+    "title": "Microphone enumeration/selection, permission grant/deny, missing or disconnected device, unsupported browser/codec, empty input and microphone-level display.",
+    "evidencePatterns": [
+      "[AUDIO-01]"
+    ],
+    "coverage": "partial-or-unverified",
+    "relatedTestClasses": [
+      "SessionTranscriptServiceTest",
+      "SessionTranscriptControllerContractTest",
+      "TranscriptionErrorMapperTest"
+    ]
+  },
+  {
+    "id": "AUDIO-02",
+    "title": "Start, pause, resume, stop/save, close/dismiss and repeated clicks; duration accounting; microphone/media/socket cleanup after success, failure and navigation.",
+    "evidencePatterns": [
+      "[AUDIO-02]"
+    ],
+    "coverage": "partial-or-unverified",
+    "relatedTestClasses": [
+      "SessionTranscriptServiceTest",
+      "SessionTranscriptControllerContractTest",
+      "TranscriptionErrorMapperTest"
+    ]
+  },
+  {
+    "id": "AUDIO-03",
+    "title": "Use synthetic two-speaker fixtures with known dialogue, silences, interruptions and language changes. Verify captured content, order, timestamps and completeness rather than only HTTP success.",
+    "evidencePatterns": [
+      "[AUDIO-03]"
+    ],
+    "coverage": "partial-or-unverified",
+    "relatedTestClasses": [
+      "SessionTranscriptServiceTest",
+      "SessionTranscriptControllerContractTest",
+      "TranscriptionErrorMapperTest"
+    ]
+  },
+  {
+    "id": "AUDIO-04",
+    "title": "Language selection and translation-to-English options flow through the UI/request/provider/result correctly.",
+    "evidencePatterns": [
+      "[AUDIO-04]"
+    ],
+    "coverage": "partial-or-unverified",
+    "relatedTestClasses": [
+      "SessionTranscriptServiceTest",
+      "SessionTranscriptControllerContractTest",
+      "TranscriptionErrorMapperTest"
+    ]
+  },
+  {
+    "id": "AUDIO-05",
+    "title": "Consent and permissions at upload start, chunk processing, finalization, retrieval, diarization and smart fill; check consent withdrawal between steps and cross-session/upload-ID access.",
+    "evidencePatterns": [
+      "[AUDIO-05]",
+      "SessionTranscriptServiceTest$StartUploadTests#shouldThrowWhenAiConsentBlocked",
+      "SessionTranscriptServiceTest$ProcessChunkTests#shouldForbid",
+      "SessionTranscriptServiceTest$DiarizeTranscriptTests#shouldRequireAiConsent"
+    ],
+    "coverage": "partial-or-unverified",
+    "relatedTestClasses": [
+      "SessionTranscriptServiceTest",
+      "SessionTranscriptControllerContractTest",
+      "TranscriptionErrorMapperTest"
+    ]
+  },
+  {
+    "id": "AUDIO-06",
+    "title": "Websocket tickets bound to upload IDs, expiration, missing/wrong ticket, disallowed origins, organization context, and cleanup of context after callbacks.",
+    "evidencePatterns": [
+      "[AUDIO-06]"
+    ],
+    "coverage": "partial-or-unverified",
+    "relatedTestClasses": [
+      "SessionTranscriptServiceTest",
+      "SessionTranscriptControllerContractTest",
+      "TranscriptionErrorMapperTest"
+    ]
+  },
+  {
+    "id": "AUDIO-07",
+    "title": "Live connection establishment, queued frames, partial/final messages, network loss, upstream disconnect, timeout, retry/reconnect behavior and useful UI errors without losing saved-upload state.",
+    "evidencePatterns": [
+      "[AUDIO-07]"
+    ],
+    "coverage": "partial-or-unverified",
+    "relatedTestClasses": [
+      "SessionTranscriptServiceTest",
+      "SessionTranscriptControllerContractTest",
+      "TranscriptionErrorMapperTest"
+    ]
+  },
+  {
+    "id": "AUDIO-08",
+    "title": "Chunk index/size/duration validation, silent chunks, duplicate and out-of-order chunks, provider errors, rate limiting, local blob recovery and retry limits.",
+    "evidencePatterns": [
+      "[AUDIO-08]",
+      "SessionTranscriptServiceTest$ProcessChunkTests#"
+    ],
+    "coverage": "partial-or-unverified",
+    "relatedTestClasses": [
+      "SessionTranscriptServiceTest",
+      "SessionTranscriptControllerContractTest",
+      "TranscriptionErrorMapperTest"
+    ]
+  },
+  {
+    "id": "AUDIO-09",
+    "title": "Finalization with complete, missing, failed and silent chunks; expected-count limits; ordered stitching and visible gap markers; repeated finalize; prevent saving an apparently complete transcript when accounting is incomplete.",
+    "evidencePatterns": [
+      "[AUDIO-09]",
+      "SessionTranscriptServiceTest$FinalizeUploadTests#"
+    ],
+    "coverage": "partial-or-unverified",
+    "relatedTestClasses": [
+      "SessionTranscriptServiceTest",
+      "SessionTranscriptControllerContractTest",
+      "TranscriptionErrorMapperTest"
+    ]
+  },
+  {
+    "id": "AUDIO-10",
+    "title": "Saved transcript status/detail/list, download, copy, reopen and delete; client/session scoping and cross-tab consistency.",
+    "evidencePatterns": [
+      "[AUDIO-10]",
+      "SessionTranscriptServiceTest$GetSessionTranscriptTests#",
+      "SessionTranscriptServiceTest$DeleteSessionTranscriptTests#"
+    ],
+    "coverage": "partial-or-unverified",
+    "relatedTestClasses": [
+      "SessionTranscriptServiceTest",
+      "SessionTranscriptControllerContractTest",
+      "TranscriptionErrorMapperTest"
+    ]
+  },
+  {
+    "id": "AUDIO-11",
+    "title": "Speaker diarization only on eligible transcripts; preserve original text; cache/idempotency; invalid/empty/refusal output; do not silently treat uncertain patient/clinician attribution as reliable.",
+    "evidencePatterns": [
+      "[AUDIO-11]",
+      "SessionTranscriptServiceTest$DiarizeTranscriptTests#"
+    ],
+    "coverage": "partial-or-unverified",
+    "relatedTestClasses": [
+      "SessionTranscriptServiceTest",
+      "SessionTranscriptControllerContractTest",
+      "TranscriptionErrorMapperTest"
+    ]
+  },
+  {
+    "id": "AUDIO-12",
+    "title": "Transcript smart fill and review map to the intended note fields, preserve clinician edits, handle missing fields and require the supported review/save step.",
+    "evidencePatterns": [
+      "[AUDIO-12]",
+      "SessionTranscriptServiceTest$SmartFillFromTranscriptTests#"
+    ],
+    "coverage": "partial-or-unverified",
+    "relatedTestClasses": [
+      "SessionTranscriptServiceTest",
+      "SessionTranscriptControllerContractTest",
+      "TranscriptionErrorMapperTest"
+    ]
+  },
+  {
+    "id": "AUDIO-13",
+    "title": "Session-note voice upload/reprocess and assessment audio transcription have independent regression cases.",
+    "evidencePatterns": [
+      "[AUDIO-13]"
+    ],
+    "coverage": "partial-or-unverified",
+    "relatedTestClasses": [
+      "SessionTranscriptServiceTest",
+      "SessionTranscriptControllerContractTest",
+      "TranscriptionErrorMapperTest"
+    ]
+  },
+  {
+    "id": "AUDIO-14",
+    "title": "Retention expiry, transcript/chunk soft deletion, audio cleanup, failed-upload remnants and absence of transcript content in operational logs.",
+    "evidencePatterns": [
+      "[AUDIO-14]"
+    ],
+    "coverage": "partial-or-unverified",
+    "relatedTestClasses": [
+      "SessionTranscriptServiceTest",
+      "SessionTranscriptControllerContractTest",
+      "TranscriptionErrorMapperTest"
+    ]
+  },
+  {
+    "id": "AUDIO-15",
+    "title": "Run deterministic provider-stub regression checks automatically; evaluate actual recognition/speaker accuracy with known fixtures separately. Clinical correctness and physical audio capture need explicit quality evidence beyond a green API test.",
+    "evidencePatterns": [
+      "[AUDIO-15]"
+    ],
+    "coverage": "partial-or-unverified",
+    "relatedTestClasses": [
+      "SessionTranscriptServiceTest",
+      "SessionTranscriptControllerContractTest",
+      "TranscriptionErrorMapperTest"
+    ]
+  },
+  {
+    "id": "MONEY-01",
+    "title": "Service code/rate CRUD, activation, therapist/portal visibility, defaults, duration and service-specific scheduling/billing effects.",
+    "evidencePatterns": [
+      "[MONEY-01]"
+    ],
+    "coverage": "partial-or-unverified",
+    "relatedTestClasses": [
+      "InvoicePolicyServiceTest",
+      "BillingServiceRulesTest",
+      "BillingSessionTriggerIntegrationTest",
+      "BillingGuardSessionEligibilityTest",
+      "SessionStatusBillingTriggerTest"
+    ]
+  },
+  {
+    "id": "MONEY-02",
+    "title": "Policy CRUD, activate/deactivate/delete, required scopes, duplicate scope, fixed/percentage pricing, invalid/negative/>100 percentage and invalid effective date ranges.",
+    "evidencePatterns": [
+      "[MONEY-02]"
+    ],
+    "coverage": "partial-or-unverified",
+    "relatedTestClasses": [
+      "InvoicePolicyServiceTest",
+      "BillingServiceRulesTest",
+      "BillingSessionTriggerIntegrationTest",
+      "BillingGuardSessionEligibilityTest",
+      "SessionStatusBillingTriggerTest"
+    ]
+  },
+  {
+    "id": "MONEY-03",
+    "title": "Policy matching for client type, appointment status, service, wildcard `all`, start/end dates and practice timezone. Verify precedence: service specificity, client type specificity, status specificity, priority, then updated time as currently implemented; test ambiguous ties explicitly.",
+    "evidencePatterns": [
+      "[MONEY-03]"
+    ],
+    "coverage": "partial-or-unverified",
+    "relatedTestClasses": [
+      "InvoicePolicyServiceTest",
+      "BillingServiceRulesTest",
+      "BillingSessionTriggerIntegrationTest",
+      "BillingGuardSessionEligibilityTest",
+      "SessionStatusBillingTriggerTest"
+    ]
+  },
+  {
+    "id": "MONEY-04",
+    "title": "Completed/no-show/manual billing eligibility, future and cancelled sessions, duplicate billing, transaction rollback and response mapping after commit.",
+    "evidencePatterns": [
+      "[MONEY-04]"
+    ],
+    "coverage": "partial-or-unverified",
+    "relatedTestClasses": [
+      "InvoicePolicyServiceTest",
+      "BillingServiceRulesTest",
+      "BillingSessionTriggerIntegrationTest",
+      "BillingGuardSessionEligibilityTest",
+      "SessionStatusBillingTriggerTest"
+    ]
+  },
+  {
+    "id": "MONEY-05",
+    "title": "Discount none/fixed/percentage, aliases and invalid type; positive values, configured maximum percentage, rounding, fixed amount exceeding outstanding and a fully paid invoice.",
+    "evidencePatterns": [
+      "[MONEY-05]"
+    ],
+    "coverage": "partial-or-unverified",
+    "relatedTestClasses": [
+      "InvoicePolicyServiceTest",
+      "BillingServiceRulesTest",
+      "BillingSessionTriggerIntegrationTest",
+      "BillingGuardSessionEligibilityTest",
+      "SessionStatusBillingTriggerTest"
+    ]
+  },
+  {
+    "id": "MONEY-06",
+    "title": "Partial-payment example: $100 total, $40 paid, then 10% discount must follow the reviewed rule. Current implementation computes $6 discount against $60 outstanding, leaving $54 outstanding. Verify API, UI, persisted values, PDF and receipt agree.",
+    "evidencePatterns": [
+      "[MONEY-06]"
+    ],
+    "coverage": "partial-or-unverified",
+    "relatedTestClasses": [
+      "InvoicePolicyServiceTest",
+      "BillingServiceRulesTest",
+      "BillingSessionTriggerIntegrationTest",
+      "BillingGuardSessionEligibilityTest",
+      "SessionStatusBillingTriggerTest"
+    ]
+  },
+  {
+    "id": "MONEY-07",
+    "title": "Existing nonzero discount cannot be replaced without removal under current service rule; verify remove/reapply, duplicate clicks and concurrent requests.",
+    "evidencePatterns": [
+      "[MONEY-07]"
+    ],
+    "coverage": "partial-or-unverified",
+    "relatedTestClasses": [
+      "InvoicePolicyServiceTest",
+      "BillingServiceRulesTest",
+      "BillingSessionTriggerIntegrationTest",
+      "BillingGuardSessionEligibilityTest",
+      "SessionStatusBillingTriggerTest"
+    ]
+  },
+  {
+    "id": "MONEY-08",
+    "title": "`ADVANCED_BILLING` feature and `BILLING_MANAGE` permission gates; denied attempts must not change balance, status or audit history as a successful mutation.",
+    "evidencePatterns": [
+      "[MONEY-08]"
+    ],
+    "coverage": "partial-or-unverified",
+    "relatedTestClasses": [
+      "InvoicePolicyServiceTest",
+      "BillingServiceRulesTest",
+      "BillingSessionTriggerIntegrationTest",
+      "BillingGuardSessionEligibilityTest",
+      "SessionStatusBillingTriggerTest"
+    ]
+  },
+  {
+    "id": "MONEY-09",
+    "title": "Discount-induced status changes, zero outstanding, discount removal after payment and reconciliation of amount due, paid and outstanding; never manufacture a payment from a discount.",
+    "evidencePatterns": [
+      "[MONEY-09]"
+    ],
+    "coverage": "partial-or-unverified",
+    "relatedTestClasses": [
+      "InvoicePolicyServiceTest",
+      "BillingServiceRulesTest",
+      "BillingSessionTriggerIntegrationTest",
+      "BillingGuardSessionEligibilityTest",
+      "SessionStatusBillingTriggerTest"
+    ]
+  },
+  {
+    "id": "MONEY-10",
+    "title": "Insurance/copay snapshots, client/insurance split payment, cumulative versus delta amounts, repeated payment requests, stale/concurrent edits and ledger consistency.",
+    "evidencePatterns": [
+      "[MONEY-10]"
+    ],
+    "coverage": "partial-or-unverified",
+    "relatedTestClasses": [
+      "InvoicePolicyServiceTest",
+      "BillingServiceRulesTest",
+      "BillingSessionTriggerIntegrationTest",
+      "BillingGuardSessionEligibilityTest",
+      "SessionStatusBillingTriggerTest"
+    ]
+  },
+  {
+    "id": "MONEY-11",
+    "title": "Stripe checkout/payment outcome, abandoned payment, signed webhook validation, duplicate/out-of-order webhook events, refunds and retry paths where supported.",
+    "evidencePatterns": [
+      "[MONEY-11]"
+    ],
+    "coverage": "partial-or-unverified",
+    "relatedTestClasses": [
+      "InvoicePolicyServiceTest",
+      "BillingServiceRulesTest",
+      "BillingSessionTriggerIntegrationTest",
+      "BillingGuardSessionEligibilityTest",
+      "SessionStatusBillingTriggerTest"
+    ]
+  },
+  {
+    "id": "MONEY-12",
+    "title": "Billing history, client portal invoices, payment status filters, totals/statistics, PDF/HTML receipts and exports all agree with persisted records and selected scope.",
+    "evidencePatterns": [
+      "[MONEY-12]"
+    ],
+    "coverage": "partial-or-unverified",
+    "relatedTestClasses": [
+      "InvoicePolicyServiceTest",
+      "BillingServiceRulesTest",
+      "BillingSessionTriggerIntegrationTest",
+      "BillingGuardSessionEligibilityTest",
+      "SessionStatusBillingTriggerTest"
+    ]
+  },
+  {
+    "id": "MONEY-13",
+    "title": "Organization subscription invoices are separate from patient billing: plan/add-ons, limits, subscription checkout, renewal/failure, dunning, cancellation, refund/dispute and grace/access transitions.",
+    "evidencePatterns": [
+      "[MONEY-13]"
+    ],
+    "coverage": "partial-or-unverified",
+    "relatedTestClasses": [
+      "InvoicePolicyServiceTest",
+      "BillingServiceRulesTest",
+      "BillingSessionTriggerIntegrationTest",
+      "BillingGuardSessionEligibilityTest",
+      "SessionStatusBillingTriggerTest"
+    ]
+  },
+  {
+    "id": "FILTER-01",
+    "title": "Default state and omitted value; each supported enum/option; populated matching and nonmatching records; invalid/stale option IDs; literal `false`/zero versus absent values.",
+    "evidencePatterns": [
+      "[FILTER-01]"
+    ],
+    "coverage": "partial-or-unverified",
+    "relatedTestClasses": []
+  },
+  {
+    "id": "FILTER-02",
+    "title": "Actual result IDs/counts match the independent expected set. Checking that a dropdown changes or a query parameter is sent is insufficient.",
+    "evidencePatterns": [
+      "[FILTER-02]"
+    ],
+    "coverage": "partial-or-unverified",
+    "relatedTestClasses": []
+  },
+  {
+    "id": "FILTER-03",
+    "title": "Apply, clear-one chip, clear-all, cancel/unapplied edits, close/reopen, reload and back navigation according to the intended persistence contract.",
+    "evidencePatterns": [
+      "[FILTER-03]"
+    ],
+    "coverage": "partial-or-unverified",
+    "relatedTestClasses": []
+  },
+  {
+    "id": "FILTER-04",
+    "title": "Date/numeric lower bound, upper bound, equal bounds, inverted bounds, open-ended ranges, timezone/DST boundaries and invalid values.",
+    "evidencePatterns": [
+      "[FILTER-04]"
+    ],
+    "coverage": "partial-or-unverified",
+    "relatedTestClasses": []
+  },
+  {
+    "id": "FILTER-05",
+    "title": "Search whitespace/case, supported exact versus partial fields, special characters, empty query, no matches, debounced requests and stale-response races.",
+    "evidencePatterns": [
+      "[FILTER-05]"
+    ],
+    "coverage": "partial-or-unverified",
+    "relatedTestClasses": []
+  },
+  {
+    "id": "FILTER-06",
+    "title": "Every supported sort key and direction, equal-value tie ordering, nulls, stable pagination, page reset after filter change and no duplicate/missing infinite-scroll records.",
+    "evidencePatterns": [
+      "[FILTER-06]"
+    ],
+    "coverage": "partial-or-unverified",
+    "relatedTestClasses": []
+  },
+  {
+    "id": "FILTER-07",
+    "title": "Each filter individually, pairwise combinations, all compatible filters together, contradictory combinations, and explicit high-risk multi-filter combinations. Exhaustive Cartesian products are not implied.",
+    "evidencePatterns": [
+      "[FILTER-07]"
+    ],
+    "coverage": "partial-or-unverified",
+    "relatedTestClasses": []
+  },
+  {
+    "id": "FILTER-08",
+    "title": "Role/tenant/caseload scoping still holds under filtering and direct API calls. Option lists must not leak inaccessible users/clients.",
+    "evidencePatterns": [
+      "[FILTER-08]"
+    ],
+    "coverage": "partial-or-unverified",
+    "relatedTestClasses": []
+  },
+  {
+    "id": "FILTER-09",
+    "title": "Exported rows, dashboard counts and result lists use the documented scope. If a summary intentionally has a different scope, assert and label that behavior.",
+    "evidencePatterns": [
+      "[FILTER-09]"
+    ],
+    "coverage": "partial-or-unverified",
+    "relatedTestClasses": []
+  },
+  {
+    "id": "CLIENT-01",
+    "title": "Complete intake sections: personal, clinical, address, referral, employment, contacts, insurance and consent; field validation, edit/patch semantics and history.",
+    "evidencePatterns": [
+      "[CLIENT-01]"
+    ],
+    "coverage": "partial-or-unverified",
+    "relatedTestClasses": [
+      "ClientServiceTest"
+    ]
+  },
+  {
+    "id": "CLIENT-02",
+    "title": "Portal enable/disable/activation resend, client close/reopen/delete/restore, related-record effects, purge eligibility and consent withdrawal.",
+    "evidencePatterns": [
+      "[CLIENT-02]"
+    ],
+    "coverage": "partial-or-unverified",
+    "relatedTestClasses": [
+      "ClientServiceTest"
+    ]
+  },
+  {
+    "id": "CLIENT-03",
+    "title": "Bulk upload, stage/status changes, reassignment, portal access bulk changes, export, duplicate detect/mark/unmark; partial failures and rerun semantics.",
+    "evidencePatterns": [
+      "[CLIENT-03]"
+    ],
+    "coverage": "partial-or-unverified",
+    "relatedTestClasses": [
+      "ClientServiceTest"
+    ]
+  },
+  {
+    "id": "CLIENT-04",
+    "title": "Overview, sessions, forms/documents, assessments, reports, tasks, checklists, billing, notes/history, stage duration, email history and SMS log/export; independent role-specific implementations and persistence.",
+    "evidencePatterns": [
+      "[CLIENT-04]"
+    ],
+    "coverage": "partial-or-unverified",
+    "relatedTestClasses": [
+      "ClientServiceTest"
+    ]
+  },
+  {
+    "id": "PEOPLE-01",
+    "title": "User/profile lifecycle, credentials, password change, avatars, timezone, working hours, education/other profile sections, supervisor assignments and schedule eligibility after profile edits.",
+    "evidencePatterns": [
+      "[PEOPLE-01]"
+    ],
+    "coverage": "partial-or-unverified",
+    "relatedTestClasses": []
+  },
+  {
+    "id": "FORMS-01",
+    "title": "Template sections/fields, field ordering, versions, activate/archive, single/bulk/multi-template assignments, responses, signatures and review from staff and client sides.",
+    "evidencePatterns": [
+      "[FORMS-01]"
+    ],
+    "coverage": "partial-or-unverified",
+    "relatedTestClasses": [
+      "FormServiceTest"
+    ]
+  },
+  {
+    "id": "ASSESS-01",
+    "title": "Template sections/questions/options and bulk edits, versions, assignment, single/batch responses, scoring/recalculation, reminders, analytics, CSV/Excel export, report draft/finalize/unfinalize and PDF/DOCX.",
+    "evidencePatterns": [
+      "[ASSESS-01]"
+    ],
+    "coverage": "partial-or-unverified",
+    "relatedTestClasses": [
+      "AssessmentServiceTest"
+    ]
+  },
+  {
+    "id": "LIB-01",
+    "title": "Categories, entries, tags, entry connections, batch connections, connected suggestions, bulk create/delete/tag, search and usage counters; downstream note/template options after changes.",
+    "evidencePatterns": [
+      "[LIB-01]"
+    ],
+    "coverage": "partial-or-unverified",
+    "relatedTestClasses": [
+      "LibraryServiceTest"
+    ]
+  },
+  {
+    "id": "NOTE-01",
+    "title": "General notes versus session notes; note templates, draft/edit/finalize/amend, voice reprocess, PDF; historical record integrity and edit permissions.",
+    "evidencePatterns": [
+      "[NOTE-01]"
+    ],
+    "coverage": "partial-or-unverified",
+    "relatedTestClasses": [
+      "SessionNoteServiceTest"
+    ]
+  },
+  {
+    "id": "REPORT-01",
+    "title": "Report templates, selected source records, supporting files, generated/draft/final content, regeneration and downloads; wrong-client source rejection and empty-source behavior.",
+    "evidencePatterns": [
+      "[REPORT-01]"
+    ],
+    "coverage": "partial-or-unverified",
+    "relatedTestClasses": [
+      "ClientReportServiceAuditTest"
+    ]
+  },
+  {
+    "id": "DOC-01",
+    "title": "Upload, share/revoke, review queue/summary/dashboard, file and DOCX viewer, download, delete, client portal upload/delete and permission checks.",
+    "evidencePatterns": [
+      "[DOC-01]"
+    ],
+    "coverage": "partial-or-unverified",
+    "relatedTestClasses": []
+  },
+  {
+    "id": "TASK-01",
+    "title": "Task CRUD, assignment/status/due dates, comments CRUD with author rules, history/stats/recent/upcoming, overdue processing and configured notification effects.",
+    "evidencePatterns": [
+      "[TASK-01]"
+    ],
+    "coverage": "partial-or-unverified",
+    "relatedTestClasses": [
+      "TaskServiceTest"
+    ]
+  },
+  {
+    "id": "CHECK-01",
+    "title": "Template/item CRUD, assignment/bulk assignment, assigned-item completion and compliance reporting; template-change effects on existing instances.",
+    "evidencePatterns": [
+      "[CHECK-01]"
+    ],
+    "coverage": "partial-or-unverified",
+    "relatedTestClasses": [
+      "ChecklistServiceTest"
+    ]
+  },
+  {
+    "id": "NOTIFY-01",
+    "title": "Every registered event, trigger, recipient/channel/preference, template placeholder, action link, unread/read/delete state; setup health/coverage/sync/seed, broadcasts, cleanup, inbound SMS and retries.",
+    "evidencePatterns": [
+      "[NOTIFY-01]"
+    ],
+    "coverage": "partial-or-unverified",
+    "relatedTestClasses": [
+      "NotificationServiceTest"
+    ]
+  },
+  {
+    "id": "SETTINGS-01",
+    "title": "System Options, Services, Public Site, Invoice Policies, Therapy Rooms, Library Categories and Administration tabs; URL/legacy-tab redirects; every configuration field's downstream effect.",
+    "evidencePatterns": [
+      "[SETTINGS-01]"
+    ],
+    "coverage": "partial-or-unverified",
+    "relatedTestClasses": [
+      "SystemOptionServiceTest"
+    ]
+  },
+  {
+    "id": "AI-01",
+    "title": "Assistant conversation, session-note/template generation, field options, connected suggestions, reports and regeneration; consent, feature limits, timeouts, invalid content and preservation of clinician edits.",
+    "evidencePatterns": [
+      "[AI-01]"
+    ],
+    "coverage": "partial-or-unverified",
+    "relatedTestClasses": []
+  },
+  {
+    "id": "PLATFORM-01",
+    "title": "Organization onboarding/provisioning, tenant routing, roles/permissions, feature catalog and rollout, per-tenant overrides, usage/metrics, integrations/API key rotation, security and impersonation.",
+    "evidencePatterns": [
+      "[PLATFORM-01]"
+    ],
+    "coverage": "partial-or-unverified",
+    "relatedTestClasses": []
+  },
+  {
+    "id": "PLATFORM-02",
+    "title": "Plans/entitlements/add-ons, invoices, dunning, notifications, CMS landing/learning-hub editing, booking-request lifecycle, public consultation and public service visibility.",
+    "evidencePatterns": [
+      "[PLATFORM-02]"
+    ],
+    "coverage": "partial-or-unverified",
+    "relatedTestClasses": []
+  },
+  {
+    "id": "OPS-01",
+    "title": "Suspend/reactivate/terminate and bulk operations, backup/jobs, restore verification, migration/schema integrity, encryption/blind-index backfills, refunds retry, audio/transcript retention and client purge, all in isolated fixtures.",
+    "evidencePatterns": [
+      "[OPS-01]"
+    ],
+    "coverage": "partial-or-unverified",
+    "relatedTestClasses": []
+  }
+]

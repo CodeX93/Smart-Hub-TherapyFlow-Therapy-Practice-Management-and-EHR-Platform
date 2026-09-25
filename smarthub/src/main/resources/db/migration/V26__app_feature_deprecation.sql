@@ -1,0 +1,3 @@
+ALTER TABLE public.app_features
+    ADD COLUMN IF NOT EXISTS is_deprecated BOOLEAN NOT NULL DEFAULT FALSE,
+    ADD COLUMN IF NOT EXISTS deprecated_at TIMESTAMPTZ;

@@ -1,0 +1,5 @@
+-- Intentionally a no-op.
+-- V63 originally cleared diarized_transcript for a one-time retest after the
+-- OpenAI refusal fix. That wipe must not stay in the tenant migration chain
+-- (late/new tenants would lose valid speaker labels). Version kept so schemas
+-- that already applied V63 remain consistent with Flyway history.

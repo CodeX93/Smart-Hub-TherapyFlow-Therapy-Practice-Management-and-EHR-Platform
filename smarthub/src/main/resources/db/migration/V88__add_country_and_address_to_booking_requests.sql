@@ -1,0 +1,3 @@
+ALTER TABLE booking_requests
+ADD COLUMN country VARCHAR(100),
+ADD COLUMN address VARCHAR(500);

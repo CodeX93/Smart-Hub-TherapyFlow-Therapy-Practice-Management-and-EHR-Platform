@@ -1,0 +1,1785 @@
+{
+  "categories": [
+    {
+      "categoryKey": "client_source",
+      "categoryName": "Client Sources",
+      "description": "How clients find the practice (referral sources)",
+      "isSystem": true,
+      "isActive": true,
+      "options": [
+        {
+          "optionKey": "referral",
+          "optionLabel": "Professional Referral",
+          "sortOrder": 1,
+          "isDefault": false,
+          "isSystem": true,
+          "isActive": true,
+          "price": 0.0
+        },
+        {
+          "optionKey": "insurance",
+          "optionLabel": "Insurance Directory",
+          "sortOrder": 2,
+          "isDefault": false,
+          "isSystem": true,
+          "isActive": true,
+          "price": 0.0
+        },
+        {
+          "optionKey": "online_search",
+          "optionLabel": "Online Search",
+          "sortOrder": 3,
+          "isDefault": false,
+          "isSystem": true,
+          "isActive": true,
+          "price": 0.0
+        },
+        {
+          "optionKey": "social_media",
+          "optionLabel": "Social Media",
+          "sortOrder": 4,
+          "isDefault": false,
+          "isSystem": true,
+          "isActive": true,
+          "price": 0.0
+        },
+        {
+          "optionKey": "word_of_mouth",
+          "optionLabel": "Word of Mouth",
+          "sortOrder": 5,
+          "isDefault": false,
+          "isSystem": true,
+          "isActive": true,
+          "price": 0.0
+        },
+        {
+          "optionKey": "advertisement",
+          "optionLabel": "Advertisement",
+          "sortOrder": 6,
+          "isDefault": false,
+          "isSystem": true,
+          "isActive": true,
+          "price": 0.0
+        },
+        {
+          "optionKey": "Lawyer",
+          "optionLabel": "Lawyer",
+          "sortOrder": 7,
+          "isDefault": false,
+          "isSystem": true,
+          "isActive": true,
+          "price": 0.0
+        }
+      ]
+    },
+    {
+      "categoryKey": "client_stage",
+      "categoryName": "Client Stage",
+      "description": "Stage in therapy process (intake, assessment, psychotherapy)",
+      "isSystem": true,
+      "isActive": true,
+      "options": [
+        {
+          "optionKey": "intake",
+          "optionLabel": "Intake",
+          "sortOrder": 1,
+          "isDefault": false,
+          "isSystem": true,
+          "isActive": true,
+          "price": 0.0
+        },
+        {
+          "optionKey": "assessment",
+          "optionLabel": "Assessment",
+          "sortOrder": 2,
+          "isDefault": false,
+          "isSystem": true,
+          "isActive": true,
+          "price": 0.0
+        },
+        {
+          "optionKey": "psychotherapy",
+          "optionLabel": "Psychotherapy",
+          "sortOrder": 3,
+          "isDefault": false,
+          "isSystem": true,
+          "isActive": true,
+          "price": 0.0
+        },
+        {
+          "optionKey": "closed",
+          "optionLabel": "Closed",
+          "sortOrder": 4,
+          "isDefault": false,
+          "isSystem": false,
+          "isActive": true,
+          "price": 0.0
+        }
+      ]
+    },
+    {
+      "categoryKey": "client_status",
+      "categoryName": "Client Status",
+      "description": "Status of clients (pending, active, inactive)",
+      "isSystem": true,
+      "isActive": true,
+      "options": [
+        {
+          "optionKey": "pending",
+          "optionLabel": "Pending",
+          "sortOrder": 1,
+          "isDefault": false,
+          "isSystem": true,
+          "isActive": true,
+          "price": 0.0
+        },
+        {
+          "optionKey": "active",
+          "optionLabel": "Active",
+          "sortOrder": 2,
+          "isDefault": false,
+          "isSystem": true,
+          "isActive": true,
+          "price": 0.0
+        },
+        {
+          "optionKey": "inactive",
+          "optionLabel": "Inactive",
+          "sortOrder": 3,
+          "isDefault": false,
+          "isSystem": true,
+          "isActive": true,
+          "price": 0.0
+        }
+      ]
+    },
+    {
+      "categoryKey": "client_type",
+      "categoryName": "Client Types",
+      "description": "Types of clients (individual, couple, family, group)",
+      "isSystem": true,
+      "isActive": true,
+      "options": [
+        {
+          "optionKey": "Refugee",
+          "optionLabel": "Refugee",
+          "sortOrder": 1,
+          "isDefault": false,
+          "isSystem": true,
+          "isActive": true,
+          "price": 0.0
+        },
+        {
+          "optionKey": "VQRP",
+          "optionLabel": "VQRP",
+          "sortOrder": 2,
+          "isDefault": false,
+          "isSystem": true,
+          "isActive": true,
+          "price": 0.0
+        },
+        {
+          "optionKey": "MVA",
+          "optionLabel": "MVA",
+          "sortOrder": 3,
+          "isDefault": false,
+          "isSystem": true,
+          "isActive": true,
+          "price": 0.0
+        },
+        {
+          "optionKey": "Personal",
+          "optionLabel": "Personal",
+          "sortOrder": 4,
+          "isDefault": false,
+          "isSystem": false,
+          "isActive": true,
+          "price": 0.0
+        }
+      ]
+    },
+    {
+      "categoryKey": "education_level",
+      "categoryName": "Education Levels",
+      "description": "Education level options for client profiles",
+      "isSystem": true,
+      "isActive": true,
+      "options": [
+        {
+          "optionKey": "elementary",
+          "optionLabel": "Elementary School",
+          "sortOrder": 1,
+          "isDefault": false,
+          "isSystem": true,
+          "isActive": true,
+          "price": 0.0
+        },
+        {
+          "optionKey": "high_school",
+          "optionLabel": "High School",
+          "sortOrder": 2,
+          "isDefault": false,
+          "isSystem": true,
+          "isActive": true,
+          "price": 0.0
+        },
+        {
+          "optionKey": "some_college",
+          "optionLabel": "Some College",
+          "sortOrder": 3,
+          "isDefault": false,
+          "isSystem": true,
+          "isActive": true,
+          "price": 0.0
+        },
+        {
+          "optionKey": "associates",
+          "optionLabel": "Associate's Degree",
+          "sortOrder": 4,
+          "isDefault": false,
+          "isSystem": true,
+          "isActive": true,
+          "price": 0.0
+        },
+        {
+          "optionKey": "bachelors",
+          "optionLabel": "Bachelor's Degree",
+          "sortOrder": 5,
+          "isDefault": false,
+          "isSystem": true,
+          "isActive": true,
+          "price": 0.0
+        },
+        {
+          "optionKey": "masters",
+          "optionLabel": "Master's Degree",
+          "sortOrder": 6,
+          "isDefault": false,
+          "isSystem": true,
+          "isActive": true,
+          "price": 0.0
+        },
+        {
+          "optionKey": "doctorate",
+          "optionLabel": "Doctorate",
+          "sortOrder": 7,
+          "isDefault": false,
+          "isSystem": true,
+          "isActive": true,
+          "price": 0.0
+        },
+        {
+          "optionKey": "trade_school",
+          "optionLabel": "Trade/Technical School",
+          "sortOrder": 8,
+          "isDefault": false,
+          "isSystem": true,
+          "isActive": true,
+          "price": 0.0
+        },
+        {
+          "optionKey": "other",
+          "optionLabel": "Other",
+          "sortOrder": 9,
+          "isDefault": false,
+          "isSystem": true,
+          "isActive": true,
+          "price": 0.0
+        }
+      ]
+    },
+    {
+      "categoryKey": "employment_status",
+      "categoryName": "Employment Status",
+      "description": "Employment status options for client profiles",
+      "isSystem": true,
+      "isActive": true,
+      "options": [
+        {
+          "optionKey": "employed_full_time",
+          "optionLabel": "Employed Full-time",
+          "sortOrder": 1,
+          "isDefault": false,
+          "isSystem": true,
+          "isActive": true,
+          "price": 0.0
+        },
+        {
+          "optionKey": "employed_part_time",
+          "optionLabel": "Employed Part-time",
+          "sortOrder": 2,
+          "isDefault": false,
+          "isSystem": true,
+          "isActive": true,
+          "price": 0.0
+        },
+        {
+          "optionKey": "self_employed",
+          "optionLabel": "Self-employed",
+          "sortOrder": 3,
+          "isDefault": false,
+          "isSystem": true,
+          "isActive": true,
+          "price": 0.0
+        },
+        {
+          "optionKey": "unemployed",
+          "optionLabel": "Unemployed",
+          "sortOrder": 4,
+          "isDefault": false,
+          "isSystem": true,
+          "isActive": true,
+          "price": 0.0
+        },
+        {
+          "optionKey": "student",
+          "optionLabel": "Student",
+          "sortOrder": 5,
+          "isDefault": false,
+          "isSystem": true,
+          "isActive": true,
+          "price": 0.0
+        },
+        {
+          "optionKey": "retired",
+          "optionLabel": "Retired",
+          "sortOrder": 6,
+          "isDefault": false,
+          "isSystem": true,
+          "isActive": true,
+          "price": 0.0
+        },
+        {
+          "optionKey": "disabled",
+          "optionLabel": "Disabled",
+          "sortOrder": 7,
+          "isDefault": false,
+          "isSystem": true,
+          "isActive": true,
+          "price": 0.0
+        },
+        {
+          "optionKey": "homemaker",
+          "optionLabel": "Homemaker",
+          "sortOrder": 8,
+          "isDefault": false,
+          "isSystem": true,
+          "isActive": true,
+          "price": 0.0
+        },
+        {
+          "optionKey": "other",
+          "optionLabel": "Other",
+          "sortOrder": 9,
+          "isDefault": false,
+          "isSystem": true,
+          "isActive": true,
+          "price": 0.0
+        }
+      ]
+    },
+    {
+      "categoryKey": "gender",
+      "categoryName": "Gender Options",
+      "description": "Gender identity options for client profiles",
+      "isSystem": true,
+      "isActive": true,
+      "options": [
+        {
+          "optionKey": "male",
+          "optionLabel": "Male",
+          "sortOrder": 1,
+          "isDefault": false,
+          "isSystem": true,
+          "isActive": true,
+          "price": 0.0
+        },
+        {
+          "optionKey": "female",
+          "optionLabel": "Female",
+          "sortOrder": 2,
+          "isDefault": false,
+          "isSystem": true,
+          "isActive": true,
+          "price": 0.0
+        },
+        {
+          "optionKey": "non_binary",
+          "optionLabel": "Non-binary",
+          "sortOrder": 3,
+          "isDefault": false,
+          "isSystem": true,
+          "isActive": true,
+          "price": 0.0
+        },
+        {
+          "optionKey": "prefer_not_to_say",
+          "optionLabel": "Prefer not to say",
+          "sortOrder": 4,
+          "isDefault": false,
+          "isSystem": true,
+          "isActive": true,
+          "price": 0.0
+        },
+        {
+          "optionKey": "transgender",
+          "optionLabel": "Transgender",
+          "sortOrder": 4,
+          "isDefault": false,
+          "isSystem": true,
+          "isActive": true,
+          "price": 0.0
+        },
+        {
+          "optionKey": "other",
+          "optionLabel": "Other",
+          "sortOrder": 6,
+          "isDefault": false,
+          "isSystem": true,
+          "isActive": true,
+          "price": 0.0
+        }
+      ]
+    },
+    {
+      "categoryKey": "insurance_providers",
+      "categoryName": "Insurance Providers",
+      "description": null,
+      "isSystem": true,
+      "isActive": true,
+      "options": [
+        {
+          "optionKey": "none",
+          "optionLabel": "None / Self-Pay",
+          "sortOrder": 0,
+          "isDefault": false,
+          "isSystem": false,
+          "isActive": true,
+          "price": 0.0
+        },
+        {
+          "optionKey": "sun_life",
+          "optionLabel": "Sun Life Financial",
+          "sortOrder": 10,
+          "isDefault": false,
+          "isSystem": false,
+          "isActive": true,
+          "price": 0.0
+        },
+        {
+          "optionKey": "manulife",
+          "optionLabel": "Manulife Financial",
+          "sortOrder": 20,
+          "isDefault": false,
+          "isSystem": false,
+          "isActive": true,
+          "price": 0.0
+        },
+        {
+          "optionKey": "canada_life",
+          "optionLabel": "Canada Life (Great-West Life)",
+          "sortOrder": 30,
+          "isDefault": false,
+          "isSystem": false,
+          "isActive": true,
+          "price": 0.0
+        },
+        {
+          "optionKey": "green_shield",
+          "optionLabel": "Green Shield Canada",
+          "sortOrder": 40,
+          "isDefault": false,
+          "isSystem": false,
+          "isActive": true,
+          "price": 0.0
+        },
+        {
+          "optionKey": "blue_cross_medavie",
+          "optionLabel": "Blue Cross (Medavie)",
+          "sortOrder": 50,
+          "isDefault": false,
+          "isSystem": false,
+          "isActive": true,
+          "price": 0.0
+        },
+        {
+          "optionKey": "blue_cross_pacific",
+          "optionLabel": "Blue Cross (Pacific)",
+          "sortOrder": 51,
+          "isDefault": false,
+          "isSystem": false,
+          "isActive": true,
+          "price": 0.0
+        },
+        {
+          "optionKey": "blue_cross_alberta",
+          "optionLabel": "Blue Cross (Alberta)",
+          "sortOrder": 52,
+          "isDefault": false,
+          "isSystem": false,
+          "isActive": true,
+          "price": 0.0
+        },
+        {
+          "optionKey": "blue_cross_ontario",
+          "optionLabel": "Blue Cross (Ontario)",
+          "sortOrder": 53,
+          "isDefault": false,
+          "isSystem": false,
+          "isActive": true,
+          "price": 0.0
+        },
+        {
+          "optionKey": "blue_cross_quebec",
+          "optionLabel": "Blue Cross (Quebec)",
+          "sortOrder": 54,
+          "isDefault": false,
+          "isSystem": false,
+          "isActive": true,
+          "price": 0.0
+        },
+        {
+          "optionKey": "desjardins",
+          "optionLabel": "Desjardins Insurance",
+          "sortOrder": 60,
+          "isDefault": false,
+          "isSystem": false,
+          "isActive": true,
+          "price": 0.0
+        },
+        {
+          "optionKey": "ia_financial",
+          "optionLabel": "iA Financial Group (Industrial Alliance)",
+          "sortOrder": 70,
+          "isDefault": false,
+          "isSystem": false,
+          "isActive": true,
+          "price": 0.0
+        },
+        {
+          "optionKey": "beneva",
+          "optionLabel": "Beneva (SSQ / La Capitale)",
+          "sortOrder": 80,
+          "isDefault": false,
+          "isSystem": false,
+          "isActive": true,
+          "price": 0.0
+        },
+        {
+          "optionKey": "equitable_life",
+          "optionLabel": "Equitable Life of Canada",
+          "sortOrder": 90,
+          "isDefault": false,
+          "isSystem": false,
+          "isActive": true,
+          "price": 0.0
+        },
+        {
+          "optionKey": "empire_life",
+          "optionLabel": "Empire Life",
+          "sortOrder": 100,
+          "isDefault": false,
+          "isSystem": false,
+          "isActive": true,
+          "price": 0.0
+        },
+        {
+          "optionKey": "rbc_insurance",
+          "optionLabel": "RBC Insurance",
+          "sortOrder": 110,
+          "isDefault": false,
+          "isSystem": false,
+          "isActive": true,
+          "price": 0.0
+        },
+        {
+          "optionKey": "td_insurance",
+          "optionLabel": "TD Insurance",
+          "sortOrder": 120,
+          "isDefault": false,
+          "isSystem": false,
+          "isActive": true,
+          "price": 0.0
+        },
+        {
+          "optionKey": "cooperators",
+          "optionLabel": "The Co-operators",
+          "sortOrder": 130,
+          "isDefault": false,
+          "isSystem": false,
+          "isActive": true,
+          "price": 0.0
+        },
+        {
+          "optionKey": "johnson",
+          "optionLabel": "Johnson Insurance",
+          "sortOrder": 140,
+          "isDefault": false,
+          "isSystem": false,
+          "isActive": true,
+          "price": 0.0
+        },
+        {
+          "optionKey": "claimsecure",
+          "optionLabel": "ClaimSecure",
+          "sortOrder": 150,
+          "isDefault": false,
+          "isSystem": false,
+          "isActive": true,
+          "price": 0.0
+        },
+        {
+          "optionKey": "cowan",
+          "optionLabel": "Cowan Insurance",
+          "sortOrder": 160,
+          "isDefault": false,
+          "isSystem": false,
+          "isActive": true,
+          "price": 0.0
+        },
+        {
+          "optionKey": "grouphealth",
+          "optionLabel": "GroupHEALTH",
+          "sortOrder": 170,
+          "isDefault": false,
+          "isSystem": false,
+          "isActive": true,
+          "price": 0.0
+        },
+        {
+          "optionKey": "groupsource",
+          "optionLabel": "GroupSource",
+          "sortOrder": 180,
+          "isDefault": false,
+          "isSystem": false,
+          "isActive": true,
+          "price": 0.0
+        },
+        {
+          "optionKey": "people_corp",
+          "optionLabel": "People Corporation",
+          "sortOrder": 190,
+          "isDefault": false,
+          "isSystem": false,
+          "isActive": true,
+          "price": 0.0
+        },
+        {
+          "optionKey": "chambers_plan",
+          "optionLabel": "Chambers of Commerce Group Insurance Plan",
+          "sortOrder": 200,
+          "isDefault": false,
+          "isSystem": false,
+          "isActive": true,
+          "price": 0.0
+        },
+        {
+          "optionKey": "ggfl",
+          "optionLabel": "Group Medical Services (GMS)",
+          "sortOrder": 210,
+          "isDefault": false,
+          "isSystem": false,
+          "isActive": true,
+          "price": 0.0
+        },
+        {
+          "optionKey": "aetna",
+          "optionLabel": "Aetna",
+          "sortOrder": 500,
+          "isDefault": false,
+          "isSystem": false,
+          "isActive": true,
+          "price": 0.0
+        },
+        {
+          "optionKey": "bcbs",
+          "optionLabel": "Blue Cross Blue Shield (US)",
+          "sortOrder": 510,
+          "isDefault": false,
+          "isSystem": false,
+          "isActive": true,
+          "price": 0.0
+        },
+        {
+          "optionKey": "cigna",
+          "optionLabel": "Cigna",
+          "sortOrder": 520,
+          "isDefault": false,
+          "isSystem": false,
+          "isActive": true,
+          "price": 0.0
+        },
+        {
+          "optionKey": "united",
+          "optionLabel": "UnitedHealthcare",
+          "sortOrder": 530,
+          "isDefault": false,
+          "isSystem": false,
+          "isActive": true,
+          "price": 0.0
+        },
+        {
+          "optionKey": "humana",
+          "optionLabel": "Humana",
+          "sortOrder": 540,
+          "isDefault": false,
+          "isSystem": false,
+          "isActive": true,
+          "price": 0.0
+        },
+        {
+          "optionKey": "kaiser",
+          "optionLabel": "Kaiser Permanente",
+          "sortOrder": 550,
+          "isDefault": false,
+          "isSystem": false,
+          "isActive": true,
+          "price": 0.0
+        },
+        {
+          "optionKey": "anthem",
+          "optionLabel": "Anthem",
+          "sortOrder": 560,
+          "isDefault": false,
+          "isSystem": false,
+          "isActive": true,
+          "price": 0.0
+        },
+        {
+          "optionKey": "other",
+          "optionLabel": "Other (specify)",
+          "sortOrder": 9999,
+          "isDefault": false,
+          "isSystem": false,
+          "isActive": true,
+          "price": 0.0
+        }
+      ]
+    },
+    {
+      "categoryKey": "insurance_types",
+      "categoryName": "Insurance Types",
+      "description": "Types of insurance coverage",
+      "isSystem": true,
+      "isActive": true,
+      "options": [
+        {
+          "optionKey": "private_insurance",
+          "optionLabel": "Private Insurance",
+          "sortOrder": 1,
+          "isDefault": false,
+          "isSystem": true,
+          "isActive": true,
+          "price": 0.0
+        },
+        {
+          "optionKey": "medicare",
+          "optionLabel": "Medicare",
+          "sortOrder": 2,
+          "isDefault": false,
+          "isSystem": true,
+          "isActive": true,
+          "price": 0.0
+        },
+        {
+          "optionKey": "medicaid",
+          "optionLabel": "Medicaid",
+          "sortOrder": 3,
+          "isDefault": false,
+          "isSystem": true,
+          "isActive": true,
+          "price": 0.0
+        },
+        {
+          "optionKey": "self_pay",
+          "optionLabel": "Self-Pay",
+          "sortOrder": 4,
+          "isDefault": false,
+          "isSystem": true,
+          "isActive": true,
+          "price": 0.0
+        },
+        {
+          "optionKey": "eap",
+          "optionLabel": "Employee Assistance Program",
+          "sortOrder": 5,
+          "isDefault": false,
+          "isSystem": true,
+          "isActive": true,
+          "price": 0.0
+        },
+        {
+          "optionKey": "sliding_scale",
+          "optionLabel": "Sliding Scale",
+          "sortOrder": 6,
+          "isDefault": false,
+          "isSystem": true,
+          "isActive": true,
+          "price": 0.0
+        }
+      ]
+    },
+    {
+      "categoryKey": "marital_status",
+      "categoryName": "Marital Status",
+      "description": "Marital status options for client profiles",
+      "isSystem": true,
+      "isActive": true,
+      "options": [
+        {
+          "optionKey": "single",
+          "optionLabel": "Single",
+          "sortOrder": 1,
+          "isDefault": false,
+          "isSystem": true,
+          "isActive": true,
+          "price": 0.0
+        },
+        {
+          "optionKey": "married",
+          "optionLabel": "Married",
+          "sortOrder": 2,
+          "isDefault": false,
+          "isSystem": true,
+          "isActive": true,
+          "price": 0.0
+        },
+        {
+          "optionKey": "divorced",
+          "optionLabel": "Divorced",
+          "sortOrder": 3,
+          "isDefault": false,
+          "isSystem": true,
+          "isActive": true,
+          "price": 0.0
+        },
+        {
+          "optionKey": "widowed",
+          "optionLabel": "Widowed",
+          "sortOrder": 4,
+          "isDefault": false,
+          "isSystem": true,
+          "isActive": true,
+          "price": 0.0
+        },
+        {
+          "optionKey": "separated",
+          "optionLabel": "Separated",
+          "sortOrder": 5,
+          "isDefault": false,
+          "isSystem": true,
+          "isActive": true,
+          "price": 0.0
+        },
+        {
+          "optionKey": "domestic_partnership",
+          "optionLabel": "Domestic Partnership",
+          "sortOrder": 6,
+          "isDefault": false,
+          "isSystem": true,
+          "isActive": true,
+          "price": 0.0
+        },
+        {
+          "optionKey": "engaged",
+          "optionLabel": "Engaged",
+          "sortOrder": 7,
+          "isDefault": false,
+          "isSystem": true,
+          "isActive": true,
+          "price": 0.0
+        },
+        {
+          "optionKey": "prefer_not_to_say",
+          "optionLabel": "Prefer not to say",
+          "sortOrder": 7,
+          "isDefault": false,
+          "isSystem": true,
+          "isActive": true,
+          "price": 0.0
+        }
+      ]
+    },
+    {
+      "categoryKey": "practice_settings",
+      "categoryName": "Practice Settings",
+      "description": "Organization and practice configuration settings",
+      "isSystem": true,
+      "isActive": true,
+      "options": []
+    },
+    {
+      "categoryKey": "preferred_language",
+      "categoryName": "Preferred Languages",
+      "description": "Language preference options for clients",
+      "isSystem": true,
+      "isActive": true,
+      "options": [
+        {
+          "optionKey": "english",
+          "optionLabel": "English",
+          "sortOrder": 1,
+          "isDefault": false,
+          "isSystem": true,
+          "isActive": true,
+          "price": 0.0
+        },
+        {
+          "optionKey": "spanish",
+          "optionLabel": "Spanish",
+          "sortOrder": 2,
+          "isDefault": false,
+          "isSystem": true,
+          "isActive": true,
+          "price": 0.0
+        },
+        {
+          "optionKey": "french",
+          "optionLabel": "French",
+          "sortOrder": 3,
+          "isDefault": false,
+          "isSystem": true,
+          "isActive": true,
+          "price": 0.0
+        },
+        {
+          "optionKey": "chinese",
+          "optionLabel": "Chinese",
+          "sortOrder": 4,
+          "isDefault": false,
+          "isSystem": true,
+          "isActive": true,
+          "price": 0.0
+        },
+        {
+          "optionKey": "korean",
+          "optionLabel": "Korean",
+          "sortOrder": 5,
+          "isDefault": false,
+          "isSystem": true,
+          "isActive": true,
+          "price": 0.0
+        },
+        {
+          "optionKey": "other",
+          "optionLabel": "Other",
+          "sortOrder": 6,
+          "isDefault": false,
+          "isSystem": true,
+          "isActive": true,
+          "price": 0.0
+        },
+        {
+          "optionKey": "Arabic",
+          "optionLabel": "Arabic",
+          "sortOrder": 7,
+          "isDefault": false,
+          "isSystem": false,
+          "isActive": true,
+          "price": 0.0
+        }
+      ]
+    },
+    {
+      "categoryKey": "referral_sources",
+      "categoryName": "Referral Sources",
+      "description": "Sources of client referrals",
+      "isSystem": true,
+      "isActive": true,
+      "options": [
+        {
+          "optionKey": "self_referral",
+          "optionLabel": "Self-Referral",
+          "sortOrder": 1,
+          "isDefault": false,
+          "isSystem": true,
+          "isActive": true,
+          "price": 0.0
+        },
+        {
+          "optionKey": "physician",
+          "optionLabel": "Physician",
+          "sortOrder": 2,
+          "isDefault": false,
+          "isSystem": true,
+          "isActive": true,
+          "price": 0.0
+        },
+        {
+          "optionKey": "family_friend",
+          "optionLabel": "Family/Friend",
+          "sortOrder": 3,
+          "isDefault": false,
+          "isSystem": true,
+          "isActive": true,
+          "price": 0.0
+        },
+        {
+          "optionKey": "online_search",
+          "optionLabel": "Online Search",
+          "sortOrder": 4,
+          "isDefault": false,
+          "isSystem": true,
+          "isActive": true,
+          "price": 0.0
+        },
+        {
+          "optionKey": "insurance_directory",
+          "optionLabel": "Insurance Directory",
+          "sortOrder": 5,
+          "isDefault": false,
+          "isSystem": true,
+          "isActive": true,
+          "price": 0.0
+        },
+        {
+          "optionKey": "other_therapist",
+          "optionLabel": "Other Therapist",
+          "sortOrder": 6,
+          "isDefault": false,
+          "isSystem": true,
+          "isActive": true,
+          "price": 0.0
+        },
+        {
+          "optionKey": "employee_assistance",
+          "optionLabel": "Employee Assistance Program",
+          "sortOrder": 7,
+          "isDefault": false,
+          "isSystem": true,
+          "isActive": true,
+          "price": 0.0
+        },
+        {
+          "optionKey": "school_counselor",
+          "optionLabel": "School Counselor",
+          "sortOrder": 8,
+          "isDefault": false,
+          "isSystem": true,
+          "isActive": true,
+          "price": 0.0
+        },
+        {
+          "optionKey": "LIHC",
+          "optionLabel": "LIHC",
+          "sortOrder": 9,
+          "isDefault": false,
+          "isSystem": false,
+          "isActive": true,
+          "price": 0.0
+        }
+      ]
+    },
+    {
+      "categoryKey": "service_frequency",
+      "categoryName": "Service Frequency",
+      "description": "Frequency options for therapy services",
+      "isSystem": true,
+      "isActive": true,
+      "options": [
+        {
+          "optionKey": "weekly",
+          "optionLabel": "Weekly",
+          "sortOrder": 1,
+          "isDefault": false,
+          "isSystem": true,
+          "isActive": true,
+          "price": 0.0
+        },
+        {
+          "optionKey": "biweekly",
+          "optionLabel": "Bi-weekly",
+          "sortOrder": 2,
+          "isDefault": false,
+          "isSystem": true,
+          "isActive": true,
+          "price": 0.0
+        },
+        {
+          "optionKey": "monthly",
+          "optionLabel": "Monthly",
+          "sortOrder": 3,
+          "isDefault": false,
+          "isSystem": true,
+          "isActive": true,
+          "price": 0.0
+        },
+        {
+          "optionKey": "as_needed",
+          "optionLabel": "As Needed",
+          "sortOrder": 4,
+          "isDefault": false,
+          "isSystem": true,
+          "isActive": true,
+          "price": 0.0
+        },
+        {
+          "optionKey": "intensive",
+          "optionLabel": "Intensive (Multiple per week)",
+          "sortOrder": 5,
+          "isDefault": false,
+          "isSystem": true,
+          "isActive": true,
+          "price": 0.0
+        }
+      ]
+    },
+    {
+      "categoryKey": "service_type",
+      "categoryName": "Service Types",
+      "description": "Types of therapy services offered",
+      "isSystem": true,
+      "isActive": true,
+      "options": [
+        {
+          "optionKey": "psychotherapy",
+          "optionLabel": "Psychotherapy",
+          "sortOrder": 1,
+          "isDefault": false,
+          "isSystem": true,
+          "isActive": true,
+          "price": 0.0
+        },
+        {
+          "optionKey": "counseling",
+          "optionLabel": "Counseling",
+          "sortOrder": 2,
+          "isDefault": false,
+          "isSystem": true,
+          "isActive": true,
+          "price": 0.0
+        },
+        {
+          "optionKey": "assessment",
+          "optionLabel": "Assessment",
+          "sortOrder": 3,
+          "isDefault": false,
+          "isSystem": true,
+          "isActive": true,
+          "price": 0.0
+        },
+        {
+          "optionKey": "consultation",
+          "optionLabel": "Consultation",
+          "sortOrder": 4,
+          "isDefault": false,
+          "isSystem": true,
+          "isActive": true,
+          "price": 0.0
+        },
+        {
+          "optionKey": "group_therapy",
+          "optionLabel": "Group Therapy",
+          "sortOrder": 5,
+          "isDefault": false,
+          "isSystem": true,
+          "isActive": true,
+          "price": 0.0
+        },
+        {
+          "optionKey": "family_therapy",
+          "optionLabel": "Family Therapy",
+          "sortOrder": 6,
+          "isDefault": false,
+          "isSystem": true,
+          "isActive": true,
+          "price": 0.0
+        },
+        {
+          "optionKey": "couples_therapy",
+          "optionLabel": "Couples Therapy",
+          "sortOrder": 7,
+          "isDefault": false,
+          "isSystem": true,
+          "isActive": true,
+          "price": 0.0
+        }
+      ]
+    },
+    {
+      "categoryKey": "session_mode",
+      "categoryName": "Session Modes",
+      "description": "Delivery modes for therapy sessions",
+      "isSystem": true,
+      "isActive": true,
+      "options": [
+        {
+          "optionKey": "in_person",
+          "optionLabel": "In-Person",
+          "sortOrder": 1,
+          "isDefault": true,
+          "isSystem": true,
+          "isActive": true,
+          "price": 0.0
+        },
+        {
+          "optionKey": "Online",
+          "optionLabel": "Online",
+          "sortOrder": 2,
+          "isDefault": false,
+          "isSystem": true,
+          "isActive": true,
+          "price": 0.0
+        },
+        {
+          "optionKey": "phone",
+          "optionLabel": "Phone",
+          "sortOrder": 3,
+          "isDefault": false,
+          "isSystem": true,
+          "isActive": true,
+          "price": 0.0
+        },
+        {
+          "optionKey": "hybrid",
+          "optionLabel": "Hybrid",
+          "sortOrder": 4,
+          "isDefault": false,
+          "isSystem": true,
+          "isActive": true,
+          "price": 0.0
+        }
+      ]
+    },
+    {
+      "categoryKey": "session_status",
+      "categoryName": "Session Status",
+      "description": "Status options for therapy sessions",
+      "isSystem": true,
+      "isActive": true,
+      "options": [
+        {
+          "optionKey": "scheduled",
+          "optionLabel": "Scheduled",
+          "sortOrder": 1,
+          "isDefault": false,
+          "isSystem": true,
+          "isActive": true,
+          "price": 0.0
+        },
+        {
+          "optionKey": "completed",
+          "optionLabel": "Completed",
+          "sortOrder": 2,
+          "isDefault": false,
+          "isSystem": true,
+          "isActive": true,
+          "price": 0.0
+        },
+        {
+          "optionKey": "confirmed",
+          "optionLabel": "Confirmed",
+          "sortOrder": 2,
+          "isDefault": false,
+          "isSystem": true,
+          "isActive": true,
+          "price": 0.0
+        },
+        {
+          "optionKey": "cancelled",
+          "optionLabel": "Cancelled",
+          "sortOrder": 3,
+          "isDefault": false,
+          "isSystem": true,
+          "isActive": true,
+          "price": 0.0
+        },
+        {
+          "optionKey": "no_show",
+          "optionLabel": "No-Show",
+          "sortOrder": 4,
+          "isDefault": false,
+          "isSystem": true,
+          "isActive": true,
+          "price": 0.0
+        },
+        {
+          "optionKey": "rescheduled",
+          "optionLabel": "Rescheduled",
+          "sortOrder": 6,
+          "isDefault": false,
+          "isSystem": true,
+          "isActive": true,
+          "price": 0.0
+        }
+      ]
+    },
+    {
+      "categoryKey": "session_type",
+      "categoryName": "Session Types",
+      "description": "Types of therapy sessions",
+      "isSystem": true,
+      "isActive": true,
+      "options": [
+        {
+          "optionKey": "assessment",
+          "optionLabel": "Assessment",
+          "sortOrder": 1,
+          "isDefault": false,
+          "isSystem": true,
+          "isActive": true,
+          "price": 0.0
+        },
+        {
+          "optionKey": "psychotherapy",
+          "optionLabel": "Psychotherapy",
+          "sortOrder": 2,
+          "isDefault": false,
+          "isSystem": true,
+          "isActive": true,
+          "price": 0.0
+        },
+        {
+          "optionKey": "consultation",
+          "optionLabel": "Consultation",
+          "sortOrder": 3,
+          "isDefault": false,
+          "isSystem": true,
+          "isActive": true,
+          "price": 0.0
+        }
+      ]
+    },
+    {
+      "categoryKey": "task_priorities",
+      "categoryName": "Task Priorities",
+      "description": "Priority levels for task management",
+      "isSystem": true,
+      "isActive": true,
+      "options": [
+        {
+          "optionKey": "low",
+          "optionLabel": "Low",
+          "sortOrder": 1,
+          "isDefault": false,
+          "isSystem": true,
+          "isActive": true,
+          "price": 0.0
+        },
+        {
+          "optionKey": "medium",
+          "optionLabel": "Medium",
+          "sortOrder": 2,
+          "isDefault": true,
+          "isSystem": true,
+          "isActive": true,
+          "price": 0.0
+        },
+        {
+          "optionKey": "high",
+          "optionLabel": "High",
+          "sortOrder": 3,
+          "isDefault": false,
+          "isSystem": true,
+          "isActive": true,
+          "price": 0.0
+        },
+        {
+          "optionKey": "urgent",
+          "optionLabel": "Urgent",
+          "sortOrder": 4,
+          "isDefault": false,
+          "isSystem": true,
+          "isActive": true,
+          "price": 0.0
+        }
+      ]
+    },
+    {
+      "categoryKey": "task_priority",
+      "categoryName": "Task Priority",
+      "description": "Priority levels for tasks",
+      "isSystem": true,
+      "isActive": true,
+      "options": [
+        {
+          "optionKey": "low",
+          "optionLabel": "Low",
+          "sortOrder": 1,
+          "isDefault": false,
+          "isSystem": true,
+          "isActive": true,
+          "price": 0.0
+        },
+        {
+          "optionKey": "medium",
+          "optionLabel": "Medium",
+          "sortOrder": 2,
+          "isDefault": false,
+          "isSystem": true,
+          "isActive": true,
+          "price": 0.0
+        },
+        {
+          "optionKey": "high",
+          "optionLabel": "High",
+          "sortOrder": 3,
+          "isDefault": false,
+          "isSystem": true,
+          "isActive": true,
+          "price": 0.0
+        },
+        {
+          "optionKey": "urgent",
+          "optionLabel": "Urgent",
+          "sortOrder": 4,
+          "isDefault": false,
+          "isSystem": true,
+          "isActive": true,
+          "price": 0.0
+        }
+      ]
+    },
+    {
+      "categoryKey": "task_status",
+      "categoryName": "Task Status",
+      "description": "Status options for tasks",
+      "isSystem": true,
+      "isActive": true,
+      "options": [
+        {
+          "optionKey": "pending",
+          "optionLabel": "Pending",
+          "sortOrder": 1,
+          "isDefault": false,
+          "isSystem": true,
+          "isActive": true,
+          "price": 0.0
+        },
+        {
+          "optionKey": "in_progress",
+          "optionLabel": "In Progress",
+          "sortOrder": 2,
+          "isDefault": false,
+          "isSystem": true,
+          "isActive": true,
+          "price": 0.0
+        },
+        {
+          "optionKey": "completed",
+          "optionLabel": "Completed",
+          "sortOrder": 3,
+          "isDefault": false,
+          "isSystem": true,
+          "isActive": true,
+          "price": 0.0
+        },
+        {
+          "optionKey": "cancelled",
+          "optionLabel": "Cancelled",
+          "sortOrder": 4,
+          "isDefault": false,
+          "isSystem": true,
+          "isActive": true,
+          "price": 0.0
+        },
+        {
+          "optionKey": "overdue",
+          "optionLabel": "Overdue",
+          "sortOrder": 4,
+          "isDefault": false,
+          "isSystem": true,
+          "isActive": true,
+          "price": 0.0
+        }
+      ]
+    },
+    {
+      "categoryKey": "task_titles",
+      "categoryName": "Task Titles",
+      "description": "Common task titles for therapy practice management",
+      "isSystem": true,
+      "isActive": true,
+      "options": [
+        {
+          "optionKey": "initial_assessment",
+          "optionLabel": "Complete Initial Assessment",
+          "sortOrder": 1,
+          "isDefault": false,
+          "isSystem": true,
+          "isActive": true,
+          "price": 0.0
+        },
+        {
+          "optionKey": "treatment_plan",
+          "optionLabel": "Develop Treatment Plan",
+          "sortOrder": 2,
+          "isDefault": false,
+          "isSystem": true,
+          "isActive": true,
+          "price": 0.0
+        },
+        {
+          "optionKey": "insurance_verification",
+          "optionLabel": "Verify Insurance Coverage",
+          "sortOrder": 3,
+          "isDefault": false,
+          "isSystem": true,
+          "isActive": true,
+          "price": 0.0
+        },
+        {
+          "optionKey": "progress_review",
+          "optionLabel": "Review Client Progress",
+          "sortOrder": 4,
+          "isDefault": false,
+          "isSystem": true,
+          "isActive": true,
+          "price": 0.0
+        },
+        {
+          "optionKey": "session_notes",
+          "optionLabel": "Complete Session Notes",
+          "sortOrder": 5,
+          "isDefault": false,
+          "isSystem": true,
+          "isActive": true,
+          "price": 0.0
+        },
+        {
+          "optionKey": "follow_up_call",
+          "optionLabel": "Follow-up Phone Call",
+          "sortOrder": 6,
+          "isDefault": false,
+          "isSystem": true,
+          "isActive": true,
+          "price": 0.0
+        },
+        {
+          "optionKey": "referral_coordination",
+          "optionLabel": "Coordinate Referral",
+          "sortOrder": 7,
+          "isDefault": false,
+          "isSystem": true,
+          "isActive": true,
+          "price": 0.0
+        },
+        {
+          "optionKey": "crisis_assessment",
+          "optionLabel": "Conduct Crisis Assessment",
+          "sortOrder": 8,
+          "isDefault": false,
+          "isSystem": true,
+          "isActive": true,
+          "price": 0.0
+        },
+        {
+          "optionKey": "discharge_planning",
+          "optionLabel": "Prepare Discharge Plan",
+          "sortOrder": 9,
+          "isDefault": false,
+          "isSystem": true,
+          "isActive": true,
+          "price": 0.0
+        },
+        {
+          "optionKey": "documentation_review",
+          "optionLabel": "Review Documentation",
+          "sortOrder": 10,
+          "isDefault": false,
+          "isSystem": true,
+          "isActive": true,
+          "price": 0.0
+        },
+        {
+          "optionKey": "Send documents",
+          "optionLabel": "Send documents",
+          "sortOrder": 10,
+          "isDefault": false,
+          "isSystem": false,
+          "isActive": true,
+          "price": 0.0
+        },
+        {
+          "optionKey": "authorization_request",
+          "optionLabel": "Submit Authorization Request",
+          "sortOrder": 11,
+          "isDefault": false,
+          "isSystem": true,
+          "isActive": true,
+          "price": 0.0
+        },
+        {
+          "optionKey": "family_meeting",
+          "optionLabel": "Schedule Family Meeting",
+          "sortOrder": 12,
+          "isDefault": false,
+          "isSystem": true,
+          "isActive": true,
+          "price": 0.0
+        },
+        {
+          "optionKey": "Release documents",
+          "optionLabel": "Release documents",
+          "sortOrder": 12,
+          "isDefault": false,
+          "isSystem": false,
+          "isActive": true,
+          "price": 0.0
+        },
+        {
+          "optionKey": "Call Client",
+          "optionLabel": "Call Client",
+          "sortOrder": 20,
+          "isDefault": false,
+          "isSystem": false,
+          "isActive": true,
+          "price": 0.0
+        }
+      ]
+    },
+    {
+      "categoryKey": "task_types",
+      "categoryName": "Task Types",
+      "description": "Categories of tasks in practice management",
+      "isSystem": true,
+      "isActive": true,
+      "options": [
+        {
+          "optionKey": "client_contact",
+          "optionLabel": "Client Contact",
+          "sortOrder": 1,
+          "isDefault": false,
+          "isSystem": true,
+          "isActive": true,
+          "price": 0.0
+        },
+        {
+          "optionKey": "documentation",
+          "optionLabel": "Documentation",
+          "sortOrder": 2,
+          "isDefault": false,
+          "isSystem": true,
+          "isActive": true,
+          "price": 0.0
+        },
+        {
+          "optionKey": "assessment",
+          "optionLabel": "Assessment",
+          "sortOrder": 3,
+          "isDefault": false,
+          "isSystem": true,
+          "isActive": true,
+          "price": 0.0
+        },
+        {
+          "optionKey": "follow_up",
+          "optionLabel": "Follow-up",
+          "sortOrder": 4,
+          "isDefault": false,
+          "isSystem": true,
+          "isActive": true,
+          "price": 0.0
+        },
+        {
+          "optionKey": "administrative",
+          "optionLabel": "Administrative",
+          "sortOrder": 5,
+          "isDefault": false,
+          "isSystem": true,
+          "isActive": true,
+          "price": 0.0
+        },
+        {
+          "optionKey": "treatment_planning",
+          "optionLabel": "Treatment Planning",
+          "sortOrder": 6,
+          "isDefault": false,
+          "isSystem": true,
+          "isActive": true,
+          "price": 0.0
+        },
+        {
+          "optionKey": "referral",
+          "optionLabel": "Referral",
+          "sortOrder": 7,
+          "isDefault": false,
+          "isSystem": true,
+          "isActive": true,
+          "price": 0.0
+        }
+      ]
+    },
+    {
+      "categoryKey": "treatment_modalities",
+      "categoryName": "Treatment Modalities",
+      "description": "Therapeutic treatment approaches",
+      "isSystem": true,
+      "isActive": true,
+      "options": [
+        {
+          "optionKey": "cbt",
+          "optionLabel": "Cognitive Behavioral Therapy",
+          "sortOrder": 1,
+          "isDefault": false,
+          "isSystem": true,
+          "isActive": true,
+          "price": 0.0
+        },
+        {
+          "optionKey": "dbt",
+          "optionLabel": "Dialectical Behavior Therapy",
+          "sortOrder": 2,
+          "isDefault": false,
+          "isSystem": true,
+          "isActive": true,
+          "price": 0.0
+        },
+        {
+          "optionKey": "emdr",
+          "optionLabel": "EMDR",
+          "sortOrder": 3,
+          "isDefault": false,
+          "isSystem": true,
+          "isActive": true,
+          "price": 0.0
+        },
+        {
+          "optionKey": "psychodynamic",
+          "optionLabel": "Psychodynamic Therapy",
+          "sortOrder": 4,
+          "isDefault": false,
+          "isSystem": true,
+          "isActive": true,
+          "price": 0.0
+        },
+        {
+          "optionKey": "humanistic",
+          "optionLabel": "Humanistic Therapy",
+          "sortOrder": 5,
+          "isDefault": false,
+          "isSystem": true,
+          "isActive": true,
+          "price": 0.0
+        },
+        {
+          "optionKey": "family_systems",
+          "optionLabel": "Family Systems Therapy",
+          "sortOrder": 6,
+          "isDefault": false,
+          "isSystem": true,
+          "isActive": true,
+          "price": 0.0
+        },
+        {
+          "optionKey": "mindfulness",
+          "optionLabel": "Mindfulness-Based Therapy",
+          "sortOrder": 7,
+          "isDefault": false,
+          "isSystem": true,
+          "isActive": true,
+          "price": 0.0
+        },
+        {
+          "optionKey": "acceptance_commitment",
+          "optionLabel": "Acceptance and Commitment Therapy",
+          "sortOrder": 8,
+          "isDefault": false,
+          "isSystem": true,
+          "isActive": true,
+          "price": 0.0
+        }
+      ]
+    }
+  ]
+}

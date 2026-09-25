@@ -1,0 +1,5 @@
+ALTER TABLE public.auth_identities
+    ADD COLUMN IF NOT EXISTS full_name CHARACTER VARYING(150);
+
+ALTER TABLE public.auth_identities
+    ADD COLUMN IF NOT EXISTS phone CHARACTER VARYING(20);

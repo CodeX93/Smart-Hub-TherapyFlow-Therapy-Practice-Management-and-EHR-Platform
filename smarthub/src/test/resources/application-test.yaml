@@ -1,0 +1,255 @@
+spring:
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/therapyflow_test}
+    username: ${DB_USERNAME:postgres}
+    password: ${DB_PASSWORD:admin}
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: true
+        use_sql_comments: true
+
+  flyway:
+    enabled: false
+
+  data:
+    redis:
+      host: ${REDIS_HOST:localhost}
+      port: ${REDIS_PORT:6379}
+      password: ${REDIS_PASSWORD:}
+      timeout: 2000ms
+      lettuce:
+        pool:
+          max-active: 8
+          max-idle: 8
+          min-idle: 0
+
+  mail:
+    # SMTP Configuration (for testing - can use mock or real SMTP)
+    host: ${SPRING_MAIL_HOST:localhost}
+    port: ${SPRING_MAIL_PORT:587}
+    username: ${SPRING_MAIL_USERNAME:}
+    password: ${SPRING_MAIL_PASSWORD:}
+    from: ${SPRING_MAIL_FROM:no-reply@therapyflow.pro}
+    properties:
+      mail:
+        smtp:
+          auth: ${SPRING_MAIL_SMTP_AUTH:false}
+          starttls:
+            enable: ${SPRING_MAIL_SMTP_STARTTLS_ENABLE:false}
+            required: ${SPRING_MAIL_SMTP_STARTTLS_REQUIRED:false}
+          ssl:
+            enable: ${SPRING_MAIL_SMTP_SSL_ENABLE:false}
+
+jwt:
+  secret: ${JWT_SECRET:test-secret-key-for-testing-purposes-only-do-not-use-in-production}
+  expiration: ${JWT_EXPIRATION:3600000}
+  refresh-expiration: ${JWT_REFRESH_EXPIRATION:604800000}
+
+jasypt:
+  encryptor:
+    password: ${ENCRYPTION_PASSWORD:test-password}
+    algorithm: PBEWithMD5AndDES
+
+logging:
+  level:
+    root: WARN
+    # A plain env var name, not a logging.level key: relaxed binding cannot carry the
+    # latter, so CI sets TEST_APP_LOG_LEVEL=WARN to keep its trace under the 4 MB cap.
+    # Local runs keep DEBUG.
+    com.smart.therapy.flow: ${TEST_APP_LOG_LEVEL:DEBUG}
+    org.hibernate.SQL: ${TEST_APP_LOG_LEVEL:DEBUG}
+    org.springframework.web: DEBUG
+    org.springframework.security: DEBUG
+
+# AI Configuration (mocked in tests)
+ais:
+  integrations:
+    openai:
+      api-key: ${OPENAI_API_KEY:test-key}
+      base-url: ${AI_INTEGRATIONS_OPENAI_BASE_URL:http://localhost:1106/modelfarm/openai}
+
+ai:
+  models:
+    session-notes: ${AI_MODEL_SESSION_NOTES:gpt-4o}
+    assistant: ${AI_MODEL_ASSISTANT:gpt-5}
+
+# Stripe (mocked in tests)
+stripe:
+  secret-key: ${STRIPE_SECRET_KEY:test-stripe-key}
+
+automation:
+  stripe:
+    secret-key: ${STRIPE_SECRET_KEY:test-stripe-key}
+
+# Azure Storage (mocked in tests)
+azure:
+  storage:
+    connection-string: ${AZURE_STORAGE_CONNECTION_STRING:}
+    container-name: ${AZURE_BLOB_CONTAINER_NAME:documents}
+
+aws:
+  s3:
+    bucket: ${AWS_S3_BUCKET:trappy-flow-crm-files}
+    region: ${AWS_S3_REGION:ap-south-1}
+    access-key: ${AWS_S3_ACCESS_KEY:}
+    secret-key: ${AWS_S3_SECRET_KEY:}
+    presigned-url-expiration-hours: ${AWS_S3_PRESIGNED_URL_EXPIRATION_HOURS:24}
+
+# Email/SparkPost (mocked in tests)
+email:
+  sparkpost:
+    api-key: ${SPARKPOST_API_KEY:}
+    from-email: ${EMAIL_FROM:test@example.com}
+    from-name: ${EMAIL_FROM_NAME:TherapyFlow}
+    base-url: ${SPARKPOST_BASE_URL:https://api.sparkpost.com/api/v1}
+
+app:
+  encryption:
+    # JPA converters share a static service across cached Spring contexts. Every test
+    # context must use the same synthetic key as the tenant repository/API fixtures.
+    provider: config
+    master-key: repository-fixture-key-not-for-production
+  transcription:
+    websocket-container:
+      enabled: false
+  redis:
+    enabled: ${APP_REDIS_ENABLED:false}
+    fail-open: ${APP_REDIS_FAIL_OPEN:true}
+  base-url: ${BASE_URL:http://localhost:8080}
+  email:
+    # Email service provider: 'sparkpost' or 'ses' (default: sparkpost for tests)
+    provider: ${EMAIL_PROVIDER:sparkpost}
+    ses:
+      region: ${AWS_SES_REGION:us-east-1}
+      access-key: ${AWS_SES_ACCESS_KEY:}
+      secret-key: ${AWS_SES_SECRET_KEY:}
+      from-email: ${AWS_SES_FROM_EMAIL:}
+      from-name: ${AWS_SES_FROM_NAME:TherapyFlow}
+      use-smtp: ${AWS_SES_USE_SMTP:false}
+  storage:
+    type: ${APP_STORAGE_TYPE:local}  # Options: local, s3, azure (default: local for tests)
+    local:
+      path: ${APP_STORAGE_LOCAL_PATH:./uploads}
+  security:
+    use-secure-cookies: ${USE_SECURE_COOKIES:false}
+  notifications:
+    schedule-interval: ${NOTIFICATION_SCHEDULE_INTERVAL:60000}
+    email-enabled: ${NOTIFICATION_EMAIL_ENABLED:false}
+  environment: test
+
+zoom:
+  enabled: ${ZOOM_ENABLED:false}
+  api:
+    base-url: ${ZOOM_API_BASE_URL:https://api.zoom.us/v2}
+    connect-timeout-ms: ${ZOOM_API_CONNECT_TIMEOUT_MS:5000}
+    read-timeout-ms: ${ZOOM_API_READ_TIMEOUT_MS:15000}
+  oauth:
+    base-url: ${ZOOM_OAUTH_BASE_URL:https://zoom.us}
+
+# Test-specific overrides
+test:
+  mock:
+    external-services: true
+
+# Resilience4j Configuration (variables aligned with other profiles; can be ignored in tests)
+resilience4j:
+  circuitbreaker:
+    instances:
+      stripe:
+        registerHealthIndicator: true
+        slidingWindowSize: 10
+        minimumNumberOfCalls: 5
+        permittedNumberOfCallsInHalfOpenState: 3
+        automaticTransitionFromOpenToHalfOpenEnabled: true
+        waitDurationInOpenState: 10s
+        failureRateThreshold: 50
+        eventConsumerBufferSize: 10
+      zoom:
+        registerHealthIndicator: true
+        slidingWindowSize: 10
+        minimumNumberOfCalls: 5
+        permittedNumberOfCallsInHalfOpenState: 3
+        automaticTransitionFromOpenToHalfOpenEnabled: true
+        waitDurationInOpenState: 10s
+        failureRateThreshold: 50
+      openai:
+        registerHealthIndicator: true
+        slidingWindowSize: 10
+        minimumNumberOfCalls: 5
+        permittedNumberOfCallsInHalfOpenState: 3
+        automaticTransitionFromOpenToHalfOpenEnabled: true
+        waitDurationInOpenState: 10s
+        failureRateThreshold: 50
+        ignoreExceptions:
+          - com.smart.therapy.flow.common.exception.TranscriptionServiceUnavailableException
+          - java.lang.IllegalArgumentException
+      sparkpost:
+        registerHealthIndicator: true
+        slidingWindowSize: 10
+        minimumNumberOfCalls: 5
+        permittedNumberOfCallsInHalfOpenState: 3
+        automaticTransitionFromOpenToHalfOpenEnabled: true
+        waitDurationInOpenState: 10s
+        failureRateThreshold: 50
+  retry:
+    instances:
+      stripe:
+        maxAttempts: 3
+        waitDuration: 1s
+        enableExponentialBackoff: true
+        exponentialBackoffMultiplier: 2
+      zoom:
+        maxAttempts: 3
+        waitDuration: 1s
+        enableExponentialBackoff: true
+        exponentialBackoffMultiplier: 2
+      openai:
+        maxAttempts: 3
+        waitDuration: 1s
+        enableExponentialBackoff: true
+        exponentialBackoffMultiplier: 2
+      sparkpost:
+        maxAttempts: 3
+        waitDuration: 1s
+        enableExponentialBackoff: true
+        exponentialBackoffMultiplier: 2
+      ses:
+        maxAttempts: 3
+        waitDuration: 1s
+        enableExponentialBackoff: true
+        exponentialBackoffMultiplier: 2
+  timelimiter:
+    instances:
+      stripe:
+        timeoutDuration: 30s
+      zoom:
+        timeoutDuration: 15s
+      openai:
+        timeoutDuration: 60s
+      sparkpost:
+        timeoutDuration: 15s
+      ses:
+        timeoutDuration: 15s
+
+# Rate Limiting Configuration
+rate-limiting:
+  enabled: false
+  default:
+    capacity: 100
+    refill-tokens: 100
+    refill-duration-seconds: 60
+  endpoints:
+    /api/auth/login:
+      capacity: 10
+      refill-tokens: 10
+      refill-duration-seconds: 60
+    /api/auth/refresh:
+      capacity: 20
+      refill-tokens: 20
+      refill-duration-seconds: 60

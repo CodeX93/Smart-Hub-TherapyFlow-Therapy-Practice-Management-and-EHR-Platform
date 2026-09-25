@@ -1,0 +1,323 @@
+# GitLab CI/CD Pipeline for Therapy Flow
+# Automated deployment to Azure Container Apps (Dev and Prod environments)
+
+stages:
+  - test
+  - security
+  - validate
+  - build
+  - build-docker
+  - deploy-dev
+  - deploy-prod
+
+variables:
+  MAVEN_OPTS: "-Dmaven.repo.local=.m2/repository"
+  # Azure resources
+  AZURE_RESOURCE_GROUP: "Resilience"
+  AZURE_ACR: "therapyflowacr809"
+  AZURE_IMAGE_REPO: "therapy-flow"
+  AZURE_SUBSCRIPTION: "80920a1f-e61e-4c65-9ecf-bb5bc6115046"
+  # The deployed Container App is therapy-flow-api-private; therapy-flow-api does not
+  # exist in the Resilience group, which is why every deploy job failed at az containerapp.
+  AZURE_CONTAINER_APP_PROD: "therapy-flow-api-private"
+  # No separate dev Container App exists in this subscription. Leave this empty and set it
+  # in GitLab CI/CD variables once one is created - defaulting it to the prod app would let
+  # a push to dev silently replace production.
+  # Image tags per environment
+  DEV_IMAGE_TAG: "dev-${CI_COMMIT_SHORT_SHA}"
+  PROD_IMAGE_TAG: "prod-${CI_COMMIT_SHORT_SHA}"
+  # SparkPost deploy notifications (set in GitLab CI/CD variables)
+  # SPARKPOST_API_KEY, DEPLOY_NOTIFY_EMAIL, EMAIL_FROM
+
+# Cache Maven dependencies
+cache:
+  paths:
+    - .m2/repository/
+  key: ${CI_COMMIT_REF_SLUG}
+
+# ============================================
+# TEST STAGE
+# ============================================
+test:
+  stage: test
+  image: maven:3.9-eclipse-temurin-17
+  services:
+    - name: postgres:15
+      alias: postgres
+    - name: redis:7-alpine
+      alias: redis
+  variables:
+    # TenantTestDatabase only creates fixture databases on a throwaway server: it requires
+    # QA_MANAGED_DATABASE and a DB_URL pinned to 127.0.0.1. Shared runners put services on a
+    # per-build network reachable only by alias, so before_script bridges the loopback port.
+    DB_URL: "jdbc:postgresql://127.0.0.1:5432/therapyflow_test"
+    QA_MANAGED_DATABASE: "gitlab-ci"
+    DB_USERNAME: "postgres"
+    DB_PASSWORD: "test_password"
+    POSTGRES_DB: "therapyflow_test"
+    POSTGRES_USER: "postgres"
+    POSTGRES_PASSWORD: "test_password"
+    REDIS_HOST: "redis"
+    REDIS_PORT: "6379"
+  before_script:
+    - apt-get update -qq && apt-get install -y -qq socat netcat-openbsd
+    # The guard in TenantTestDatabase deliberately insists on 127.0.0.1 so these tests can
+    # only ever create databases on a throwaway server. Forward that port to the service
+    # container rather than relaxing the guard.
+    - 'socat TCP-LISTEN:5432,fork,reuseaddr TCP:postgres:5432 &'
+    - for i in $(seq 1 30); do nc -z 127.0.0.1 5432 && break; sleep 1; done
+    - nc -z 127.0.0.1 5432
+  script:
+    - echo "Running release-blocking tests..."
+    # verify runs Surefire unit tests and Failsafe integration tests. The pom keeps
+    # long-running performance tests out of this release gate.
+    - mvn clean verify -B
+    - mkdir -p release-evidence
+    - echo "status=passed" > release-evidence/test-status.txt
+  artifacts:
+    when: always
+    reports:
+      junit:
+        - target/surefire-reports/TEST-*.xml
+        - target/failsafe-reports/TEST-*.xml
+    paths:
+      - target/surefire-reports/
+      - target/failsafe-reports/
+      - release-evidence/test-status.txt
+    # The trace is not a reliable record of what failed: it hits GitLab's 4 MB cap on a
+    # full run and stops collecting before the summary. The JUnit reports are, so keep
+    # them long enough to actually read after a failure.
+    expire_in: 1 week
+  only:
+    - branches
+    - merge_requests
+    - tags
+
+# ============================================
+# SECURITY SCAN STAGE (blocking)
+# ============================================
+dependency-scan:
+  stage: security
+  image: aquasec/trivy:0.57.1
+  script:
+    - mkdir -p release-evidence
+    - trivy fs --scanners vuln --severity HIGH,CRITICAL --exit-code 1 --format json --output release-evidence/dependency-scan.json .
+    - echo "status=passed" > release-evidence/dependency-scan.status
+  artifacts:
+    when: always
+    paths:
+      - release-evidence/dependency-scan.json
+      - release-evidence/dependency-scan.status
+    expire_in: 1 week
+  only:
+    - branches
+    - merge_requests
+    - tags
+
+secret-scan:
+  stage: security
+  image: zricethezav/gitleaks:v8.24.3
+  script:
+    - mkdir -p release-evidence
+    - gitleaks detect --source . --no-banner --redact --report-format json --report-path release-evidence/secret-scan.json
+    - echo "status=passed" > release-evidence/secret-scan.status
+  artifacts:
+    when: always
+    paths:
+      - release-evidence/secret-scan.json
+      - release-evidence/secret-scan.status
+    expire_in: 1 week
+  only:
+    - branches
+    - merge_requests
+    - tags
+
+# ============================================
+# MIGRATION VALIDATION STAGE (blocking)
+# ============================================
+migration-validation:
+  stage: validate
+  image: maven:3.9-eclipse-temurin-17
+  script:
+    - mkdir -p release-evidence
+    - mvn -B -Dtest=MigrationGuardrailTest test
+    - echo "status=passed" > release-evidence/migration-status.txt
+  artifacts:
+    when: always
+    reports:
+      junit:
+        - target/surefire-reports/TEST-*.xml
+    paths:
+      - target/surefire-reports/
+      - release-evidence/migration-status.txt
+    expire_in: 1 week
+  only:
+    - branches
+    - merge_requests
+    - tags
+
+# ============================================
+# BUILD STAGE
+# ============================================
+build:
+  stage: build
+  image: maven:3.9-eclipse-temurin-17
+  script:
+    - echo "Packaging application after tests passed..."
+    - mvn package -B
+  artifacts:
+    paths:
+      - target/*.jar
+    expire_in: 1 hour
+  only:
+    - branches
+    - merge_requests
+    - tags
+
+# ============================================
+# BUILD DOCKER IMAGE FOR DEV (ACR remote build)
+# ============================================
+build-docker-dev:
+  stage: build-docker
+  image: mcr.microsoft.com/azure-cli:latest
+  before_script:
+    - tdnf install -y jq curl bash 2>/dev/null || apk add --no-cache jq curl bash 2>/dev/null || true
+    - chmod +x scripts/deploy-azure.sh scripts/notify-sparkpost.sh
+    - echo "Building Docker image for DEV environment in Azure ACR..."
+    - 'echo "Image tag: $DEV_IMAGE_TAG"'
+  script:
+    - |
+      export IMAGE_TAG="$DEV_IMAGE_TAG"
+      export DEPLOY_ENV="development"
+      ./scripts/deploy-azure.sh --build-only
+      echo "DEV Docker image built in ACR successfully!"
+      echo "Image: ${AZURE_ACR}.azurecr.io/${AZURE_IMAGE_REPO}:${DEV_IMAGE_TAG}"
+  only:
+    - dev
+    - develop
+
+# ============================================
+# BUILD DOCKER IMAGE FOR PROD (ACR remote build)
+# ============================================
+build-docker-prod:
+  stage: build-docker
+  image: mcr.microsoft.com/azure-cli:latest
+  before_script:
+    - tdnf install -y jq curl bash 2>/dev/null || apk add --no-cache jq curl bash 2>/dev/null || true
+    - chmod +x scripts/deploy-azure.sh scripts/notify-sparkpost.sh
+    - echo "Building Docker image for PRODUCTION environment in Azure ACR..."
+    - 'echo "Image tag: $PROD_IMAGE_TAG"'
+  script:
+    - |
+      export IMAGE_TAG="$PROD_IMAGE_TAG"
+      export DEPLOY_ENV="production"
+      ./scripts/deploy-azure.sh --build-only
+      mkdir -p release-evidence
+      IMAGE_REFERENCE="${AZURE_ACR}.azurecr.io/${AZURE_IMAGE_REPO}:${PROD_IMAGE_TAG}"
+      IMAGE_DIGEST="$(az acr manifest show-metadata --registry "$AZURE_ACR" --name "${AZURE_IMAGE_REPO}:${PROD_IMAGE_TAG}" --query digest -o tsv)"
+      test -n "$IMAGE_DIGEST"
+      jq -n --arg image "$IMAGE_REFERENCE" --arg digest "$IMAGE_DIGEST" \
+        '{image: $image, digest: $digest}' > release-evidence/image-provenance.json
+      test -s release-evidence/image-provenance.json
+      echo "PRODUCTION Docker image built in ACR successfully!"
+      echo "Image: ${AZURE_ACR}.azurecr.io/${AZURE_IMAGE_REPO}:${PROD_IMAGE_TAG}"
+      echo "Digest: ${IMAGE_DIGEST}"
+  artifacts:
+    when: always
+    paths:
+      - release-evidence/image-provenance.json
+    expire_in: 1 week
+  only:
+    - main
+    - tags
+  when: on_success
+
+# ============================================
+# DEPLOY TO DEVELOPMENT ENVIRONMENT
+# ============================================
+deploy-dev:
+  stage: deploy-dev
+  image: mcr.microsoft.com/azure-cli:latest
+  environment:
+    name: development
+    url: https://dev.therapyflow.pro
+  before_script:
+    - tdnf install -y jq curl bash 2>/dev/null || apk add --no-cache jq curl bash 2>/dev/null || true
+    - chmod +x scripts/deploy-azure.sh scripts/notify-sparkpost.sh
+    - echo "Deploying to DEVELOPMENT environment (Azure Container Apps)..."
+    - 'echo "Branch: $CI_COMMIT_REF_NAME"'
+    - 'echo "Commit: $CI_COMMIT_SHORT_SHA"'
+  script:
+    - |
+      if [ -z "${AZURE_CONTAINER_APP_DEV:-}" ]; then
+        echo "AZURE_CONTAINER_APP_DEV is not set. Create a dev Container App and set this in"
+        echo "GitLab CI/CD variables. Refusing to deploy: without it this job would fall back"
+        echo "to the script default and could target the production app."
+        exit 1
+      fi
+      export IMAGE_TAG="$DEV_IMAGE_TAG"
+      export DEPLOY_ENV="development"
+      export AZURE_CONTAINER_APP="$AZURE_CONTAINER_APP_DEV"
+      ./scripts/deploy-azure.sh --deploy-only
+  only:
+    - dev
+    - develop
+  when: on_success
+  dependencies:
+    - build-docker-dev
+
+# ============================================
+# DEPLOY TO PRODUCTION ENVIRONMENT
+# ============================================
+deploy-prod:
+  stage: deploy-prod
+  image: mcr.microsoft.com/azure-cli:latest
+  environment:
+    name: production
+    url: https://therapyflow.pro
+  before_script:
+    - tdnf install -y jq curl bash 2>/dev/null || apk add --no-cache jq curl bash 2>/dev/null || true
+    - chmod +x scripts/deploy-azure.sh scripts/notify-sparkpost.sh scripts/verify-production-evidence.sh
+    - echo "Deploying to PRODUCTION environment (Azure Container Apps)..."
+    - 'echo "Branch: $CI_COMMIT_REF_NAME"'
+    - 'echo "Commit: $CI_COMMIT_SHORT_SHA"'
+  script:
+    - |
+      export IMAGE_TAG="$PROD_IMAGE_TAG"
+      export DEPLOY_ENV="production"
+      export AZURE_CONTAINER_APP="$AZURE_CONTAINER_APP_PROD"
+      export IMAGE_REFERENCE="${AZURE_ACR}.azurecr.io/${AZURE_IMAGE_REPO}:${PROD_IMAGE_TAG}"
+      export IMAGE_DIGEST="$(jq -r '.digest' release-evidence/image-provenance.json)"
+      ./scripts/verify-production-evidence.sh pre-deploy
+      ./scripts/deploy-azure.sh --deploy-only
+      FQDN="$(az containerapp show -n "$AZURE_CONTAINER_APP" -g "$AZURE_RESOURCE_GROUP" --query properties.configuration.ingress.fqdn -o tsv)"
+      mkdir -p release-evidence
+      HEALTH_HTTP_STATUS="$(curl -sS -o release-evidence/health-response.json -w '%{http_code}' --max-time 15 "https://${FQDN}/actuator/health")"
+      test "$HEALTH_HTTP_STATUS" = "200"
+      jq -e '.status == "UP"' release-evidence/health-response.json >/dev/null
+      printf 'status=passed\nhttp_status=%s\n' "$HEALTH_HTTP_STATUS" > release-evidence/health.status
+      az containerapp show -n "$AZURE_CONTAINER_APP" -g "$AZURE_RESOURCE_GROUP" \
+        --query properties.configuration.ingress.traffic -o json > release-evidence/traffic.json
+      jq -e 'type == "array" and any(.[]; (.weight // 0) > 0)' release-evidence/traffic.json >/dev/null
+      echo "status=passed" > release-evidence/traffic.status
+      ./scripts/verify-production-evidence.sh post-deploy
+  only:
+    - main
+    - tags
+  when: on_success
+  needs:
+    - job: test
+      artifacts: true
+    - job: dependency-scan
+      artifacts: true
+    - job: secret-scan
+      artifacts: true
+    - job: migration-validation
+      artifacts: true
+    - job: build-docker-prod
+      artifacts: true
+  artifacts:
+    when: always
+    paths:
+      - release-evidence/
+    expire_in: 1 month

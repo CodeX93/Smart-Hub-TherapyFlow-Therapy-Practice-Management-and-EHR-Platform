@@ -1,0 +1,402 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&family=Caveat:wght@400..700&display=swap');
+
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 16px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --font-script: "Caveat", cursive;
+}
+
+:root {
+  /* Custom colors code's variables */
+  --bg-primary-light: #FAFAFB;
+  --bg-primary-dark: #3C4D58;
+  --text-primary-light: #D8DBDF;
+  --text-primary-dark: #1B1C20;
+  --text-secondary-light: #6B7280;
+  --text-secondary-dark: #0A0A0A;
+  --bg-primary-25: #F4F6FB;
+  --bg-primary-50: #F3F7F8;
+  --bg-primary-100: #E0EAED;
+  --text-primary-500: #517889;
+  --text-gray-900: #1E282E;
+  --mobile-overlay: #D9D9D966;
+
+  --text-neutral-800: #33363D;
+  --bg-success-light: #EBFEF4;
+  --border-success: #0ABF7C;
+  --border-primary-light: #9CB9C4;
+  --shadow: #1E282E0A;
+
+  --text-neutral-600: #5B616E;
+  --text-neutral-200: #C5D6DC;
+  --text-neutral-400: #8E95A2;
+  --text-neutral-100: #EDEEF1;
+  --bg-upload-container: #F3F7F8;
+  --btn-upload-bg: #111727;
+  --btn-upload-border-soft: #1117271A;
+  --admin-primary-dark: #374151;
+
+  /* Figma Design Variables */
+  --neutral-25: #FFFFFF;
+  --neutral-50: #F6F6F6;
+  --neutral-100: #EDEEF1;
+  --neutral-200: #D8DBDF;
+  --neutral-300: #B6BAC3;
+  --neutral-400: #8E95A2;
+  --neutral-600: #5B616E;
+  --neutral-700: #4A4E5A;
+  --neutral-800: #33363D;
+  --neutral-950: #1B1C20;
+
+  --success-green: #009B65;
+  --light-blue: #EBEFFF;
+  --light-blue-2: #F5F7FF;
+  --light-blue-3: #E0E7FF;
+  --light-blue-4: #5878F833;
+
+  /* Organisations Status Badges */
+  --badge-border: rgb(0 0 0 / 10%);
+  --badge-green-text: #1E5D4A;
+  --badge-yellow-text: #8B5A00;
+  --badge-gray-text: var(--bg-primary-dark);
+
+  /* Impersonation Page */
+  --surface-white: #FFFFFF;
+  --slate-800: #1E293B;
+  --slate-500: #64748B;
+  --slate-200: #E2E8F0;
+  --mint-300: #6EE7B7;
+  --mint-50: #ECFDF5;
+  --shadow-impersonate-card: 0 1px 3px 0 rgb(0 0 0 / 10%), 0 1px 2px -1px rgb(0 0 0 / 10%);
+  --slate-400: #94A3B8;
+  --slate-300: #CBD5E1;
+  --switch-off-bg: var(--slate-300);
+  --usage-progress-green: #2D7A6B;
+  --feature-switch-on-bg: #BFE3D7;
+  --overlay: rgb(0 0 0 / 45%);
+  --modal-shadow: 0 12px 28px 0 rgb(0 0 0 / 14%), 0 6px 12px -6px rgb(0 0 0 / 12%);
+
+  /* Status Colors */
+  --status-billed: #5878F8;
+  --status-paid: #0ABF7C;
+  --status-denied: #EF4444;
+  --status-followup: #C33EF3;
+  --status-pending: #FBAC00;
+  --status-overdue-light: #FEE2E2;
+  --status-overdue-dark: #991B1B;
+  --status-completed-light: #D0FBE3;
+  --status-completed-dark: #036243;
+  --dashboard-status-pending-light: #FFF7C5;
+  --dashboard-status-pending-dark: #BB5D02;
+  --pink-light: #F7E6FD;
+  --dark-red: #B91C1C;
+  --light-red: #FEF2F2;
+  --dark-green: #007C54;
+  --status-pending-light: #FFFDEA;
+  --status-pending-dark: #BB5D02;
+  --status-info-light: #EBEFFF;
+  --status-info-dark: #5878F8;
+
+  /* Button Variables */
+  --btn-default-bg: #3C4D58;
+  --btn-default-bg-hover: #323E47;
+  --btn-default-bg-pressed: #1E282E;
+  --btn-default-text: #FFFFFF;
+  --btn-focus-ring: #B6BAC3;
+  --btn-disabled-bg: #EDEEF1;
+  --btn-disabled-text: #8E95A2;
+  --btn-pressed-shadow: #1B1C20;
+
+  --btn-outline-border: #D8DBDF;
+  --btn-outline-border-hover: #323E47;
+  --btn-outline-border-pressed: #1E282E;
+  --btn-outline-text: #3C4D58;
+
+  --btn-link-text: #517889;
+  --btn-link-text-hover: #466474;
+  --btn-link-text-pressed: #3D5361;
+
+  /* Loading Variables */
+  --loader-neutral-start: #EDEEF1;
+  --loader-neutral-middle: #B6BAC3;
+  --loader-neutral-end: #1B1C20;
+  --loader-inverse-start: #4A4E5A;
+  --loader-inverse-middle: #8E95A2;
+  --loader-inverse-end: #FFFFFF;
+
+  /* Shadcn imported colors code's variables */
+  --radius: 0.625rem;
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.145 0 0);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.145 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.145 0 0);
+  --primary: oklch(0.205 0 0);
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.97 0 0);
+  --secondary-foreground: oklch(0.205 0 0);
+  --muted: oklch(0.97 0 0);
+  --muted-foreground: oklch(0.556 0 0);
+  --accent: oklch(0.97 0 0);
+  --accent-foreground: oklch(0.205 0 0);
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: oklch(0.922 0 0);
+  --input: oklch(0.922 0 0);
+  --ring: oklch(0.708 0 0);
+  --chart-1: oklch(0.646 0.222 41.116);
+  --chart-2: oklch(0.6 0.118 184.704);
+  --chart-3: oklch(0.398 0.07 227.392);
+  --chart-4: oklch(0.828 0.189 84.429);
+  --chart-5: oklch(0.769 0.188 70.08);
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: oklch(0.205 0 0);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: oklch(0.708 0 0);
+}
+
+@keyframes loading-dot-pulse {
+  0%,
+  80%,
+  100% {
+    opacity: 0.45;
+    transform: scale(0.72);
+  }
+
+  40% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes content-loader-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.app-modal-overlay {
+  background-color: var(--overlay);
+}
+
+.app-modal-surface {
+  background-color: var(--surface-white);
+  box-shadow: var(--modal-shadow);
+}
+
+.dark {
+  /* Dark-ready product aliases. A theme toggle can activate these later. */
+  --bg-primary-light: #111418;
+  --text-primary-dark: #F6F6F6;
+  --text-secondary-dark: #EDEEF1;
+  --text-neutral-800: #EDEEF1;
+  --text-neutral-600: #B6BAC3;
+  --text-neutral-400: #8E95A2;
+  --surface-white: #1B1C20;
+  --neutral-25: #1B1C20;
+  --neutral-50: #252A31;
+  --neutral-100: #33363D;
+  --neutral-200: #4A4E5A;
+  --neutral-300: #5B616E;
+  --neutral-400: #8E95A2;
+  --neutral-600: #B6BAC3;
+  --neutral-700: #D8DBDF;
+  --neutral-800: #EDEEF1;
+  --neutral-950: #FFFFFF;
+  --overlay: rgb(0 0 0 / 65%);
+  --modal-shadow: 0 12px 28px 0 rgb(0 0 0 / 40%), 0 6px 12px -6px rgb(0 0 0 / 32%);
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.205 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.205 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.922 0 0);
+  --primary-foreground: oklch(0.205 0 0);
+  --secondary: oklch(0.269 0 0);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.269 0 0);
+  --muted-foreground: oklch(0.708 0 0);
+  --accent: oklch(0.269 0 0);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.704 0.191 22.216);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.556 0 0);
+  --chart-1: oklch(0.488 0.243 264.376);
+  --chart-2: oklch(0.696 0.17 162.48);
+  --chart-3: oklch(0.769 0.188 70.08);
+  --chart-4: oklch(0.627 0.265 303.9);
+  --chart-5: oklch(0.645 0.246 16.439);
+  --sidebar: oklch(0.205 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: oklch(0.556 0 0);
+}
+
+* {
+  font-family: 'Manrope', sans-serif;
+}
+
+/*
+ * Dashboard density scale (desktop only).
+ * rem-based Tailwind utilities inherit from html font-size.
+ * Scoped via :has(.dashboard-shell) so auth/public pages stay at 16px,
+ * and mobile/tablet viewports keep their accessibility baseline.
+ *
+ * Kept denser than 100% on large screens (~87–90% effective zoom) so the
+ * logged-in app reads closer to ClientHub instead of feeling oversized.
+ */
+html {
+  font-size: 16px;
+}
+
+@media (min-width: 1024px) and (max-width: 1279px) {
+  html:has(.dashboard-shell) {
+    font-size: 12.5px;
+  }
+}
+
+@media (min-width: 1280px) and (max-width: 1365px) {
+  html:has(.dashboard-shell) {
+    font-size: 13px;
+  }
+}
+
+@media (min-width: 1366px) and (max-width: 1535px) {
+  html:has(.dashboard-shell) {
+    font-size: 13.5px;
+  }
+}
+
+@media (min-width: 1536px) {
+  html:has(.dashboard-shell) {
+    font-size: 14px;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+
+  button:not(:disabled),
+  a[href],
+  select:not(:disabled),
+  summary,
+  label[for],
+  [role="button"]:not([aria-disabled="true"]),
+  [role="link"]:not([aria-disabled="true"]),
+  [role="menuitem"]:not([aria-disabled="true"]),
+  [role="option"]:not([aria-disabled="true"]),
+  [role="tab"]:not([aria-disabled="true"]) {
+    cursor: pointer;
+  }
+
+  /* Custom Scrollbar */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: var(--neutral-200) transparent;
+  }
+
+  *::-webkit-scrollbar {
+    width: 0.375rem;
+    height: 0.375rem;
+  }
+
+  *::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background-color: var(--neutral-200);
+    border-radius: 1.25rem;
+  }
+
+  *::-webkit-scrollbar-thumb:hover {
+    background-color: var(--neutral-400);
+  }
+
+  /* Autofill background fix */
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
+  input:-webkit-autofill:active,
+  input:autofill,
+  input:autofill:hover,
+  input:autofill:focus,
+  input:autofill:active {
+    -webkit-box-shadow: 0 0 0 1000px white inset !important;
+    -webkit-text-fill-color: var(--neutral-950) !important;
+    transition: background-color 5000s ease-in-out 0s;
+  }
+
+  /* ApexCharts Tooltip Overrides */
+  .apexcharts-tooltip {
+    background: #ffffff !important;
+    border: 1px solid var(--neutral-100) !important;
+    border-radius: 1rem !important;
+    /* rounded-2xl */
+    box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1) !important;
+    /* shadow-xl */
+  }
+
+  .apexcharts-tooltip.apexcharts-theme-light {
+    border: 1px solid var(--neutral-100) !important;
+  }
+}

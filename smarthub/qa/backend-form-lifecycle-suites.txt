@@ -1,0 +1,5 @@
+FormLifecycleApiTest
+FormServiceTest
+FormServiceVersioningPatchTest
+FormSubmissionValidatorTest
+ClientPortalServiceTest

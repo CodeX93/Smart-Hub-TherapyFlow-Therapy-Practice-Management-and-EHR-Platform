@@ -1,0 +1,769 @@
+spring:
+  profiles:
+    active: local
+  docker:
+    compose:
+      enabled: false
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 100MB
+  # Redis is optional; managed by RedisConfig when app.redis.enabled=true.
+  # Exclude Boot auto-config so a missing Redis server does not create a localhost factory
+  # or mark /actuator/health DOWN.
+  autoconfigure:
+    exclude:
+      - org.springframework.boot.autoconfigure.data.redis.RedisAutoConfiguration
+      - org.springframework.boot.autoconfigure.data.redis.RedisRepositoriesAutoConfiguration
+      - org.springframework.boot.actuate.autoconfigure.data.redis.RedisHealthContributorAutoConfiguration
+      - org.springframework.boot.actuate.autoconfigure.data.redis.RedisReactiveHealthContributorAutoConfiguration
+
+management:
+  health:
+    redis:
+      enabled: false
+
+jasypt:
+  encryptor:
+    password: ${ENCRYPTION_PASSWORD}
+    algorithm: PBEWithMD5AndDES
+
+---
+spring:
+  config:
+    activate:
+      on-profile: local
+  application:
+    name: therapyflow
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+    baseline-on-migrate: true
+  datasource:
+    # AWS RDS PostgreSQL Database Configuration (Production)
+    # Database is not publicly accessible - must be accessed from within AWS VPC.
+    # Prod: set DB_URL with sslmode=require or sslmode=verify-full (e.g. jdbc:postgresql://host:5432/db?sslmode=require).
+    url: ${DB_URL:}
+    username: ${DB_USERNAME:}
+    password: ${DB_PASSWORD:}
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      maximum-pool-size: 20
+      minimum-idle: 5
+      connection-timeout: 30000
+      idle-timeout: 600000
+      max-lifetime: 1800000
+      leak-detection-threshold: 60000
+      # Enforce TLS when DB_URL omits sslmode (local profiles override with plaintext Postgres).
+      data-source-properties:
+        sslmode: ${DB_SSL_MODE:require}
+  jpa:
+    hibernate:
+      ddl-auto: none
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+        # Batch lazy loads when list endpoints touch associations (client/therapist/etc.).
+        default_batch_fetch_size: 50
+  jackson:
+    serialization:
+      WRITE_DATES_AS_TIMESTAMPS: false
+  data:
+    redis:
+      host: ${REDIS_HOST:localhost}
+      port: ${REDIS_PORT:6379}
+      password: ${REDIS_PASSWORD:}
+      timeout: 2000ms
+      ssl:
+        enabled: ${REDIS_SSL_ENABLED:false}
+      lettuce:
+        pool:
+          max-active: 8
+          max-idle: 8
+          min-idle: 0
+      # Disable Redis repository scanning to avoid Spring Data "could not safely identify store assignment"
+      # warnings, since we only use Redis for caching, not as a repository store.
+      repositories:
+        enabled: false
+  mail:
+    # SMTP Configuration (used for SES SMTP or general SMTP)
+    host: ${SPRING_MAIL_HOST:${AWS_SES_SMTP_ENDPOINT:email-smtp.eu-north-1.amazonaws.com}}
+    port: ${SPRING_MAIL_PORT:${AWS_SES_SMTP_PORT:587}}
+    username: ${SPRING_MAIL_USERNAME:${AWS_SES_SMTP_USERNAME:}}
+    password: ${SPRING_MAIL_PASSWORD:${AWS_SES_SMTP_PASSWORD:}}
+    from: ${SPRING_MAIL_FROM:no-reply@therapyflow.pro}
+    properties:
+      mail:
+        smtp:
+          auth: ${SPRING_MAIL_SMTP_AUTH:true}
+          starttls:
+            enable: ${SPRING_MAIL_SMTP_STARTTLS_ENABLE:true}
+            required: ${SPRING_MAIL_SMTP_STARTTLS_REQUIRED:true}
+          ssl:
+            enable: ${SPRING_MAIL_SMTP_SSL_ENABLE:false}
+          connectiontimeout: ${SPRING_MAIL_SMTP_CONNECTION_TIMEOUT:5000}
+          timeout: ${SPRING_MAIL_SMTP_TIMEOUT:5000}
+          writetimeout: ${SPRING_MAIL_SMTP_WRITE_TIMEOUT:5000}
+
+server:
+  port: ${PORT:8080}
+
+logging:
+  level:
+    root: INFO
+    com.smart.therapy.flow.common.logging.MethodLoggingAspect: DEBUG
+    org.hibernate.SQL: DEBUG
+
+springdoc:
+  api-docs:
+    enabled: true
+  swagger-ui:
+    enabled: true
+
+jwt:
+  secret: ${JWT_SECRET}
+  expiration: ${JWT_EXPIRATION:86400000}
+  refresh-expiration: ${JWT_REFRESH_EXPIRATION:604800000}
+
+ais:
+  integrations:
+    openai:
+      # OpenAI API Key - Retrieved from AWS Secrets Manager (therapy-flow/openai-api-key)
+      # For local development, set AI_INTEGRATIONS_OPENAI_API_KEY environment variable
+      api-key: ${AI_INTEGRATIONS_OPENAI_API_KEY:}
+      # Transcription tries OPENAI_WHISPER_API_KEY first, then AI_INTEGRATIONS_OPENAI_API_KEY
+      whisper-api-key: ${OPENAI_WHISPER_API_KEY:}
+      fallback-api-key: ${AI_INTEGRATIONS_OPENAI_FALLBACK_API_KEY:}
+      base-url: ${AI_INTEGRATIONS_OPENAI_BASE_URL:https://api.openai.com/v1}
+
+ai:
+  models:
+    session-notes: gpt-4o
+    assistant: gpt-5
+
+# Stripe Payment Configuration
+# Secrets are loaded from Azure Key Vault via environment variables
+# Priority: Key Vault → Environment Variable → Database (fallback)
+# IMPORTANT: Never commit secret keys to version control!
+stripe:
+  # Platform Stripe Account Keys
+  publishable-key: ${STRIPE_PUBLISHABLE_KEY:}
+  secret-key: ${STRIPE_SECRET_KEY:}
+
+  # Stripe Connect OAuth Credentials
+  connect:
+    client-id: ${STRIPE_CONNECT_CLIENT_ID:}
+    client-secret: ${STRIPE_CONNECT_CLIENT_SECRET:}
+
+  # Webhook Signing Secrets
+  webhook:
+    connect-secret: ${STRIPE_CONNECT_WEBHOOK_SECRET:}
+    platform-secret: ${STRIPE_PLATFORM_WEBHOOK_SECRET:}
+    url: ${STRIPE_WEBHOOK_URL:https://api.therapyflow.pro/api/v1/stripe/webhook/connect}
+
+  # Mode: test or live
+  mode: ${STRIPE_MODE:test}
+
+  # Legacy webhook secret (deprecated, use webhook.platform-secret instead)
+  webhook-secret: ${STRIPE_WEBHOOK_SECRET:}
+
+automation:
+  stripe:
+    secret-key: ${STRIPE_SECRET_KEY:}
+
+azure:
+  storage:
+    connection-string: ${AZURE_STORAGE_CONNECTION_STRING}
+    container-name: ${AZURE_BLOB_CONTAINER_NAME:documents}
+    # Customer-managed encryption scope (CMK). Required for PHI document uploads in prod.
+    encryption-scope: ${AZURE_STORAGE_ENCRYPTION_SCOPE:}
+
+aws:
+  s3:
+    bucket: ${AWS_S3_BUCKET:trappy-flow-crm-files}
+    region: ${AWS_S3_REGION:eu-north-1}
+    access-key: ${AWS_S3_ACCESS_KEY:}
+    secret-key: ${AWS_S3_SECRET_KEY:}
+    presigned-url-expiration-hours: ${AWS_S3_PRESIGNED_URL_EXPIRATION_HOURS:24}
+    # Optional CMK; when blank, SSE-KMS still uses the AWS-managed aws/s3 key.
+    sse-kms-key-id: ${AWS_S3_SSE_KMS_KEY_ID:}
+
+jasypt:
+  encryptor:
+    password: ${ENCRYPTION_PASSWORD}
+    algorithm: PBEWithMD5AndDES
+
+email:
+  sparkpost:
+    api-key: ${SPARKPOST_API_KEY:}
+    from-email: ${EMAIL_FROM:noreply@mail.resiliencecrm.com}
+    from-name: ${EMAIL_FROM_NAME:SmartHub}
+    base-url: ${SPARKPOST_BASE_URL:https://api.sparkpost.com/api/v1}
+
+clienthub:
+  migration:
+    enabled: ${CLIENTHUB_MIGRATION_ENABLED:false}
+    dry-run: ${CLIENTHUB_MIGRATION_DRY_RUN:true}
+    execute-staff-auth: ${CLIENTHUB_MIGRATION_EXECUTE_STAFF_AUTH:false}
+    execute-clients: ${CLIENTHUB_MIGRATION_EXECUTE_CLIENTS:false}
+    execute-services: ${CLIENTHUB_MIGRATION_EXECUTE_SERVICES:false}
+    execute-sessions: ${CLIENTHUB_MIGRATION_EXECUTE_SESSIONS:false}
+    execute-billing: ${CLIENTHUB_MIGRATION_EXECUTE_BILLING:false}
+    execute-documents: ${CLIENTHUB_MIGRATION_EXECUTE_DOCUMENTS:false}
+    execute-room-integrations: ${CLIENTHUB_MIGRATION_EXECUTE_ROOM_INTEGRATIONS:false}
+    execute-therapist-scheduling: ${CLIENTHUB_MIGRATION_EXECUTE_THERAPIST_SCHEDULING:false}
+    execute-tasks: ${CLIENTHUB_MIGRATION_EXECUTE_TASKS:false}
+    execute-notifications: ${CLIENTHUB_MIGRATION_EXECUTE_NOTIFICATIONS:false}
+    execute-clinical-extras: ${CLIENTHUB_MIGRATION_EXECUTE_CLINICAL_EXTRAS:false}
+    execute-assessments: ${CLIENTHUB_MIGRATION_EXECUTE_ASSESSMENTS:false}
+    execute-transcripts: ${CLIENTHUB_MIGRATION_EXECUTE_TRANSCRIPTS:false}
+    execute-document-binaries: ${CLIENTHUB_MIGRATION_EXECUTE_DOCUMENT_BINARIES:false}
+    notification-lookback-months: ${CLIENTHUB_MIGRATION_NOTIFICATION_LOOKBACK_MONTHS:1}
+    sync-enabled: ${CLIENTHUB_SYNC_ENABLED:false}
+    sync-enqueue-events: ${CLIENTHUB_SYNC_ENQUEUE_EVENTS:false}
+    sync-apply-events: ${CLIENTHUB_SYNC_APPLY_EVENTS:false}
+    sync-batch-size: ${CLIENTHUB_SYNC_BATCH_SIZE:500}
+    demo-cleanup-dry-run-enabled: ${CLIENTHUB_DEMO_CLEANUP_DRY_RUN_ENABLED:false}
+    source-url: ${CLIENTHUB_SOURCE_DB_URL:}
+    source-username: ${CLIENTHUB_SOURCE_DB_USERNAME:}
+    source-password: ${CLIENTHUB_SOURCE_DB_PASSWORD:}
+    source-schema: ${CLIENTHUB_SOURCE_DB_SCHEMA:public}
+    target-organisation-slug: ${CLIENTHUB_TARGET_ORG_SLUG:}
+    target-schema-name: ${CLIENTHUB_TARGET_SCHEMA_NAME:}
+    source-timezone: ${CLIENTHUB_SOURCE_TIMEZONE:UTC}
+    connect-timeout-seconds: ${CLIENTHUB_SOURCE_DB_CONNECT_TIMEOUT_SECONDS:15}
+    source-azure-connection-string: ${CLIENTHUB_SOURCE_AZURE_STORAGE_CONNECTION_STRING:${AZURE_STORAGE_CONNECTION_STRING:}}
+    source-azure-container-name: ${CLIENTHUB_SOURCE_AZURE_BLOB_CONTAINER_NAME:documents}
+
+# Application Configuration
+app:
+  redis:
+    # Azure/dev currently has no Redis; keep disabled until a real host is configured.
+    enabled: ${APP_REDIS_ENABLED:false}
+    fail-open: ${APP_REDIS_FAIL_OPEN:true}
+  env: ${APP_ENV:dev}
+  # Legacy seed migrations remain available for local fixtures; production retires their identities.
+  migration:
+    remove-seeded-identities: false
+    production-migration-security: false
+  ai:
+    phi-processing-approved: ${AI_PHI_PROCESSING_APPROVED:false}
+  phi-encryption:
+    search:
+      mode: ${APP_PHI_ENCRYPTION_SEARCH_MODE:blind_only}  # ✅ FINAL: All tenants migrated - use only blind indexes
+    backfill:
+      enabled: ${PHI_ENCRYPTION_BACKFILL_ENABLED:true}  # ✅ CHANGED: Enable PHI encryption backfill
+      batch-size: ${PHI_ENCRYPTION_BACKFILL_BATCH_SIZE:50}
+      fixed-delay-ms: ${PHI_ENCRYPTION_BACKFILL_FIXED_DELAY_MS:120000}
+      # Empty = all tenant schemas. Set APP_PHI_ENCRYPTION_BACKFILL_SCHEMAS=tenant_53 to limit.
+      schema-allow-list: ${APP_PHI_ENCRYPTION_BACKFILL_SCHEMAS:}
+    blind-index-backfill:
+      enabled: ${APP_PHI_ENCRYPTION_BLIND_INDEX_BACKFILL_ENABLED:true}  # ✅ CHANGED: Enable blind index backfill
+      batch-size: ${APP_PHI_ENCRYPTION_BLIND_INDEX_BACKFILL_BATCH_SIZE:50}
+      fixed-delay-ms: ${APP_PHI_ENCRYPTION_BLIND_INDEX_BACKFILL_FIXED_DELAY_MS:60000}
+      # Empty = all V56+ tenant schemas.
+      schema-allow-list: ${APP_PHI_ENCRYPTION_BLIND_INDEX_BACKFILL_SCHEMAS:}
+  encryption:
+    provider: ${APP_ENCRYPTION_PROVIDER:config}
+    master-key: ${APP_ENCRYPTION_MASTER_KEY:${jasypt.encryptor.password:}}
+    key-id: ${APP_ENCRYPTION_KEY_ID:primary}
+    previous-keys: ${APP_ENCRYPTION_PREVIOUS_KEYS:}
+    search-hmac-key: ${APP_SEARCH_HMAC_KEY:}
+    search-hmac-tenant-pepper: ${APP_ENCRYPTION_SEARCH_HMAC_TENANT_PEPPER:}
+    keyvault-uri: ${AZURE_KEYVAULT_URI:}
+    kek-name: ${APP_ENCRYPTION_KEK_NAME:therapyflow-phi-dek}
+    search-hmac-key-name: ${APP_SEARCH_HMAC_KEY_NAME:therapyflow-phi-search-hmac}
+  pagination:
+    default-page: ${APP_PAGINATION_DEFAULT_PAGE:1}
+    default-page-size: ${APP_PAGINATION_DEFAULT_PAGE_SIZE:25}
+    max-page-size: ${APP_PAGINATION_MAX_PAGE_SIZE:500}
+    min-page-size: ${APP_PAGINATION_MIN_PAGE_SIZE:1}
+  consultation:
+    ops-email: ${APP_CONSULTATION_OPS_EMAIL:mail@resiliencec.com}
+    service-code: ${APP_CONSULTATION_SERVICE_CODE:CONSULTATION}
+  billing:
+    discount:
+      max-percentage: ${APP_BILLING_DISCOUNT_MAX_PERCENTAGE:100}
+      rounding-scale: ${APP_BILLING_DISCOUNT_ROUNDING_SCALE:6}
+    invoice:
+      payment-terms-days: ${APP_BILLING_INVOICE_PAYMENT_TERMS_DAYS:30}
+      amount-rounding-scale: ${APP_BILLING_INVOICE_AMOUNT_ROUNDING_SCALE:2}
+  client:
+    min-age: ${APP_CLIENT_MIN_AGE:18}
+  client-purge:
+    # Enable only after retention legal sign-off via APP_CLIENT_PURGE_ENABLED.
+    enabled: ${APP_CLIENT_PURGE_ENABLED:false}
+    retention-days: ${APP_CLIENT_PURGE_RETENTION_DAYS:30}
+    cron: ${APP_CLIENT_PURGE_CRON:0 0 4 * * ?}
+    dry-run: ${APP_CLIENT_PURGE_DRY_RUN:false}
+  transcripts:
+    retention-days: ${APP_TRANSCRIPTS_RETENTION_DAYS:30}
+    cleanup:
+      # Enable only after retention legal sign-off via APP_TRANSCRIPTS_CLEANUP_ENABLED.
+      enabled: ${APP_TRANSCRIPTS_CLEANUP_ENABLED:false}
+      cron: ${APP_TRANSCRIPTS_CLEANUP_CRON:0 30 3 * * ?}
+    max-expected-chunks: ${APP_TRANSCRIPTS_MAX_EXPECTED_CHUNKS:5000}
+    max-chunk-chars: ${APP_TRANSCRIPTS_MAX_CHUNK_CHARS:40000}
+    transcription-model: ${APP_TRANSCRIPTS_MODEL:gpt-4o-mini-transcribe}
+    mock-transcription: ${APP_TRANSCRIPTS_MOCK:false}
+    language-allowlist: ${APP_TRANSCRIPTS_LANGUAGE_ALLOWLIST:auto,en,en-us,en-gb,es,fr,de,it,pt,nl,ru,hi,zh,ja,ko,tr,pl,ar,multi,ur}
+    chunk-rate-limit:
+      enabled: ${APP_TRANSCRIPTS_CHUNK_RATE_LIMIT_ENABLED:true}
+      max-requests: ${APP_TRANSCRIPTS_CHUNK_RATE_LIMIT_MAX:120}
+      window-seconds: ${APP_TRANSCRIPTS_CHUNK_RATE_LIMIT_WINDOW_SECONDS:600}
+  base-url: ${BASE_URL:https://app.therapyflow.pro}
+  frontend:
+    staff-login-url: ${APP_FRONTEND_STAFF_LOGIN_URL:https://app.therapyflow.pro/auth/therapist/login}
+    # Zoom setup lives in the therapist profile modal, which has no route yet; point this at the
+    # deep link as soon as the frontend exposes one.
+    therapist-zoom-setup-url: ${APP_FRONTEND_THERAPIST_ZOOM_SETUP_URL:https://app.therapyflow.pro/therapist/dashboard}
+    subscription-success-url: ${APP_FRONTEND_SUBSCRIPTION_SUCCESS_URL:https://app.therapyflow.pro/billing/subscription/success}
+    subscription-cancel-url: ${APP_FRONTEND_SUBSCRIPTION_CANCEL_URL:https://app.therapyflow.pro/billing/subscription}
+    stripe-connect-success-url: ${APP_FRONTEND_STRIPE_CONNECT_SUCCESS_URL:https://app.therapyflow.pro/stripe/success}
+    client-portal-invoice-success-url: "${APP_FRONTEND_CLIENT_PORTAL_INVOICE_SUCCESS_URL:https://app.therapyflow.pro/portal/invoices?payment=success&session_id={CHECKOUT_SESSION_ID}}"
+    client-portal-invoice-cancel-url: "${APP_FRONTEND_CLIENT_PORTAL_INVOICE_CANCEL_URL:https://app.therapyflow.pro/portal/invoices?payment=cancelled}"
+  email:
+    # Email service provider: 'sparkpost' or 'ses'
+    provider: ${EMAIL_PROVIDER:ses}
+    ses:
+      region: ${AWS_SES_REGION:eu-north-1}
+      access-key: ${AWS_SES_ACCESS_KEY:}
+      secret-key: ${AWS_SES_SECRET_KEY:}
+      from-email: ${AWS_SES_FROM_EMAIL:no-reply@therapyflow.pro}
+      from-name: ${AWS_SES_FROM_NAME:SmartHub}
+      # Use SMTP instead of SDK (set to true to use JavaMailSender configured for SES SMTP)
+      # When use-smtp=true, configure spring.mail.* properties with SES SMTP credentials
+      use-smtp: ${AWS_SES_USE_SMTP:false}
+      # SMTP endpoint (used for reference, actual config is in spring.mail.host)
+      smtp-endpoint: ${AWS_SES_SMTP_ENDPOINT:email-smtp.eu-north-1.amazonaws.com}
+      smtp-port: ${AWS_SES_SMTP_PORT:587}
+  storage:
+    type: ${APP_STORAGE_TYPE:s3}  # Options: local, s3, azure
+    local:
+      path: ${APP_STORAGE_LOCAL_PATH:./uploads}
+  security:
+    use-secure-cookies: ${USE_SECURE_COOKIES:false}
+    # HttpOnly cookie that carries refresh tokens (tf_refresh / tf_portal_refresh).
+    refresh-cookie:
+      same-site: ${APP_REFRESH_COOKIE_SAME_SITE:Lax}
+      # Empty = host-only. Set (e.g. therapyflow.pro) only if login and refresh hit different API hosts.
+      domain: ${APP_REFRESH_COOKIE_DOMAIN:}
+      # Also return the refresh token in JSON, for frontends that predate the cookie.
+      # Turn off once every deployed frontend refreshes through the cookie.
+      expose-in-body: ${APP_REFRESH_TOKEN_IN_BODY:true}
+      # A rotated refresh token presented again within this window, while its replacement is still live,
+      # is a lost response (page reloaded mid-refresh), not theft.
+      rotation-grace-seconds: ${APP_REFRESH_ROTATION_GRACE_SECONDS:20}
+    break-glass:
+      enabled: ${APP_SECURITY_BREAK_GLASS_ENABLED:false}
+    public-rate-limit:
+      enabled: ${APP_PUBLIC_RATE_LIMIT_ENABLED:true}
+      requests-per-minute: ${APP_PUBLIC_RATE_LIMIT_RPM:300}
+  auth:
+    session:
+      idle-timeout-seconds: ${APP_AUTH_SESSION_IDLE_TIMEOUT_SECONDS:900}
+      activity-touch-interval-seconds: ${APP_AUTH_SESSION_TOUCH_INTERVAL_SECONDS:60}
+    trusted-device:
+      # Skip MFA on password login when a valid device trust token is presented.
+      enabled: ${APP_AUTH_TRUSTED_DEVICE_ENABLED:true}
+      # HIPAA-aligned default: 30 days (not 90+).
+      trust-days: ${APP_AUTH_TRUSTED_DEVICE_DAYS:30}
+      # Longer refresh when staySignedIn=true (with or without device trust).
+      stay-signed-in-refresh-days: ${APP_AUTH_STAY_SIGNED_IN_REFRESH_DAYS:30}
+    mfa:
+      enforcement: ${APP_AUTH_MFA_ENFORCEMENT:ALL}
+      issuer: ${APP_AUTH_MFA_ISSUER:TherapyFlow}
+      challenge-validity-seconds: ${APP_AUTH_MFA_CHALLENGE_SECONDS:300}
+      max-attempts: ${APP_AUTH_MFA_MAX_ATTEMPTS:10}
+      lockout-seconds: ${APP_AUTH_MFA_LOCKOUT_SECONDS:300}
+      recovery-code-count: ${APP_AUTH_MFA_RECOVERY_CODE_COUNT:10}
+      otp-validity-seconds: ${APP_AUTH_MFA_OTP_VALIDITY_SECONDS:300}
+      otp-resend-cooldown-seconds: ${APP_AUTH_MFA_OTP_RESEND_COOLDOWN_SECONDS:60}
+      otp-sms-enabled: ${APP_AUTH_MFA_OTP_SMS_ENABLED:true}
+      otp-email-enabled: ${APP_AUTH_MFA_OTP_EMAIL_ENABLED:true}
+      # Short-lived step-up token after MFA while already authenticated.
+      step-up-validity-seconds: ${APP_AUTH_MFA_STEP_UP_SECONDS:900}
+  notifications:
+    schedule-interval: ${NOTIFICATION_SCHEDULE_INTERVAL:60000}
+    email-enabled: ${NOTIFICATION_EMAIL_ENABLED:true}
+
+twilio:
+  account-sid: ${TWILIO_ACCOUNT_SID:}
+  api-key-sid: ${TWILIO_API_KEY_SID:}
+  api-key-secret: ${TWILIO_API_KEY_SECRET:}
+  auth-token: ${TWILIO_AUTH_TOKEN:}
+  from-number: ${TWILIO_FROM_NUMBER:${TWILIO_SMS_FROM:}}
+  use-whatsapp: ${TWILIO_USE_WHATSAPP:false}
+  environment: ${NODE_ENV:development}
+
+super-admin:
+  onboarding:
+    default-admin-password: ${SUPERADMIN_ONBOARDING_DEFAULT_ADMIN_PASSWORD:}
+  rate-limit:
+    enabled: ${SUPERADMIN_RATE_LIMIT_ENABLED:true}
+    # SPA loads many endpoints + polls notifications; keep this high enough for dashboard use.
+    per-minute: ${SUPERADMIN_RATE_LIMIT_PER_MINUTE:600}
+
+# Marketing CMS (landing page) — GitHub dispatch rebuilds therapyflow-website on publish
+cms:
+  frontend-deploy:
+    enabled: ${CMS_FRONTEND_DEPLOY_ENABLED:true}
+    github-token: ${CMS_GITHUB_DEPLOY_TOKEN:${GITHUB_DEPLOY_TOKEN:}}
+    landing-repo: ${CMS_LANDING_REPO:MachineIntelligence6/therapyflow-website}
+
+zoom:
+  enabled: ${ZOOM_ENABLED:true}
+  api:
+    base-url: ${ZOOM_API_BASE_URL:https://api.zoom.us/v2}
+    connect-timeout-ms: ${ZOOM_API_CONNECT_TIMEOUT_MS:5000}
+    read-timeout-ms: ${ZOOM_API_READ_TIMEOUT_MS:15000}
+  oauth:
+    base-url: ${ZOOM_OAUTH_BASE_URL:https://zoom.us}
+
+# Resilience4j Configuration
+resilience4j:
+  circuitbreaker:
+    instances:
+      stripe:
+        registerHealthIndicator: true
+        slidingWindowSize: 10
+        minimumNumberOfCalls: 5
+        permittedNumberOfCallsInHalfOpenState: 3
+        automaticTransitionFromOpenToHalfOpenEnabled: true
+        waitDurationInOpenState: 10s
+        failureRateThreshold: 50
+        eventConsumerBufferSize: 10
+      zoom:
+        registerHealthIndicator: true
+        slidingWindowSize: 10
+        minimumNumberOfCalls: 5
+        permittedNumberOfCallsInHalfOpenState: 3
+        automaticTransitionFromOpenToHalfOpenEnabled: true
+        waitDurationInOpenState: 10s
+        failureRateThreshold: 50
+      openai:
+        registerHealthIndicator: true
+        slidingWindowSize: 10
+        minimumNumberOfCalls: 5
+        permittedNumberOfCallsInHalfOpenState: 3
+        automaticTransitionFromOpenToHalfOpenEnabled: true
+        waitDurationInOpenState: 10s
+        failureRateThreshold: 50
+        ignoreExceptions:
+          - com.smart.therapy.flow.common.exception.TranscriptionServiceUnavailableException
+          - java.lang.IllegalArgumentException
+      sparkpost:
+        registerHealthIndicator: true
+        slidingWindowSize: 10
+        minimumNumberOfCalls: 5
+        permittedNumberOfCallsInHalfOpenState: 3
+        automaticTransitionFromOpenToHalfOpenEnabled: true
+        waitDurationInOpenState: 10s
+        failureRateThreshold: 50
+  retry:
+    instances:
+      stripe:
+        maxAttempts: 3
+        waitDuration: 1s
+        enableExponentialBackoff: true
+        exponentialBackoffMultiplier: 2
+      zoom:
+        maxAttempts: 3
+        waitDuration: 1s
+        enableExponentialBackoff: true
+        exponentialBackoffMultiplier: 2
+      openai:
+        maxAttempts: 3
+        waitDuration: 1s
+        enableExponentialBackoff: true
+        exponentialBackoffMultiplier: 2
+        ignoreExceptions:
+          - com.smart.therapy.flow.common.exception.TranscriptionServiceUnavailableException
+          - java.lang.IllegalArgumentException
+      sparkpost:
+        maxAttempts: 3
+        waitDuration: 1s
+        enableExponentialBackoff: true
+        exponentialBackoffMultiplier: 2
+      ses:
+        maxAttempts: 3
+        waitDuration: 1s
+        enableExponentialBackoff: true
+        exponentialBackoffMultiplier: 2
+  timelimiter:
+    instances:
+      stripe:
+        timeoutDuration: 30s
+      zoom:
+        timeoutDuration: 15s
+      openai:
+        timeoutDuration: 60s
+      sparkpost:
+        timeoutDuration: 15s
+      ses:
+        timeoutDuration: 15s
+
+# Rate Limiting Configuration (admin / staff / tenant APIs)
+rate-limiting:
+  enabled: ${RATE_LIMITING_ENABLED:true}
+  distributed:
+    enabled: ${RATE_LIMITING_DISTRIBUTED_ENABLED:true}
+  default:
+    capacity: ${RATE_LIMITING_DEFAULT_CAPACITY:300}
+    refill-tokens: ${RATE_LIMITING_DEFAULT_REFILL_TOKENS:300}
+    refill-duration-seconds: ${RATE_LIMITING_DEFAULT_REFILL_SECONDS:60}
+  endpoints:
+    /api/v1/auth/login:
+      capacity: 10
+      refill-tokens: 10
+      refill-duration-seconds: 60
+    /api/v1/auth/refresh:
+      capacity: 20
+      refill-tokens: 20
+      refill-duration-seconds: 60
+
+
+
+
+---
+# Production Profile Configuration
+server:
+  # Azure Container Apps terminates TLS at the ingress; honor its forwarded HTTPS headers.
+  forward-headers-strategy: framework
+
+spring:
+  config:
+    activate:
+      on-profile: prod
+  application:
+    name: therapyflow
+  datasource:
+    # AWS RDS PostgreSQL Database Configuration (Production)
+    # Database is not publicly accessible - must be accessed from within AWS VPC
+    url: ${DB_URL:}
+    username: ${DB_USERNAME:}
+    password: ${DB_PASSWORD:}
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      maximum-pool-size: ${DB_HIKARI_MAX_POOL_SIZE:30}
+      minimum-idle: 5
+      connection-timeout: ${DB_HIKARI_CONNECTION_TIMEOUT_MS:10000}
+      idle-timeout: 600000
+      max-lifetime: 1800000
+      leak-detection-threshold: ${DB_HIKARI_LEAK_DETECTION_MS:30000}
+  jpa:
+    hibernate:
+      ddl-auto: none
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: false
+        # Batch lazy loads when list endpoints touch associations (client/therapist/etc.).
+        default_batch_fetch_size: 50
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+    baseline-on-migrate: true
+    # Allow pending lower versions after hotfix seeds (e.g. V71 applied without local copy),
+    # and re-apply skipped SQL when history was recorded incorrectly.
+    out-of-order: true
+    ignore-missing-migrations: true
+  mail:
+    # SMTP Configuration for Amazon SES (Production)
+    host: ${SPRING_MAIL_HOST:${AWS_SES_SMTP_ENDPOINT:email-smtp.eu-north-1.amazonaws.com}}
+    port: ${SPRING_MAIL_PORT:${AWS_SES_SMTP_PORT:587}}
+    username: ${SPRING_MAIL_USERNAME:${AWS_SES_SMTP_USERNAME:}}
+    password: ${SPRING_MAIL_PASSWORD:${AWS_SES_SMTP_PASSWORD:}}
+    from: ${SPRING_MAIL_FROM:no-reply@therapyflow.pro}
+    properties:
+      mail:
+        smtp:
+          auth: ${SPRING_MAIL_SMTP_AUTH:true}
+          starttls:
+            enable: ${SPRING_MAIL_SMTP_STARTTLS_ENABLE:true}
+            required: ${SPRING_MAIL_SMTP_STARTTLS_REQUIRED:true}
+          ssl:
+            enable: ${SPRING_MAIL_SMTP_SSL_ENABLE:false}
+          connectiontimeout: ${SPRING_MAIL_SMTP_CONNECTION_TIMEOUT:5000}
+          timeout: ${SPRING_MAIL_SMTP_TIMEOUT:5000}
+          writetimeout: ${SPRING_MAIL_SMTP_WRITE_TIMEOUT:5000}
+  jackson:
+    serialization:
+      WRITE_DATES_AS_TIMESTAMPS: false
+  data:
+    redis:
+      host: ${REDIS_HOST:localhost}
+      port: ${REDIS_PORT:6379}
+      password: ${REDIS_PASSWORD:}
+      timeout: ${SPRING_DATA_REDIS_TIMEOUT:10s}
+      ssl:
+        enabled: ${REDIS_SSL_ENABLED:true}
+      lettuce:
+        pool:
+          max-active: 8
+          max-idle: 8
+          min-idle: 0
+      repositories:
+        enabled: false
+
+jasypt:
+  encryptor:
+    password: ${ENCRYPTION_PASSWORD}
+    algorithm: PBEWithMD5AndDES
+
+# Must live in the prod profile: local-profile azure.* is not loaded when
+# SPRING_PROFILES_ACTIVE=prod. Without this, AzureStorageService falls back to
+# container "documents" while migrated binaries live in the private container.
+azure:
+  storage:
+    connection-string: ${AZURE_STORAGE_CONNECTION_STRING}
+    container-name: ${AZURE_BLOB_CONTAINER_NAME:documents}
+    encryption-scope: ${AZURE_STORAGE_ENCRYPTION_SCOPE:}
+
+# SpringDoc OpenAPI — disabled in prod to avoid expensive 1MB+ spec generation on every request.
+# Set SPRINGDOC_API_DOCS_ENABLED=true temporarily if API docs are needed in a deployed env.
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+    enabled: ${SPRINGDOC_API_DOCS_ENABLED:false}
+  swagger-ui:
+    path: /swagger-ui.html
+    enabled: ${SPRINGDOC_SWAGGER_UI_ENABLED:false}
+    try-it-out-enabled: false
+    persist-authorization: true
+  packages-to-scan: com.smart.therapy.flow
+  default-consumes-media-type: application/json
+  default-produces-media-type: application/json
+  show-actuator: false
+
+logging:
+  level:
+    root: INFO
+    com.smart.therapy.flow.common.logging.MethodLoggingAspect: INFO
+    org.hibernate.SQL: WARN
+    org.hibernate.type.descriptor.sql.BasicBinder: WARN
+
+aws:
+  s3:
+    bucket: ${AWS_S3_BUCKET:trappy-flow-crm-files}
+    region: ${AWS_S3_REGION:eu-north-1}
+    access-key: ${AWS_S3_ACCESS_KEY:}
+    secret-key: ${AWS_S3_SECRET_KEY:}
+    presigned-url-expiration-hours: ${AWS_S3_PRESIGNED_URL_EXPIRATION_HOURS:24}
+    sse-kms-key-id: ${AWS_S3_SSE_KMS_KEY_ID:}
+
+ais:
+  integrations:
+    openai:
+      # OpenAI API Key - Retrieved from AWS Secrets Manager (therapy-flow/openai-api-key)
+      # For local development, set AI_INTEGRATIONS_OPENAI_API_KEY environment variable
+      api-key: ${AI_INTEGRATIONS_OPENAI_API_KEY:}
+      # Transcription tries OPENAI_WHISPER_API_KEY first, then AI_INTEGRATIONS_OPENAI_API_KEY
+      whisper-api-key: ${OPENAI_WHISPER_API_KEY:}
+      fallback-api-key: ${AI_INTEGRATIONS_OPENAI_FALLBACK_API_KEY:}
+      base-url: ${AI_INTEGRATIONS_OPENAI_BASE_URL:https://api.openai.com/v1}
+
+email:
+  sparkpost:
+    api-key: ${SPARKPOST_API_KEY:}
+    from-email: ${EMAIL_FROM:}
+    from-name: ${EMAIL_FROM_NAME:SmartHub}
+    base-url: ${SPARKPOST_BASE_URL:https://api.sparkpost.com/api/v1}
+
+app:
+  env: ${APP_ENV:prod}
+  # Production must scan migrations and retire all identities from immutable legacy seed migrations.
+  migration:
+    remove-seeded-identities: true
+    production-migration-security: true
+  ai:
+    phi-processing-approved: ${AI_PHI_PROCESSING_APPROVED:false}
+  phi-encryption:
+    search:
+      mode: ${APP_PHI_ENCRYPTION_SEARCH_MODE:legacy}
+    backfill:
+      enabled: ${PHI_ENCRYPTION_BACKFILL_ENABLED:true}
+      batch-size: ${PHI_ENCRYPTION_BACKFILL_BATCH_SIZE:50}
+      fixed-delay-ms: ${PHI_ENCRYPTION_BACKFILL_FIXED_DELAY_MS:120000}
+      # Empty = all tenants
+      schema-allow-list: ${APP_PHI_ENCRYPTION_BACKFILL_SCHEMAS:}
+    blind-index-backfill:
+      enabled: ${APP_PHI_ENCRYPTION_BLIND_INDEX_BACKFILL_ENABLED:true}
+      batch-size: ${APP_PHI_ENCRYPTION_BLIND_INDEX_BACKFILL_BATCH_SIZE:50}
+      fixed-delay-ms: ${APP_PHI_ENCRYPTION_BLIND_INDEX_BACKFILL_FIXED_DELAY_MS:60000}
+      schema-allow-list: ${APP_PHI_ENCRYPTION_BLIND_INDEX_BACKFILL_SCHEMAS:}
+  encryption:
+    provider: ${APP_ENCRYPTION_PROVIDER:keyvault}
+    master-key: ${APP_ENCRYPTION_MASTER_KEY:}
+    key-id: ${APP_ENCRYPTION_KEY_ID:primary}
+    previous-keys: ${APP_ENCRYPTION_PREVIOUS_KEYS:}
+    search-hmac-key: ${APP_SEARCH_HMAC_KEY:}
+    search-hmac-tenant-pepper: ${APP_ENCRYPTION_SEARCH_HMAC_TENANT_PEPPER:}
+    keyvault-uri: ${AZURE_KEYVAULT_URI:}
+    kek-name: ${APP_ENCRYPTION_KEK_NAME:therapyflow-phi-dek}
+    search-hmac-key-name: ${APP_SEARCH_HMAC_KEY_NAME:therapyflow-phi-search-hmac}
+  redis:
+    enabled: ${APP_REDIS_ENABLED:false}
+    fail-open: ${APP_REDIS_FAIL_OPEN:true}
+  base-url: ${BASE_URL:https://app.therapyflow.pro}
+  frontend:
+    staff-login-url: ${APP_FRONTEND_STAFF_LOGIN_URL:https://app.therapyflow.pro/auth/therapist/login}
+    # Zoom setup lives in the therapist profile modal, which has no route yet; point this at the
+    # deep link as soon as the frontend exposes one.
+    therapist-zoom-setup-url: ${APP_FRONTEND_THERAPIST_ZOOM_SETUP_URL:https://app.therapyflow.pro/therapist/dashboard}
+    subscription-success-url: ${APP_FRONTEND_SUBSCRIPTION_SUCCESS_URL:https://app.therapyflow.pro/billing/subscription/success}
+    subscription-cancel-url: ${APP_FRONTEND_SUBSCRIPTION_CANCEL_URL:https://app.therapyflow.pro/billing/subscription}
+    stripe-connect-success-url: ${APP_FRONTEND_STRIPE_CONNECT_SUCCESS_URL:https://app.therapyflow.pro/stripe/success}
+    client-portal-invoice-success-url: "${APP_FRONTEND_CLIENT_PORTAL_INVOICE_SUCCESS_URL:https://app.therapyflow.pro/portal/invoices?payment=success&session_id={CHECKOUT_SESSION_ID}}"
+    client-portal-invoice-cancel-url: "${APP_FRONTEND_CLIENT_PORTAL_INVOICE_CANCEL_URL:https://app.therapyflow.pro/portal/invoices?payment=cancelled}"
+  email:
+    # Email service provider: 'sparkpost' or 'ses'
+    provider: ${EMAIL_PROVIDER:sparkpost}
+    ses:
+      region: ${AWS_SES_REGION:eu-north-1}
+      access-key: ${AWS_SES_ACCESS_KEY:}
+      secret-key: ${AWS_SES_SECRET_KEY:}
+      from-email: ${AWS_SES_FROM_EMAIL:no-reply@therapyflow.pro}
+      from-name: ${AWS_SES_FROM_NAME:SmartHub}
+      # Use SMTP instead of SDK (set to true to use JavaMailSender configured for SES SMTP)
+      use-smtp: ${AWS_SES_USE_SMTP:false}
+      smtp-endpoint: ${AWS_SES_SMTP_ENDPOINT:email-smtp.eu-north-1.amazonaws.com}
+      smtp-port: ${AWS_SES_SMTP_PORT:587}
+  storage:
+    type: ${APP_STORAGE_TYPE:azure}  # Options: local, s3, azure
+    local:
+      path: ${APP_STORAGE_LOCAL_PATH:./uploads}
+  security:
+    use-secure-cookies: ${USE_SECURE_COOKIES:true}
+  notifications:
+    schedule-interval: ${NOTIFICATION_SCHEDULE_INTERVAL:180000}
+
+tenant:
+  migration:
+    initial-delay-ms: ${TENANT_MIGRATION_INITIAL_DELAY_MS:120000}
+    fixed-delay-ms: ${TENANT_MIGRATION_FIXED_DELAY_MS:300000}
+    # PHI blind-index (V56+): all tenants migrate equally when gate-allow-all is true.
+    gated-from-version: ${TENANT_MIGRATION_GATED_FROM_VERSION:56}
+    gate-allow-slugs: ${TENANT_MIGRATION_GATE_ALLOW_SLUGS:}
+    gate-allow-all: ${TENANT_MIGRATION_GATE_ALLOW_ALL:true}
+  integrity-check:
+    interval-ms: ${TENANT_INTEGRITY_CHECK_INTERVAL_MS:1800000}
+  directory:
+    refresh-ms: ${TENANT_DIRECTORY_REFRESH_MS:180000}
+
+ai:
+  models:
+    session-notes: ${AI_MODEL_SESSION_NOTES:gpt-4o}
+    assistant: ${AI_MODEL_ASSISTANT:gpt-5}
+
+audit:
+  global:
+    enabled: ${GLOBAL_AUDIT_ENABLED:true}
+    tenant:
+      enabled: ${GLOBAL_AUDIT_TENANT_ENABLED:true}
+    platform:
+      enabled: ${GLOBAL_AUDIT_PLATFORM_ENABLED:true}
+    dedup:
+      enabled: ${GLOBAL_AUDIT_DEDUP_ENABLED:true}
+      window-seconds: ${GLOBAL_AUDIT_DEDUP_WINDOW_SECONDS:2}

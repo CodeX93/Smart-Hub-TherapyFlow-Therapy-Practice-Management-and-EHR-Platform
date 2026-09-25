@@ -1,0 +1,30 @@
+{
+  "name": "smarthub",
+  "version": "1.0.0",
+  "description": "<div align=\"center\">",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "node --test qa/lib/*.test.mjs",
+    "test:app": "node qa/run.mjs smoke",
+    "test:app:full": "node qa/run.mjs full",
+    "test:app:integrations": "node qa/run.mjs integrations",
+    "test:app:install": "playwright install chromium",
+    "test:app:browser": "node qa/run.mjs browser",
+    "test:app:frontend": "node scripts/test-frontend-lifecycle.mjs",
+    "test:e2e": "playwright test --config qa/e2e/playwright.config.mjs"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "pg": "^8.22.0"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.63.0",
+    "fast-xml-parser": "5.11.1",
+    "imapflow": "^2.0.6"
+  }
+}

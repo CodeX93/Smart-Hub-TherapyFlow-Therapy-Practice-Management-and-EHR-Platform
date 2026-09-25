@@ -1,0 +1,25 @@
+-- TENANT
+-- Clients can ask their therapist to connect Zoom when online booking is unavailable.
+-- The timestamp is both the 7-day cooldown and the tooltip's "already notified" state.
+
+ALTER TABLE client_portal_settings
+    ADD COLUMN IF NOT EXISTS online_booking_requested_at TIMESTAMP(6) WITH TIME ZONE;
+
+-- Null, or older than the request, means the therapist digest still owes this client an email.
+ALTER TABLE client_portal_settings
+    ADD COLUMN IF NOT EXISTS online_booking_notified_at TIMESTAMP(6) WITH TIME ZONE;
+
+-- Widen the notification type check so the therapist alert can be stored.
+ALTER TABLE notifications DROP CONSTRAINT IF EXISTS notifications_type_check;
+
+ALTER TABLE notifications ADD CONSTRAINT notifications_type_check CHECK (type IN (
+    'APPOINTMENT_REMINDER','APPOINTMENT_CONFIRMED','APPOINTMENT_CANCELLED','APPOINTMENT_RESCHEDULED',
+    'APPOINTMENT_24H_REMINDER','APPOINTMENT_1H_REMINDER','FORM_ASSIGNED','FORM_DUE_SOON','FORM_OVERDUE',
+    'FORM_SUBMITTED','FORM_REVIEWED','DOCUMENT_SHARED','DOCUMENT_UPDATED','SESSION_NOTES_AVAILABLE',
+    'PROGRESS_REPORT_AVAILABLE','PAYMENT_DUE','PAYMENT_OVERDUE','PAYMENT_RECEIVED','PAYMENT_FAILED',
+    'INVOICE_GENERATED','PORTAL_ACCESS_GRANTED','PASSWORD_RESET_REQUESTED','PASSWORD_CHANGED',
+    'ACCOUNT_LOCKED','ACCOUNT_UNLOCKED','NEW_MESSAGE','MESSAGE_REPLY','CRISIS_RESOURCES_SHARED',
+    'EMERGENCY_CONTACT_UPDATED','SYSTEM_MAINTENANCE','SYSTEM_UPGRADE','POLICY_UPDATE',
+    'INSURANCE_VERIFICATION_NEEDED','INSURANCE_AUTHORIZATION_EXPIRING','INSURANCE_CLAIM_PROCESSED',
+    'ONLINE_BOOKING_REQUESTED'
+));

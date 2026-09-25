@@ -1,0 +1,53 @@
+# Git
+.git
+.gitignore
+.gitlab-ci.yml
+
+# Documentation
+*.md
+docs/
+
+# IDE
+.idea/
+*.iml
+.vscode/
+*.swp
+*.swo
+
+# Build artifacts
+target/
+.m2/
+*.jar
+*.war
+*.ear
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# Logs
+*.log
+logs/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Test files
+src/test/
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+
+
+
+# Local QA dependencies, generated evidence and test harness
+node_modules/
+qa-results/
+qa/
+
+# Agent worktrees
+.claude/

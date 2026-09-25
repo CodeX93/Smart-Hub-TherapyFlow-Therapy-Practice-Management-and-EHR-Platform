@@ -1,0 +1,3 @@
+ClientSearchHelperTest
+ClientNumberSearchIntegrationTest
+ClientServiceTest
